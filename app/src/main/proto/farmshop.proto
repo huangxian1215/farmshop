@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+
+
+package farmshop;
+option java_outer_classname = "farmshop";
+option java_package = "com.example.farmshop";
+
+import "google/protobuf/any.proto";
+
+message ClientSession{
+    int32 sessionId = 1;
+}
+
+enum MsgId{
+    CONNECT_REQ = 0;
+    CONNECT_RES = 1;
+    REGIST_REQ = 2;
+    REGIST_RES = 3;
+    LOGIN_REQ = 4;
+    LOGIN_RES = 5;
+}
+
+message baseType{
+    MsgId type = 1;
+    string sessionId = 2;
+    repeated google.protobuf.Any object = 3;
+}
+
+message RegistRequest{
+    string name = 1;
+    string password = 2;
+}
+
+message RegistResponse{
+    int32 result = 1;
+}
+message LoginRequest{
+    string name = 1;
+    string password = 2;
+}
+
+message LoginResponse{
+    int32 result = 1;
+}

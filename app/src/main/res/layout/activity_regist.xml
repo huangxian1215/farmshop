@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp" >
+    <EditText
+        android:id="@+id/et_rgname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center"
+        android:text="天马流星"
+        android:textSize="17sp" />
+    <EditText
+        android:id="@+id/et_rgpwd"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center"
+        android:text="%%..134/"
+        android:textSize="17sp" />
+    <Button
+        android:id="@+id/btn_regist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:textSize="17sp" />
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp" />
+
+</LinearLayout>
