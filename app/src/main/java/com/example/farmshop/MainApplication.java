@@ -10,7 +10,7 @@ public class MainApplication extends Application {
     private static MainApplication mApp;
     public String mSessionId;
     public MessageTransmit mTransmit;
-    public String Url = "http://192.168.6.179:8080/";
+    public String Url = "http://192.168.6.176:8080/";
     public String savePath = "";
 
     public static MainApplication getInstance() {
