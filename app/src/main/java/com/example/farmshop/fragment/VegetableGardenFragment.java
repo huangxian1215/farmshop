@@ -18,6 +18,7 @@ import com.example.farmshop.task.LoadFilesTask;
 import com.example.farmshop.task.LoadFilesTask.OnGetFileListener;
 import com.example.farmshop.util.MyUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +45,10 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
         super.onActivityCreated(savedInstanceState);
         //图片较多时需要边下载边刷新,下载任务队列
         app = MainApplication.getInstance();
+        initData();
         getPicLoadList();
         startDownLoadTask();
-        initData();
+
     }
 
     private void initData() {
@@ -71,7 +73,19 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
             ArrayList<String>  every = new ArrayList<>();
             every = JsonUtil.arrayStringToArrayList(config.get(i));
             for(int n = 0; n < every.size(); n++){
-                mDownTaskList.add(every.get(n));
+                String filePath = app.savePath + MyUtil.getFileName(every.get(n))+".jpg";
+                File File = new File(filePath);
+                if(!File.exists()){
+                    mDownTaskList.add(every.get(n));
+                }else{
+                    VegetableInfo vg = new VegetableInfo();
+                    vg.picPath = filePath;
+                    vg.name = MyUtil.getFileName(every.get(n));
+                    vg.desc = "test pic";
+                    vg.price = 2.0;
+                    mData.add(vg);
+                    mpptListAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
@@ -80,7 +94,7 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
         if(mDownTaskList.size() > 0 && mDownCount == 0){
             mloadconfig = new LoadFilesTask();
             mloadconfig.setOnGetFileListener(this);
-            String downUrl = app.Url + mDownTaskList.get(0);
+            String downUrl = app.httpUrl + mDownTaskList.get(0);
             String savePath = app.savePath + MyUtil.getFileName(mDownTaskList.get(0)) + ".jpg";
             mSavePath = savePath;
             mloadconfig.execute(downUrl,savePath, "jpg");
@@ -98,12 +112,13 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
         mData.add(vg);
         mpptListAdapter.notifyDataSetChanged();
         if(mDownCount < mDownTaskList.size()){
+            String savePath = app.savePath + MyUtil.getFileName(mDownTaskList.get(mDownCount))+".jpg";
             mloadconfig = new LoadFilesTask();
             mloadconfig.setOnGetFileListener(this);
-            String downUrl = app.Url + mDownTaskList.get(mDownCount);
-            String savePath = app.savePath + MyUtil.getFileName(mDownTaskList.get(mDownCount)) + ".jpg";
+            String downUrl = app.httpUrl + mDownTaskList.get(mDownCount);
             mSavePath = savePath;
-            mloadconfig.execute(downUrl,savePath, "jpg");
+            mloadconfig.execute(downUrl, savePath, "jpg");
+
             mDownCount++;
         }
     }

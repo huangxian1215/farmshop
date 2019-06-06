@@ -31,13 +31,7 @@ public class LoadFilesTask extends AsyncTask<String, Integer, String> implements
 
     @Override
     public void onDownloadFinish(String type){
-        if(type.equals("mp3")){
-        }
-        if(type.equals("jpg")){//显示专辑图片
-            //setImageView(mPicPath);
-            //立即加载会失败
-            //mHandler.postDelayed(r, 1000);
-        }
+//        mListener.onGetFile(type);
     }
 
     @Override

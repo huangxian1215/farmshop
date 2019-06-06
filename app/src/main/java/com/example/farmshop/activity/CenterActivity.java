@@ -40,11 +40,11 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         vpFile = findViewById(R.id.vp_file);
         app = MainApplication.getInstance();
         downLoadConfig();
-        initData();
+//        initData();
     }
 
     private void downLoadConfig(){
-        configUrl = app.Url + "pictureConfig.json";
+        configUrl = app.httpUrl + "pictureConfig.json";
         savePath = app.savePath + "pictureConfig.json";
         File file = new File(app.savePath);
         if(!file.exists()){
@@ -59,7 +59,7 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
 
     @Override
     public void onGetFile(String info){
-        Toast.makeText(this, "下载pictureConfig.json成功", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "下载pictureConfig.json成功", Toast.LENGTH_SHORT).show();
         initData();
     }
 
@@ -71,9 +71,7 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         mTabTitle.add("me");
 
         VegetableGardenFragment vgtb = new VegetableGardenFragment();
-        Bundle vgtbBundle = new Bundle();
         mFragment.add(vgtb);
-
         TodaySellFragment tdsl = new TodaySellFragment();
         MyselfFragment mysf = new MyselfFragment();
         mFragment.add(tdsl);

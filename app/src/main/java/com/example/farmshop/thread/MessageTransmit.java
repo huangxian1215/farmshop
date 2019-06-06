@@ -103,7 +103,8 @@ public class MessageTransmit implements Runnable {
             case CONNECT_RES:
                 sessionId = data.getSessionId();
                 app.mSessionId = sessionId;
-                Log.d("MessageTtrnsmit: ", "getserver sessionId" + sessionId);
+                msg.obj = data;
+                LoginActivity.mHandler.sendMessage(msg);
                 break;
             case REGIST_RES:
                 msg.obj = data;
@@ -112,27 +113,20 @@ public class MessageTransmit implements Runnable {
             case LOGIN_RES:
                 msg.obj = data;
                 LoginActivity.mHandler.sendMessage(msg);
+                mListener.onGetNetData("login");
                 break;
             default:
                 break;
         }
     }
 
-    //响应注册
-    public void responseRegist(farmshop.baseType data){
-        try{
-            Any any = data.getObject(0);
-            farmshop.RegistResponse resp = farmshop.RegistResponse.parseFrom(any.getValue());
-            if(resp.getResult() == 0){
-                Log.d("MessageTtrnsmit: ", "getserver REGIST_RES result successful" );
-            }else{
-                Log.d("MessageTtrnsmit: ", "getserver REGIST_RES result failed" );
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    private OnGetNetDataListener mListener;
+    public void setOnNetListener(OnGetNetDataListener listener){
+        mListener = listener;
     }
-    //响应登陆
+    public static interface OnGetNetDataListener{
+        public abstract void onGetNetData(String info);
+    }
 
 }
 

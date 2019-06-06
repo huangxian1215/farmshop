@@ -17,12 +17,7 @@
         android:gravity="left|center"
         android:text="8010"
         android:textSize="17sp" />
-    <Button
-        android:id="@+id/btn_set"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="连接服务器"
-        android:textSize="17sp" />
+
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"

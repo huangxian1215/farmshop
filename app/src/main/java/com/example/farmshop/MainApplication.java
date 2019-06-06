@@ -1,8 +1,10 @@
 package com.example.farmshop;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 
+import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.thread.MessageTransmit;
 
 public class MainApplication extends Application {
@@ -10,9 +12,10 @@ public class MainApplication extends Application {
     private static MainApplication mApp;
     public String mSessionId;
     public MessageTransmit mTransmit;
-    public String Url = "http://192.168.6.176:8080/";
+    public String httpUrl = "http://192.168.6.176:8080/";
+    public String Url = "http://192.168.6.176:8010/";
+    public String upFileUrl = "http://192.168.6.176:8020/";
     public String savePath = "";
-
     public static MainApplication getInstance() {
         return mApp;
     }

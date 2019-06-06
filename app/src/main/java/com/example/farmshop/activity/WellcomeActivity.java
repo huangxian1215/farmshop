@@ -43,7 +43,7 @@ public class WellcomeActivity extends AppCompatActivity implements OnGetFileList
         tv_image = (ImageView) findViewById(R.id.tv_image);
 
         app = MainApplication.getInstance();
-        configUrl = app.Url + "pictureConfig.json";
+        configUrl = app.httpUrl + "pictureConfig.json";
         savePath = app.savePath + "pictureConfig.json";
 
         File file = new File(app.savePath);
@@ -79,7 +79,7 @@ public class WellcomeActivity extends AppCompatActivity implements OnGetFileList
             type2 = mPictureConfig.get(1);
             LoadFilesTask picload =  new LoadFilesTask();
             picload.setOnGetFileListener(this);
-            picload.execute(app.Url + type2, app.savePath + "timg1.jpg", "jpg");
+            picload.execute(app.httpUrl + type2, app.savePath + "timg1.jpg", "jpg");
         }
 
     }
