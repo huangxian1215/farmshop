@@ -30,6 +30,8 @@
         <activity android:name=".activity.RegistActivity" />
         <activity android:name=".activity.CenterActivity" />
         <activity android:name=".activity.WellcomeActivity"/>
+        <activity android:name=".upfiles.activity.MediaStoreActivity"/>
+        <activity android:name=".upfiles.activity.UpFileMainActivity"/>
     </application>
 
 </manifest>

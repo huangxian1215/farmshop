@@ -40,6 +40,7 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         vpFile = findViewById(R.id.vp_file);
         app = MainApplication.getInstance();
         downLoadConfig();
+        //for test 0606
 //        initData();
     }
 

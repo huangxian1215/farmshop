@@ -16,6 +16,8 @@ public class MainApplication extends Application {
     public String Url = "http://192.168.6.176:8010/";
     public String upFileUrl = "http://192.168.6.176:8020/";
     public String savePath = "";
+
+    public String selectFileUrl = "";
     public static MainApplication getInstance() {
         return mApp;
     }

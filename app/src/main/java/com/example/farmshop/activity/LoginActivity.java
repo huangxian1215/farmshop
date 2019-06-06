@@ -67,6 +67,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             app.mTransmit.setIpPort(ipstr, port);
             app.mTransmit.setOnNetListener(this);
             new Thread( app.mTransmit).start();
+//            Intent intent = new Intent(mContext, CenterActivity.class);
+//            startActivity(intent);
         }
     }
 
