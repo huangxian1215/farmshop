@@ -41,7 +41,7 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         app = MainApplication.getInstance();
         downLoadConfig();
         //for test 0606
-//        initData();
+        initData();
     }
 
     private void downLoadConfig(){

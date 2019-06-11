@@ -4,7 +4,6 @@ import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.bean.ByteData;
 import com.example.farmshop.farmshop;
-import com.example.farmshop.thread.MessageTransmit;
 import com.example.farmshop.thread.MessageTransmit.OnGetNetDataListener;
 import com.google.protobuf.Any;
 import android.content.Context;
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_socket);
+        setContentView(R.layout.activity_login);
         et_ip = (EditText) findViewById(R.id.et_ip);
         et_port = (EditText) findViewById(R.id.et_port);
         s_et_name = (EditText) findViewById(R.id.et_name);
@@ -61,14 +60,14 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         }
         //登录
         if(v.getId() == R.id.btn_login){
-            String ipstr = et_ip.getText().toString();
-            String strport = et_port.getText().toString();
-            int port = Integer.parseInt(strport);
-            app.mTransmit.setIpPort(ipstr, port);
-            app.mTransmit.setOnNetListener(this);
-            new Thread( app.mTransmit).start();
-//            Intent intent = new Intent(mContext, CenterActivity.class);
-//            startActivity(intent);
+//            String ipstr = et_ip.getText().toString();
+//            String strport = et_port.getText().toString();
+//            int port = Integer.parseInt(strport);
+//            app.mTransmit.setIpPort(ipstr, port);
+//            app.mTransmit.setOnNetListener(this);
+//            new Thread( app.mTransmit).start();
+            Intent intent = new Intent(mContext, CenterActivity.class);
+            startActivity(intent);
         }
     }
 

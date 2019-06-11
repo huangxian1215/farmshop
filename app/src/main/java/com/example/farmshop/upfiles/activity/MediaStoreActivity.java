@@ -101,11 +101,10 @@ public class MediaStoreActivity extends AppCompatActivity {
 
         getImages();
 
-        getDocumentData(1);
-        getDocumentData(2);
-        getDocumentData(3);
-        getDocumentData(4);
-        Log.d("photo getImage3", TimeUtil.getTimeNow());
+//        getDocumentData(1);
+//        getDocumentData(2);
+//        getDocumentData(3);
+//        getDocumentData(4);
         handler.sendEmptyMessage(1);
     }
 
@@ -116,48 +115,45 @@ public class MediaStoreActivity extends AppCompatActivity {
         mFragment = new ArrayList<>();
 
         mTabTitle.add("image");
-        mTabTitle.add("word");
-        mTabTitle.add("xls");
-        mTabTitle.add("ppt");
-        mTabTitle.add("pdf");
-        Log.d("photo getImage5", TimeUtil.getTimeNow());
+//        mTabTitle.add("word");
+//        mTabTitle.add("xls");
+//        mTabTitle.add("ppt");
+//        mTabTitle.add("pdf");
         FolderDataFragment imageFragment = new FolderDataFragment();
         Bundle imageBundle = new Bundle();
         imageBundle.putParcelableArrayList("file_data", imageData);
         imageBundle.putBoolean("is_image", true);
         imageFragment.setArguments(imageBundle);
-        Log.d("photo getImage6", TimeUtil.getTimeNow());
 
         mFragment.add(imageFragment);
-        Log.d("photo getImage7", TimeUtil.getTimeNow());
 
-        FolderDataFragment wordFragment = new FolderDataFragment();
-        Bundle wordBundle = new Bundle();
-        wordBundle.putParcelableArrayList("file_data", wordData);
-        wordBundle.putBoolean("is_image", false);
-        wordFragment.setArguments(wordBundle);
-        mFragment.add(wordFragment);
-
-        FolderDataFragment xlsFragment = new FolderDataFragment();
-        Bundle xlsBundle = new Bundle();
-        xlsBundle.putParcelableArrayList("file_data", xlsData);
-        xlsBundle.putBoolean("is_image", false);
-        xlsFragment.setArguments(xlsBundle);
-        mFragment.add(xlsFragment);
-
-        FolderDataFragment pptFragment = new FolderDataFragment();
-        Bundle pptBundle = new Bundle();
-        pptBundle.putParcelableArrayList("file_data", pptData);
-        pptBundle.putBoolean("is_image", false);
-        pptFragment.setArguments(pptBundle);
-        mFragment.add(pptFragment);
-
-        FolderDataFragment pdfFragment = new FolderDataFragment();
-        Bundle pdfBundle = new Bundle();
-        pdfBundle.putParcelableArrayList("file_data", pdfData);
-        pdfBundle.putBoolean("is_image", false);
-        pdfFragment.setArguments(pdfBundle);
-        mFragment.add(pdfFragment);
+//        FolderDataFragment wordFragment = new FolderDataFragment();
+//        Bundle wordBundle = new Bundle();
+//        wordBundle.putParcelableArrayList("file_data", wordData);
+//        wordBundle.putBoolean("is_image", false);
+//        wordFragment.setArguments(wordBundle);
+//        mFragment.add(wordFragment);
+//
+//        FolderDataFragment xlsFragment = new FolderDataFragment();
+//        Bundle xlsBundle = new Bundle();
+//        xlsBundle.putParcelableArrayList("file_data", xlsData);
+//        xlsBundle.putBoolean("is_image", false);
+//        xlsFragment.setArguments(xlsBundle);
+//        mFragment.add(xlsFragment);
+//
+//        FolderDataFragment pptFragment = new FolderDataFragment();
+//        Bundle pptBundle = new Bundle();
+//        pptBundle.putParcelableArrayList("file_data", pptData);
+//        pptBundle.putBoolean("is_image", false);
+//        pptFragment.setArguments(pptBundle);
+//        mFragment.add(pptFragment);
+//
+//        FolderDataFragment pdfFragment = new FolderDataFragment();
+//        Bundle pdfBundle = new Bundle();
+//        pdfBundle.putParcelableArrayList("file_data", pdfData);
+//        pdfBundle.putBoolean("is_image", false);
+//        pdfFragment.setArguments(pdfBundle);
+//        mFragment.add(pdfFragment);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 

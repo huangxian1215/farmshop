@@ -32,6 +32,7 @@
         <activity android:name=".activity.WellcomeActivity"/>
         <activity android:name=".upfiles.activity.MediaStoreActivity"/>
         <activity android:name=".upfiles.activity.UpFileMainActivity"/>
+        <activity android:name=".activity.UserDetailActivity"/>
     </application>
 
 </manifest>

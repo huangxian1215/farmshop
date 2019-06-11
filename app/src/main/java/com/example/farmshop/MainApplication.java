@@ -5,12 +5,14 @@ import android.content.Context;
 import android.os.Environment;
 
 import com.example.farmshop.activity.LoginActivity;
+import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.thread.MessageTransmit;
 
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
     private static MainApplication mApp;
     public String mSessionId;
+    public UserInfo mUserinfo;
     public MessageTransmit mTransmit;
     public String httpUrl = "http://192.168.6.176:8080/";
     public String Url = "http://192.168.6.176:8010/";

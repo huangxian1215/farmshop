@@ -9,9 +9,8 @@ import java.net.Socket;
 import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.bean.ByteData;
-import com.example.farmshop.farmshop;
 import com.example.farmshop.activity.RegistActivity;
-import com.google.protobuf.Any;
+import com.example.farmshop.farmshop;
 
 import android.os.Handler;
 import android.os.Looper;

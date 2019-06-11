@@ -17,8 +17,6 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace farmshop {
-
 namespace {
 
 const ::google::protobuf::Descriptor* ClientSession_descriptor_ = NULL;
@@ -39,6 +37,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* LoginResponse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   LoginResponse_reflection_ = NULL;
+const ::google::protobuf::Descriptor* EditUserInfoRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  EditUserInfoRequest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* EditUserInfoResponse_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  EditUserInfoResponse_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* MsgId_descriptor_ = NULL;
 
 }  // namespace
@@ -126,8 +130,10 @@ void protobuf_AssignDesc_farmshop_2eproto() {
       sizeof(LoginRequest),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginRequest, _internal_metadata_));
   LoginResponse_descriptor_ = file->message_type(5);
-  static const int LoginResponse_offsets_[1] = {
+  static const int LoginResponse_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginResponse, result_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginResponse, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginResponse, userinfo_),
   };
   LoginResponse_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -139,6 +145,41 @@ void protobuf_AssignDesc_farmshop_2eproto() {
       -1,
       sizeof(LoginResponse),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginResponse, _internal_metadata_));
+  EditUserInfoRequest_descriptor_ = file->message_type(6);
+  static const int EditUserInfoRequest_offsets_[8] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, uid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, headimg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, realname_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, sex_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, age_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, phonenumber_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, location_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, ismanager_),
+  };
+  EditUserInfoRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      EditUserInfoRequest_descriptor_,
+      EditUserInfoRequest::internal_default_instance(),
+      EditUserInfoRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(EditUserInfoRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoRequest, _internal_metadata_));
+  EditUserInfoResponse_descriptor_ = file->message_type(7);
+  static const int EditUserInfoResponse_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoResponse, result_),
+  };
+  EditUserInfoResponse_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      EditUserInfoResponse_descriptor_,
+      EditUserInfoResponse::internal_default_instance(),
+      EditUserInfoResponse_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(EditUserInfoResponse),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EditUserInfoResponse, _internal_metadata_));
   MsgId_descriptor_ = file->enum_type(0);
 }
 
@@ -165,6 +206,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
       LoginRequest_descriptor_, LoginRequest::internal_default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       LoginResponse_descriptor_, LoginResponse::internal_default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      EditUserInfoRequest_descriptor_, EditUserInfoRequest::internal_default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      EditUserInfoResponse_descriptor_, EditUserInfoResponse::internal_default_instance());
 }
 
 }  // namespace
@@ -182,6 +227,10 @@ void protobuf_ShutdownFile_farmshop_2eproto() {
   delete LoginRequest_reflection_;
   LoginResponse_default_instance_.Shutdown();
   delete LoginResponse_reflection_;
+  EditUserInfoRequest_default_instance_.Shutdown();
+  delete EditUserInfoRequest_reflection_;
+  EditUserInfoResponse_default_instance_.Shutdown();
+  delete EditUserInfoResponse_reflection_;
 }
 
 void protobuf_InitDefaults_farmshop_2eproto_impl() {
@@ -196,13 +245,19 @@ void protobuf_InitDefaults_farmshop_2eproto_impl() {
   RegistResponse_default_instance_.DefaultConstruct();
   ::google::protobuf::internal::GetEmptyString();
   LoginRequest_default_instance_.DefaultConstruct();
+  ::google::protobuf::internal::GetEmptyString();
   LoginResponse_default_instance_.DefaultConstruct();
+  ::google::protobuf::internal::GetEmptyString();
+  EditUserInfoRequest_default_instance_.DefaultConstruct();
+  EditUserInfoResponse_default_instance_.DefaultConstruct();
   ClientSession_default_instance_.get_mutable()->InitAsDefaultInstance();
   baseType_default_instance_.get_mutable()->InitAsDefaultInstance();
   RegistRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
   RegistResponse_default_instance_.get_mutable()->InitAsDefaultInstance();
   LoginRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
   LoginResponse_default_instance_.get_mutable()->InitAsDefaultInstance();
+  EditUserInfoRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
+  EditUserInfoResponse_default_instance_.get_mutable()->InitAsDefaultInstance();
 }
 
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_InitDefaults_farmshop_2eproto_once_);
@@ -215,19 +270,25 @@ void protobuf_AddDesc_farmshop_2eproto_impl() {
 
   protobuf_InitDefaults_farmshop_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\016farmshop.proto\022\010farmshop\032\031google/proto"
-    "buf/any.proto\"\"\n\rClientSession\022\021\n\tsessio"
-    "nId\030\001 \001(\005\"b\n\010baseType\022\035\n\004type\030\001 \001(\0162\017.fa"
-    "rmshop.MsgId\022\021\n\tsessionId\030\002 \001(\t\022$\n\006objec"
-    "t\030\003 \003(\0132\024.google.protobuf.Any\"/\n\rRegistR"
-    "equest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\" "
-    "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\".\n\014Logi"
-    "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t"
-    "\"\037\n\rLoginResponse\022\016\n\006result\030\001 \001(\005*g\n\005Msg"
-    "Id\022\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\n"
-    "REGIST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_RE"
-    "Q\020\004\022\r\n\tLOGIN_RES\020\005B \n\024com.example.farmsh"
-    "opB\010farmshopb\006proto3", 500);
+    "\n\016farmshop.proto\032\031google/protobuf/any.pr"
+    "oto\"\"\n\rClientSession\022\021\n\tsessionId\030\001 \001(\005\""
+    "Y\n\010baseType\022\024\n\004type\030\001 \001(\0162\006.MsgId\022\021\n\tses"
+    "sionId\030\002 \001(\t\022$\n\006object\030\003 \003(\0132\024.google.pr"
+    "otobuf.Any\"/\n\rRegistRequest\022\014\n\004name\030\001 \001("
+    "\t\022\020\n\010password\030\002 \001(\t\" \n\016RegistResponse\022\016\n"
+    "\006result\030\001 \001(\005\".\n\014LoginRequest\022\014\n\004name\030\001 "
+    "\001(\t\022\020\n\010password\030\002 \001(\t\"U\n\rLoginResponse\022\016"
+    "\n\006result\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022&\n\010userinfo"
+    "\030\003 \001(\0132\024.EditUserInfoRequest\"\231\001\n\023EditUse"
+    "rInfoRequest\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001"
+    "(\t\022\020\n\010realName\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age"
+    "\030\005 \001(\005\022\023\n\013phoneNumber\030\006 \001(\t\022\020\n\010location\030"
+    "\007 \001(\t\022\021\n\tisManager\030\010 \001(\010\"&\n\024EditUserInfo"
+    "Response\022\016\n\006result\030\001 \001(\005*\223\001\n\005MsgId\022\017\n\013CO"
+    "NNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_R"
+    "EQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tL"
+    "OGIN_RES\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020Edit"
+    "UserInfo_RES\020\007b\006proto3", 742);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "farmshop.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fany_2eproto();
@@ -257,6 +318,8 @@ bool MsgId_IsValid(int value) {
     case 3:
     case 4:
     case 5:
+    case 6:
+    case 7:
       return true;
     default:
       return false;
@@ -284,7 +347,7 @@ ClientSession::ClientSession()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.ClientSession)
+  // @@protoc_insertion_point(constructor:ClientSession)
 }
 
 void ClientSession::InitAsDefaultInstance() {
@@ -295,7 +358,7 @@ ClientSession::ClientSession(const ClientSession& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.ClientSession)
+  // @@protoc_insertion_point(copy_constructor:ClientSession)
 }
 
 void ClientSession::SharedCtor() {
@@ -304,7 +367,7 @@ void ClientSession::SharedCtor() {
 }
 
 ClientSession::~ClientSession() {
-  // @@protoc_insertion_point(destructor:farmshop.ClientSession)
+  // @@protoc_insertion_point(destructor:ClientSession)
   SharedDtor();
 }
 
@@ -337,7 +400,7 @@ ClientSession* ClientSession::New(::google::protobuf::Arena* arena) const {
 }
 
 void ClientSession::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.ClientSession)
+// @@protoc_insertion_point(message_clear_start:ClientSession)
   sessionid_ = 0;
 }
 
@@ -345,7 +408,7 @@ bool ClientSession::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.ClientSession)
+  // @@protoc_insertion_point(parse_start:ClientSession)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -378,40 +441,40 @@ bool ClientSession::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.ClientSession)
+  // @@protoc_insertion_point(parse_success:ClientSession)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.ClientSession)
+  // @@protoc_insertion_point(parse_failure:ClientSession)
   return false;
 #undef DO_
 }
 
 void ClientSession::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.ClientSession)
+  // @@protoc_insertion_point(serialize_start:ClientSession)
   // optional int32 sessionId = 1;
   if (this->sessionid() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->sessionid(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.ClientSession)
+  // @@protoc_insertion_point(serialize_end:ClientSession)
 }
 
 ::google::protobuf::uint8* ClientSession::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.ClientSession)
+  // @@protoc_insertion_point(serialize_to_array_start:ClientSession)
   // optional int32 sessionId = 1;
   if (this->sessionid() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->sessionid(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.ClientSession)
+  // @@protoc_insertion_point(serialize_to_array_end:ClientSession)
   return target;
 }
 
 size_t ClientSession::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.ClientSession)
+// @@protoc_insertion_point(message_byte_size_start:ClientSession)
   size_t total_size = 0;
 
   // optional int32 sessionId = 1;
@@ -429,22 +492,22 @@ size_t ClientSession::ByteSizeLong() const {
 }
 
 void ClientSession::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.ClientSession)
+// @@protoc_insertion_point(generalized_merge_from_start:ClientSession)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const ClientSession* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const ClientSession>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.ClientSession)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ClientSession)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.ClientSession)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ClientSession)
     UnsafeMergeFrom(*source);
   }
 }
 
 void ClientSession::MergeFrom(const ClientSession& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.ClientSession)
+// @@protoc_insertion_point(class_specific_merge_from_start:ClientSession)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -460,14 +523,14 @@ void ClientSession::UnsafeMergeFrom(const ClientSession& from) {
 }
 
 void ClientSession::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.ClientSession)
+// @@protoc_insertion_point(generalized_copy_from_start:ClientSession)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void ClientSession::CopyFrom(const ClientSession& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.ClientSession)
+// @@protoc_insertion_point(class_specific_copy_from_start:ClientSession)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
@@ -504,13 +567,13 @@ void ClientSession::clear_sessionid() {
   sessionid_ = 0;
 }
 ::google::protobuf::int32 ClientSession::sessionid() const {
-  // @@protoc_insertion_point(field_get:farmshop.ClientSession.sessionId)
+  // @@protoc_insertion_point(field_get:ClientSession.sessionId)
   return sessionid_;
 }
 void ClientSession::set_sessionid(::google::protobuf::int32 value) {
   
   sessionid_ = value;
-  // @@protoc_insertion_point(field_set:farmshop.ClientSession.sessionId)
+  // @@protoc_insertion_point(field_set:ClientSession.sessionId)
 }
 
 inline const ClientSession* ClientSession::internal_default_instance() {
@@ -530,7 +593,7 @@ baseType::baseType()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.baseType)
+  // @@protoc_insertion_point(constructor:baseType)
 }
 
 void baseType::InitAsDefaultInstance() {
@@ -541,7 +604,7 @@ baseType::baseType(const baseType& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.baseType)
+  // @@protoc_insertion_point(copy_constructor:baseType)
 }
 
 void baseType::SharedCtor() {
@@ -551,7 +614,7 @@ void baseType::SharedCtor() {
 }
 
 baseType::~baseType() {
-  // @@protoc_insertion_point(destructor:farmshop.baseType)
+  // @@protoc_insertion_point(destructor:baseType)
   SharedDtor();
 }
 
@@ -585,7 +648,7 @@ baseType* baseType::New(::google::protobuf::Arena* arena) const {
 }
 
 void baseType::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.baseType)
+// @@protoc_insertion_point(message_clear_start:baseType)
   type_ = 0;
   sessionid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   object_.Clear();
@@ -595,20 +658,20 @@ bool baseType::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.baseType)
+  // @@protoc_insertion_point(parse_start:baseType)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .farmshop.MsgId type = 1;
+      // optional .MsgId type = 1;
       case 1: {
         if (tag == 8) {
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          set_type(static_cast< ::farmshop::MsgId >(value));
+          set_type(static_cast< ::MsgId >(value));
         } else {
           goto handle_unusual;
         }
@@ -625,7 +688,7 @@ bool baseType::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->sessionid().data(), this->sessionid().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "farmshop.baseType.sessionId"));
+            "baseType.sessionId"));
         } else {
           goto handle_unusual;
         }
@@ -663,18 +726,18 @@ bool baseType::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.baseType)
+  // @@protoc_insertion_point(parse_success:baseType)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.baseType)
+  // @@protoc_insertion_point(parse_failure:baseType)
   return false;
 #undef DO_
 }
 
 void baseType::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.baseType)
-  // optional .farmshop.MsgId type = 1;
+  // @@protoc_insertion_point(serialize_start:baseType)
+  // optional .MsgId type = 1;
   if (this->type() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       1, this->type(), output);
@@ -685,7 +748,7 @@ void baseType::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->sessionid().data(), this->sessionid().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.baseType.sessionId");
+      "baseType.sessionId");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->sessionid(), output);
   }
@@ -696,14 +759,14 @@ void baseType::SerializeWithCachedSizes(
       3, this->object(i), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.baseType)
+  // @@protoc_insertion_point(serialize_end:baseType)
 }
 
 ::google::protobuf::uint8* baseType::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.baseType)
-  // optional .farmshop.MsgId type = 1;
+  // @@protoc_insertion_point(serialize_to_array_start:baseType)
+  // optional .MsgId type = 1;
   if (this->type() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       1, this->type(), target);
@@ -714,7 +777,7 @@ void baseType::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->sessionid().data(), this->sessionid().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.baseType.sessionId");
+      "baseType.sessionId");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->sessionid(), target);
@@ -727,15 +790,15 @@ void baseType::SerializeWithCachedSizes(
         3, this->object(i), false, target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.baseType)
+  // @@protoc_insertion_point(serialize_to_array_end:baseType)
   return target;
 }
 
 size_t baseType::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.baseType)
+// @@protoc_insertion_point(message_byte_size_start:baseType)
   size_t total_size = 0;
 
-  // optional .farmshop.MsgId type = 1;
+  // optional .MsgId type = 1;
   if (this->type() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
@@ -767,22 +830,22 @@ size_t baseType::ByteSizeLong() const {
 }
 
 void baseType::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.baseType)
+// @@protoc_insertion_point(generalized_merge_from_start:baseType)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const baseType* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const baseType>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.baseType)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:baseType)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.baseType)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:baseType)
     UnsafeMergeFrom(*source);
   }
 }
 
 void baseType::MergeFrom(const baseType& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.baseType)
+// @@protoc_insertion_point(class_specific_merge_from_start:baseType)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -803,14 +866,14 @@ void baseType::UnsafeMergeFrom(const baseType& from) {
 }
 
 void baseType::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.baseType)
+// @@protoc_insertion_point(generalized_copy_from_start:baseType)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void baseType::CopyFrom(const baseType& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.baseType)
+// @@protoc_insertion_point(class_specific_copy_from_start:baseType)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
@@ -844,18 +907,18 @@ void baseType::InternalSwap(baseType* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // baseType
 
-// optional .farmshop.MsgId type = 1;
+// optional .MsgId type = 1;
 void baseType::clear_type() {
   type_ = 0;
 }
-::farmshop::MsgId baseType::type() const {
-  // @@protoc_insertion_point(field_get:farmshop.baseType.type)
-  return static_cast< ::farmshop::MsgId >(type_);
+::MsgId baseType::type() const {
+  // @@protoc_insertion_point(field_get:baseType.type)
+  return static_cast< ::MsgId >(type_);
 }
-void baseType::set_type(::farmshop::MsgId value) {
+void baseType::set_type(::MsgId value) {
   
   type_ = value;
-  // @@protoc_insertion_point(field_set:farmshop.baseType.type)
+  // @@protoc_insertion_point(field_set:baseType.type)
 }
 
 // optional string sessionId = 2;
@@ -863,32 +926,32 @@ void baseType::clear_sessionid() {
   sessionid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 const ::std::string& baseType::sessionid() const {
-  // @@protoc_insertion_point(field_get:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_get:baseType.sessionId)
   return sessionid_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void baseType::set_sessionid(const ::std::string& value) {
   
   sessionid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_set:baseType.sessionId)
 }
 void baseType::set_sessionid(const char* value) {
   
   sessionid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_set_char:baseType.sessionId)
 }
 void baseType::set_sessionid(const char* value, size_t size) {
   
   sessionid_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_set_pointer:baseType.sessionId)
 }
 ::std::string* baseType::mutable_sessionid() {
   
-  // @@protoc_insertion_point(field_mutable:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_mutable:baseType.sessionId)
   return sessionid_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* baseType::release_sessionid() {
-  // @@protoc_insertion_point(field_release:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_release:baseType.sessionId)
   
   return sessionid_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -899,7 +962,7 @@ void baseType::set_allocated_sessionid(::std::string* sessionid) {
     
   }
   sessionid_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), sessionid);
-  // @@protoc_insertion_point(field_set_allocated:farmshop.baseType.sessionId)
+  // @@protoc_insertion_point(field_set_allocated:baseType.sessionId)
 }
 
 // repeated .google.protobuf.Any object = 3;
@@ -910,25 +973,25 @@ void baseType::clear_object() {
   object_.Clear();
 }
 const ::google::protobuf::Any& baseType::object(int index) const {
-  // @@protoc_insertion_point(field_get:farmshop.baseType.object)
+  // @@protoc_insertion_point(field_get:baseType.object)
   return object_.Get(index);
 }
 ::google::protobuf::Any* baseType::mutable_object(int index) {
-  // @@protoc_insertion_point(field_mutable:farmshop.baseType.object)
+  // @@protoc_insertion_point(field_mutable:baseType.object)
   return object_.Mutable(index);
 }
 ::google::protobuf::Any* baseType::add_object() {
-  // @@protoc_insertion_point(field_add:farmshop.baseType.object)
+  // @@protoc_insertion_point(field_add:baseType.object)
   return object_.Add();
 }
 ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >*
 baseType::mutable_object() {
-  // @@protoc_insertion_point(field_mutable_list:farmshop.baseType.object)
+  // @@protoc_insertion_point(field_mutable_list:baseType.object)
   return &object_;
 }
 const ::google::protobuf::RepeatedPtrField< ::google::protobuf::Any >&
 baseType::object() const {
-  // @@protoc_insertion_point(field_list:farmshop.baseType.object)
+  // @@protoc_insertion_point(field_list:baseType.object)
   return object_;
 }
 
@@ -948,7 +1011,7 @@ RegistRequest::RegistRequest()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.RegistRequest)
+  // @@protoc_insertion_point(constructor:RegistRequest)
 }
 
 void RegistRequest::InitAsDefaultInstance() {
@@ -959,7 +1022,7 @@ RegistRequest::RegistRequest(const RegistRequest& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.RegistRequest)
+  // @@protoc_insertion_point(copy_constructor:RegistRequest)
 }
 
 void RegistRequest::SharedCtor() {
@@ -969,7 +1032,7 @@ void RegistRequest::SharedCtor() {
 }
 
 RegistRequest::~RegistRequest() {
-  // @@protoc_insertion_point(destructor:farmshop.RegistRequest)
+  // @@protoc_insertion_point(destructor:RegistRequest)
   SharedDtor();
 }
 
@@ -1004,7 +1067,7 @@ RegistRequest* RegistRequest::New(::google::protobuf::Arena* arena) const {
 }
 
 void RegistRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(message_clear_start:RegistRequest)
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1013,7 +1076,7 @@ bool RegistRequest::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.RegistRequest)
+  // @@protoc_insertion_point(parse_start:RegistRequest)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -1027,7 +1090,7 @@ bool RegistRequest::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->name().data(), this->name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "farmshop.RegistRequest.name"));
+            "RegistRequest.name"));
         } else {
           goto handle_unusual;
         }
@@ -1044,7 +1107,7 @@ bool RegistRequest::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->password().data(), this->password().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "farmshop.RegistRequest.password"));
+            "RegistRequest.password"));
         } else {
           goto handle_unusual;
         }
@@ -1065,23 +1128,23 @@ bool RegistRequest::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.RegistRequest)
+  // @@protoc_insertion_point(parse_success:RegistRequest)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.RegistRequest)
+  // @@protoc_insertion_point(parse_failure:RegistRequest)
   return false;
 #undef DO_
 }
 
 void RegistRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.RegistRequest)
+  // @@protoc_insertion_point(serialize_start:RegistRequest)
   // optional string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.RegistRequest.name");
+      "RegistRequest.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->name(), output);
   }
@@ -1091,24 +1154,24 @@ void RegistRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->password().data(), this->password().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.RegistRequest.password");
+      "RegistRequest.password");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->password(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.RegistRequest)
+  // @@protoc_insertion_point(serialize_end:RegistRequest)
 }
 
 ::google::protobuf::uint8* RegistRequest::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.RegistRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:RegistRequest)
   // optional string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.RegistRequest.name");
+      "RegistRequest.name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->name(), target);
@@ -1119,18 +1182,18 @@ void RegistRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->password().data(), this->password().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.RegistRequest.password");
+      "RegistRequest.password");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->password(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.RegistRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:RegistRequest)
   return target;
 }
 
 size_t RegistRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(message_byte_size_start:RegistRequest)
   size_t total_size = 0;
 
   // optional string name = 1;
@@ -1155,22 +1218,22 @@ size_t RegistRequest::ByteSizeLong() const {
 }
 
 void RegistRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:RegistRequest)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const RegistRequest* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const RegistRequest>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.RegistRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:RegistRequest)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.RegistRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:RegistRequest)
     UnsafeMergeFrom(*source);
   }
 }
 
 void RegistRequest::MergeFrom(const RegistRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:RegistRequest)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -1191,14 +1254,14 @@ void RegistRequest::UnsafeMergeFrom(const RegistRequest& from) {
 }
 
 void RegistRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:RegistRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void RegistRequest::CopyFrom(const RegistRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.RegistRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:RegistRequest)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
@@ -1236,32 +1299,32 @@ void RegistRequest::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 const ::std::string& RegistRequest::name() const {
-  // @@protoc_insertion_point(field_get:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_get:RegistRequest.name)
   return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void RegistRequest::set_name(const ::std::string& value) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_set:RegistRequest.name)
 }
 void RegistRequest::set_name(const char* value) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_set_char:RegistRequest.name)
 }
 void RegistRequest::set_name(const char* value, size_t size) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_set_pointer:RegistRequest.name)
 }
 ::std::string* RegistRequest::mutable_name() {
   
-  // @@protoc_insertion_point(field_mutable:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_mutable:RegistRequest.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* RegistRequest::release_name() {
-  // @@protoc_insertion_point(field_release:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_release:RegistRequest.name)
   
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1272,7 +1335,7 @@ void RegistRequest::set_allocated_name(::std::string* name) {
     
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:farmshop.RegistRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:RegistRequest.name)
 }
 
 // optional string password = 2;
@@ -1280,32 +1343,32 @@ void RegistRequest::clear_password() {
   password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 const ::std::string& RegistRequest::password() const {
-  // @@protoc_insertion_point(field_get:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_get:RegistRequest.password)
   return password_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void RegistRequest::set_password(const ::std::string& value) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_set:RegistRequest.password)
 }
 void RegistRequest::set_password(const char* value) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_set_char:RegistRequest.password)
 }
 void RegistRequest::set_password(const char* value, size_t size) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_set_pointer:RegistRequest.password)
 }
 ::std::string* RegistRequest::mutable_password() {
   
-  // @@protoc_insertion_point(field_mutable:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_mutable:RegistRequest.password)
   return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* RegistRequest::release_password() {
-  // @@protoc_insertion_point(field_release:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_release:RegistRequest.password)
   
   return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1316,7 +1379,7 @@ void RegistRequest::set_allocated_password(::std::string* password) {
     
   }
   password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
-  // @@protoc_insertion_point(field_set_allocated:farmshop.RegistRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:RegistRequest.password)
 }
 
 inline const RegistRequest* RegistRequest::internal_default_instance() {
@@ -1334,7 +1397,7 @@ RegistResponse::RegistResponse()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.RegistResponse)
+  // @@protoc_insertion_point(constructor:RegistResponse)
 }
 
 void RegistResponse::InitAsDefaultInstance() {
@@ -1345,7 +1408,7 @@ RegistResponse::RegistResponse(const RegistResponse& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.RegistResponse)
+  // @@protoc_insertion_point(copy_constructor:RegistResponse)
 }
 
 void RegistResponse::SharedCtor() {
@@ -1354,7 +1417,7 @@ void RegistResponse::SharedCtor() {
 }
 
 RegistResponse::~RegistResponse() {
-  // @@protoc_insertion_point(destructor:farmshop.RegistResponse)
+  // @@protoc_insertion_point(destructor:RegistResponse)
   SharedDtor();
 }
 
@@ -1387,7 +1450,7 @@ RegistResponse* RegistResponse::New(::google::protobuf::Arena* arena) const {
 }
 
 void RegistResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(message_clear_start:RegistResponse)
   result_ = 0;
 }
 
@@ -1395,7 +1458,7 @@ bool RegistResponse::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.RegistResponse)
+  // @@protoc_insertion_point(parse_start:RegistResponse)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -1428,40 +1491,40 @@ bool RegistResponse::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.RegistResponse)
+  // @@protoc_insertion_point(parse_success:RegistResponse)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.RegistResponse)
+  // @@protoc_insertion_point(parse_failure:RegistResponse)
   return false;
 #undef DO_
 }
 
 void RegistResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.RegistResponse)
+  // @@protoc_insertion_point(serialize_start:RegistResponse)
   // optional int32 result = 1;
   if (this->result() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.RegistResponse)
+  // @@protoc_insertion_point(serialize_end:RegistResponse)
 }
 
 ::google::protobuf::uint8* RegistResponse::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.RegistResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:RegistResponse)
   // optional int32 result = 1;
   if (this->result() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.RegistResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:RegistResponse)
   return target;
 }
 
 size_t RegistResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(message_byte_size_start:RegistResponse)
   size_t total_size = 0;
 
   // optional int32 result = 1;
@@ -1479,22 +1542,22 @@ size_t RegistResponse::ByteSizeLong() const {
 }
 
 void RegistResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(generalized_merge_from_start:RegistResponse)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const RegistResponse* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const RegistResponse>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.RegistResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:RegistResponse)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.RegistResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:RegistResponse)
     UnsafeMergeFrom(*source);
   }
 }
 
 void RegistResponse::MergeFrom(const RegistResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(class_specific_merge_from_start:RegistResponse)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -1510,14 +1573,14 @@ void RegistResponse::UnsafeMergeFrom(const RegistResponse& from) {
 }
 
 void RegistResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(generalized_copy_from_start:RegistResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void RegistResponse::CopyFrom(const RegistResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.RegistResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:RegistResponse)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
@@ -1554,13 +1617,13 @@ void RegistResponse::clear_result() {
   result_ = 0;
 }
 ::google::protobuf::int32 RegistResponse::result() const {
-  // @@protoc_insertion_point(field_get:farmshop.RegistResponse.result)
+  // @@protoc_insertion_point(field_get:RegistResponse.result)
   return result_;
 }
 void RegistResponse::set_result(::google::protobuf::int32 value) {
   
   result_ = value;
-  // @@protoc_insertion_point(field_set:farmshop.RegistResponse.result)
+  // @@protoc_insertion_point(field_set:RegistResponse.result)
 }
 
 inline const RegistResponse* RegistResponse::internal_default_instance() {
@@ -1579,7 +1642,7 @@ LoginRequest::LoginRequest()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.LoginRequest)
+  // @@protoc_insertion_point(constructor:LoginRequest)
 }
 
 void LoginRequest::InitAsDefaultInstance() {
@@ -1590,7 +1653,7 @@ LoginRequest::LoginRequest(const LoginRequest& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.LoginRequest)
+  // @@protoc_insertion_point(copy_constructor:LoginRequest)
 }
 
 void LoginRequest::SharedCtor() {
@@ -1600,7 +1663,7 @@ void LoginRequest::SharedCtor() {
 }
 
 LoginRequest::~LoginRequest() {
-  // @@protoc_insertion_point(destructor:farmshop.LoginRequest)
+  // @@protoc_insertion_point(destructor:LoginRequest)
   SharedDtor();
 }
 
@@ -1635,7 +1698,7 @@ LoginRequest* LoginRequest::New(::google::protobuf::Arena* arena) const {
 }
 
 void LoginRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(message_clear_start:LoginRequest)
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1644,7 +1707,7 @@ bool LoginRequest::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.LoginRequest)
+  // @@protoc_insertion_point(parse_start:LoginRequest)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -1658,7 +1721,7 @@ bool LoginRequest::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->name().data(), this->name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "farmshop.LoginRequest.name"));
+            "LoginRequest.name"));
         } else {
           goto handle_unusual;
         }
@@ -1675,7 +1738,7 @@ bool LoginRequest::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->password().data(), this->password().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "farmshop.LoginRequest.password"));
+            "LoginRequest.password"));
         } else {
           goto handle_unusual;
         }
@@ -1696,23 +1759,23 @@ bool LoginRequest::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.LoginRequest)
+  // @@protoc_insertion_point(parse_success:LoginRequest)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.LoginRequest)
+  // @@protoc_insertion_point(parse_failure:LoginRequest)
   return false;
 #undef DO_
 }
 
 void LoginRequest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.LoginRequest)
+  // @@protoc_insertion_point(serialize_start:LoginRequest)
   // optional string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.LoginRequest.name");
+      "LoginRequest.name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->name(), output);
   }
@@ -1722,24 +1785,24 @@ void LoginRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->password().data(), this->password().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.LoginRequest.password");
+      "LoginRequest.password");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->password(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.LoginRequest)
+  // @@protoc_insertion_point(serialize_end:LoginRequest)
 }
 
 ::google::protobuf::uint8* LoginRequest::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.LoginRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:LoginRequest)
   // optional string name = 1;
   if (this->name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.LoginRequest.name");
+      "LoginRequest.name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->name(), target);
@@ -1750,18 +1813,18 @@ void LoginRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->password().data(), this->password().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "farmshop.LoginRequest.password");
+      "LoginRequest.password");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->password(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.LoginRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:LoginRequest)
   return target;
 }
 
 size_t LoginRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(message_byte_size_start:LoginRequest)
   size_t total_size = 0;
 
   // optional string name = 1;
@@ -1786,22 +1849,22 @@ size_t LoginRequest::ByteSizeLong() const {
 }
 
 void LoginRequest::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(generalized_merge_from_start:LoginRequest)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   const LoginRequest* source =
       ::google::protobuf::internal::DynamicCastToGenerated<const LoginRequest>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.LoginRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LoginRequest)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.LoginRequest)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LoginRequest)
     UnsafeMergeFrom(*source);
   }
 }
 
 void LoginRequest::MergeFrom(const LoginRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(class_specific_merge_from_start:LoginRequest)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -1822,14 +1885,14 @@ void LoginRequest::UnsafeMergeFrom(const LoginRequest& from) {
 }
 
 void LoginRequest::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(generalized_copy_from_start:LoginRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void LoginRequest::CopyFrom(const LoginRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.LoginRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:LoginRequest)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
@@ -1867,32 +1930,32 @@ void LoginRequest::clear_name() {
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 const ::std::string& LoginRequest::name() const {
-  // @@protoc_insertion_point(field_get:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_get:LoginRequest.name)
   return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void LoginRequest::set_name(const ::std::string& value) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_set:LoginRequest.name)
 }
 void LoginRequest::set_name(const char* value) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_set_char:LoginRequest.name)
 }
 void LoginRequest::set_name(const char* value, size_t size) {
   
   name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_set_pointer:LoginRequest.name)
 }
 ::std::string* LoginRequest::mutable_name() {
   
-  // @@protoc_insertion_point(field_mutable:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_mutable:LoginRequest.name)
   return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* LoginRequest::release_name() {
-  // @@protoc_insertion_point(field_release:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_release:LoginRequest.name)
   
   return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1903,7 +1966,7 @@ void LoginRequest::set_allocated_name(::std::string* name) {
     
   }
   name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:farmshop.LoginRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:LoginRequest.name)
 }
 
 // optional string password = 2;
@@ -1911,32 +1974,32 @@ void LoginRequest::clear_password() {
   password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 const ::std::string& LoginRequest::password() const {
-  // @@protoc_insertion_point(field_get:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_get:LoginRequest.password)
   return password_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 void LoginRequest::set_password(const ::std::string& value) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_set:LoginRequest.password)
 }
 void LoginRequest::set_password(const char* value) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_set_char:LoginRequest.password)
 }
 void LoginRequest::set_password(const char* value, size_t size) {
   
   password_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_set_pointer:LoginRequest.password)
 }
 ::std::string* LoginRequest::mutable_password() {
   
-  // @@protoc_insertion_point(field_mutable:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_mutable:LoginRequest.password)
   return password_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 ::std::string* LoginRequest::release_password() {
-  // @@protoc_insertion_point(field_release:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_release:LoginRequest.password)
   
   return password_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1947,7 +2010,7 @@ void LoginRequest::set_allocated_password(::std::string* password) {
     
   }
   password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
-  // @@protoc_insertion_point(field_set_allocated:farmshop.LoginRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:LoginRequest.password)
 }
 
 inline const LoginRequest* LoginRequest::internal_default_instance() {
@@ -1959,16 +2022,20 @@ inline const LoginRequest* LoginRequest::internal_default_instance() {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int LoginResponse::kResultFieldNumber;
+const int LoginResponse::kNameFieldNumber;
+const int LoginResponse::kUserinfoFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 LoginResponse::LoginResponse()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
   SharedCtor();
-  // @@protoc_insertion_point(constructor:farmshop.LoginResponse)
+  // @@protoc_insertion_point(constructor:LoginResponse)
 }
 
 void LoginResponse::InitAsDefaultInstance() {
+  userinfo_ = const_cast< ::EditUserInfoRequest*>(
+      ::EditUserInfoRequest::internal_default_instance());
 }
 
 LoginResponse::LoginResponse(const LoginResponse& from)
@@ -1976,20 +2043,26 @@ LoginResponse::LoginResponse(const LoginResponse& from)
     _internal_metadata_(NULL) {
   SharedCtor();
   UnsafeMergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:farmshop.LoginResponse)
+  // @@protoc_insertion_point(copy_constructor:LoginResponse)
 }
 
 void LoginResponse::SharedCtor() {
+  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  userinfo_ = NULL;
   result_ = 0;
   _cached_size_ = 0;
 }
 
 LoginResponse::~LoginResponse() {
-  // @@protoc_insertion_point(destructor:farmshop.LoginResponse)
+  // @@protoc_insertion_point(destructor:LoginResponse)
   SharedDtor();
 }
 
 void LoginResponse::SharedDtor() {
+  name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != &LoginResponse_default_instance_.get()) {
+    delete userinfo_;
+  }
 }
 
 void LoginResponse::SetCachedSize(int size) const {
@@ -2018,15 +2091,1238 @@ LoginResponse* LoginResponse::New(::google::protobuf::Arena* arena) const {
 }
 
 void LoginResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:farmshop.LoginResponse)
+// @@protoc_insertion_point(message_clear_start:LoginResponse)
   result_ = 0;
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == NULL && userinfo_ != NULL) delete userinfo_;
+  userinfo_ = NULL;
 }
 
 bool LoginResponse::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:farmshop.LoginResponse)
+  // @@protoc_insertion_point(parse_start:LoginResponse)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 result = 1;
+      case 1: {
+        if (tag == 8) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &result_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_name;
+        break;
+      }
+
+      // optional string name = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_name:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->name().data(), this->name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "LoginResponse.name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_userinfo;
+        break;
+      }
+
+      // optional .EditUserInfoRequest userinfo = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_userinfo:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_userinfo()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:LoginResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:LoginResponse)
+  return false;
+#undef DO_
+}
+
+void LoginResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:LoginResponse)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
+  }
+
+  // optional string name = 2;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "LoginResponse.name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->name(), output);
+  }
+
+  // optional .EditUserInfoRequest userinfo = 3;
+  if (this->has_userinfo()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, *this->userinfo_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:LoginResponse)
+}
+
+::google::protobuf::uint8* LoginResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:LoginResponse)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
+  }
+
+  // optional string name = 2;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "LoginResponse.name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->name(), target);
+  }
+
+  // optional .EditUserInfoRequest userinfo = 3;
+  if (this->has_userinfo()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        3, *this->userinfo_, false, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:LoginResponse)
+  return target;
+}
+
+size_t LoginResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:LoginResponse)
+  size_t total_size = 0;
+
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->result());
+  }
+
+  // optional string name = 2;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->name());
+  }
+
+  // optional .EditUserInfoRequest userinfo = 3;
+  if (this->has_userinfo()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->userinfo_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LoginResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:LoginResponse)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const LoginResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const LoginResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:LoginResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:LoginResponse)
+    UnsafeMergeFrom(*source);
+  }
+}
+
+void LoginResponse::MergeFrom(const LoginResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:LoginResponse)
+  if (GOOGLE_PREDICT_TRUE(&from != this)) {
+    UnsafeMergeFrom(from);
+  } else {
+    MergeFromFail(__LINE__);
+  }
+}
+
+void LoginResponse::UnsafeMergeFrom(const LoginResponse& from) {
+  GOOGLE_DCHECK(&from != this);
+  if (from.result() != 0) {
+    set_result(from.result());
+  }
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.has_userinfo()) {
+    mutable_userinfo()->::EditUserInfoRequest::MergeFrom(from.userinfo());
+  }
+}
+
+void LoginResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:LoginResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LoginResponse::CopyFrom(const LoginResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:LoginResponse)
+  if (&from == this) return;
+  Clear();
+  UnsafeMergeFrom(from);
+}
+
+bool LoginResponse::IsInitialized() const {
+
+  return true;
+}
+
+void LoginResponse::Swap(LoginResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LoginResponse::InternalSwap(LoginResponse* other) {
+  std::swap(result_, other->result_);
+  name_.Swap(&other->name_);
+  std::swap(userinfo_, other->userinfo_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LoginResponse::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = LoginResponse_descriptor_;
+  metadata.reflection = LoginResponse_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LoginResponse
+
+// optional int32 result = 1;
+void LoginResponse::clear_result() {
+  result_ = 0;
+}
+::google::protobuf::int32 LoginResponse::result() const {
+  // @@protoc_insertion_point(field_get:LoginResponse.result)
+  return result_;
+}
+void LoginResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:LoginResponse.result)
+}
+
+// optional string name = 2;
+void LoginResponse::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& LoginResponse::name() const {
+  // @@protoc_insertion_point(field_get:LoginResponse.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void LoginResponse::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:LoginResponse.name)
+}
+void LoginResponse::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:LoginResponse.name)
+}
+void LoginResponse::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:LoginResponse.name)
+}
+::std::string* LoginResponse::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:LoginResponse.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* LoginResponse::release_name() {
+  // @@protoc_insertion_point(field_release:LoginResponse.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void LoginResponse::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:LoginResponse.name)
+}
+
+// optional .EditUserInfoRequest userinfo = 3;
+bool LoginResponse::has_userinfo() const {
+  return this != internal_default_instance() && userinfo_ != NULL;
+}
+void LoginResponse::clear_userinfo() {
+  if (GetArenaNoVirtual() == NULL && userinfo_ != NULL) delete userinfo_;
+  userinfo_ = NULL;
+}
+const ::EditUserInfoRequest& LoginResponse::userinfo() const {
+  // @@protoc_insertion_point(field_get:LoginResponse.userinfo)
+  return userinfo_ != NULL ? *userinfo_
+                         : *::EditUserInfoRequest::internal_default_instance();
+}
+::EditUserInfoRequest* LoginResponse::mutable_userinfo() {
+  
+  if (userinfo_ == NULL) {
+    userinfo_ = new ::EditUserInfoRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:LoginResponse.userinfo)
+  return userinfo_;
+}
+::EditUserInfoRequest* LoginResponse::release_userinfo() {
+  // @@protoc_insertion_point(field_release:LoginResponse.userinfo)
+  
+  ::EditUserInfoRequest* temp = userinfo_;
+  userinfo_ = NULL;
+  return temp;
+}
+void LoginResponse::set_allocated_userinfo(::EditUserInfoRequest* userinfo) {
+  delete userinfo_;
+  userinfo_ = userinfo;
+  if (userinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:LoginResponse.userinfo)
+}
+
+inline const LoginResponse* LoginResponse::internal_default_instance() {
+  return &LoginResponse_default_instance_.get();
+}
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EditUserInfoRequest::kUidFieldNumber;
+const int EditUserInfoRequest::kHeadimgFieldNumber;
+const int EditUserInfoRequest::kRealNameFieldNumber;
+const int EditUserInfoRequest::kSexFieldNumber;
+const int EditUserInfoRequest::kAgeFieldNumber;
+const int EditUserInfoRequest::kPhoneNumberFieldNumber;
+const int EditUserInfoRequest::kLocationFieldNumber;
+const int EditUserInfoRequest::kIsManagerFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+EditUserInfoRequest::EditUserInfoRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:EditUserInfoRequest)
+}
+
+void EditUserInfoRequest::InitAsDefaultInstance() {
+}
+
+EditUserInfoRequest::EditUserInfoRequest(const EditUserInfoRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  UnsafeMergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:EditUserInfoRequest)
+}
+
+void EditUserInfoRequest::SharedCtor() {
+  headimg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  realname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  phonenumber_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  location_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::memset(&uid_, 0, reinterpret_cast<char*>(&ismanager_) -
+    reinterpret_cast<char*>(&uid_) + sizeof(ismanager_));
+  _cached_size_ = 0;
+}
+
+EditUserInfoRequest::~EditUserInfoRequest() {
+  // @@protoc_insertion_point(destructor:EditUserInfoRequest)
+  SharedDtor();
+}
+
+void EditUserInfoRequest::SharedDtor() {
+  headimg_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  realname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  phonenumber_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  location_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void EditUserInfoRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* EditUserInfoRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return EditUserInfoRequest_descriptor_;
+}
+
+const EditUserInfoRequest& EditUserInfoRequest::default_instance() {
+  protobuf_InitDefaults_farmshop_2eproto();
+  return *internal_default_instance();
+}
+
+::google::protobuf::internal::ExplicitlyConstructed<EditUserInfoRequest> EditUserInfoRequest_default_instance_;
+
+EditUserInfoRequest* EditUserInfoRequest::New(::google::protobuf::Arena* arena) const {
+  EditUserInfoRequest* n = new EditUserInfoRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void EditUserInfoRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:EditUserInfoRequest)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(EditUserInfoRequest, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<EditUserInfoRequest*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&(first), 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(uid_, ismanager_);
+  headimg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  realname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  phonenumber_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  location_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+
+#undef ZR_HELPER_
+#undef ZR_
+
+}
+
+bool EditUserInfoRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:EditUserInfoRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 uid = 1;
+      case 1: {
+        if (tag == 8) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &uid_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_headimg;
+        break;
+      }
+
+      // optional string headimg = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_headimg:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_headimg()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->headimg().data(), this->headimg().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "EditUserInfoRequest.headimg"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_realName;
+        break;
+      }
+
+      // optional string realName = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_realName:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_realname()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->realname().data(), this->realname().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "EditUserInfoRequest.realName"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_sex;
+        break;
+      }
+
+      // optional bool sex = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_sex:
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &sex_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(40)) goto parse_age;
+        break;
+      }
+
+      // optional int32 age = 5;
+      case 5: {
+        if (tag == 40) {
+         parse_age:
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &age_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_phoneNumber;
+        break;
+      }
+
+      // optional string phoneNumber = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_phoneNumber:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_phonenumber()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->phonenumber().data(), this->phonenumber().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "EditUserInfoRequest.phoneNumber"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(58)) goto parse_location;
+        break;
+      }
+
+      // optional string location = 7;
+      case 7: {
+        if (tag == 58) {
+         parse_location:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_location()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->location().data(), this->location().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "EditUserInfoRequest.location"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(64)) goto parse_isManager;
+        break;
+      }
+
+      // optional bool isManager = 8;
+      case 8: {
+        if (tag == 64) {
+         parse_isManager:
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &ismanager_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:EditUserInfoRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:EditUserInfoRequest)
+  return false;
+#undef DO_
+}
+
+void EditUserInfoRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:EditUserInfoRequest)
+  // optional int32 uid = 1;
+  if (this->uid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->uid(), output);
+  }
+
+  // optional string headimg = 2;
+  if (this->headimg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->headimg().data(), this->headimg().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.headimg");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->headimg(), output);
+  }
+
+  // optional string realName = 3;
+  if (this->realname().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->realname().data(), this->realname().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.realName");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->realname(), output);
+  }
+
+  // optional bool sex = 4;
+  if (this->sex() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->sex(), output);
+  }
+
+  // optional int32 age = 5;
+  if (this->age() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->age(), output);
+  }
+
+  // optional string phoneNumber = 6;
+  if (this->phonenumber().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->phonenumber().data(), this->phonenumber().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.phoneNumber");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      6, this->phonenumber(), output);
+  }
+
+  // optional string location = 7;
+  if (this->location().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->location().data(), this->location().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.location");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      7, this->location(), output);
+  }
+
+  // optional bool isManager = 8;
+  if (this->ismanager() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->ismanager(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:EditUserInfoRequest)
+}
+
+::google::protobuf::uint8* EditUserInfoRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:EditUserInfoRequest)
+  // optional int32 uid = 1;
+  if (this->uid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->uid(), target);
+  }
+
+  // optional string headimg = 2;
+  if (this->headimg().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->headimg().data(), this->headimg().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.headimg");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->headimg(), target);
+  }
+
+  // optional string realName = 3;
+  if (this->realname().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->realname().data(), this->realname().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.realName");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->realname(), target);
+  }
+
+  // optional bool sex = 4;
+  if (this->sex() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->sex(), target);
+  }
+
+  // optional int32 age = 5;
+  if (this->age() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->age(), target);
+  }
+
+  // optional string phoneNumber = 6;
+  if (this->phonenumber().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->phonenumber().data(), this->phonenumber().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.phoneNumber");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        6, this->phonenumber(), target);
+  }
+
+  // optional string location = 7;
+  if (this->location().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->location().data(), this->location().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "EditUserInfoRequest.location");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        7, this->location(), target);
+  }
+
+  // optional bool isManager = 8;
+  if (this->ismanager() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->ismanager(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:EditUserInfoRequest)
+  return target;
+}
+
+size_t EditUserInfoRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:EditUserInfoRequest)
+  size_t total_size = 0;
+
+  // optional int32 uid = 1;
+  if (this->uid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->uid());
+  }
+
+  // optional string headimg = 2;
+  if (this->headimg().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->headimg());
+  }
+
+  // optional string realName = 3;
+  if (this->realname().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->realname());
+  }
+
+  // optional bool sex = 4;
+  if (this->sex() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional int32 age = 5;
+  if (this->age() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->age());
+  }
+
+  // optional string phoneNumber = 6;
+  if (this->phonenumber().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->phonenumber());
+  }
+
+  // optional string location = 7;
+  if (this->location().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->location());
+  }
+
+  // optional bool isManager = 8;
+  if (this->ismanager() != 0) {
+    total_size += 1 + 1;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void EditUserInfoRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:EditUserInfoRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const EditUserInfoRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const EditUserInfoRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:EditUserInfoRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:EditUserInfoRequest)
+    UnsafeMergeFrom(*source);
+  }
+}
+
+void EditUserInfoRequest::MergeFrom(const EditUserInfoRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:EditUserInfoRequest)
+  if (GOOGLE_PREDICT_TRUE(&from != this)) {
+    UnsafeMergeFrom(from);
+  } else {
+    MergeFromFail(__LINE__);
+  }
+}
+
+void EditUserInfoRequest::UnsafeMergeFrom(const EditUserInfoRequest& from) {
+  GOOGLE_DCHECK(&from != this);
+  if (from.uid() != 0) {
+    set_uid(from.uid());
+  }
+  if (from.headimg().size() > 0) {
+
+    headimg_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.headimg_);
+  }
+  if (from.realname().size() > 0) {
+
+    realname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.realname_);
+  }
+  if (from.sex() != 0) {
+    set_sex(from.sex());
+  }
+  if (from.age() != 0) {
+    set_age(from.age());
+  }
+  if (from.phonenumber().size() > 0) {
+
+    phonenumber_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.phonenumber_);
+  }
+  if (from.location().size() > 0) {
+
+    location_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.location_);
+  }
+  if (from.ismanager() != 0) {
+    set_ismanager(from.ismanager());
+  }
+}
+
+void EditUserInfoRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:EditUserInfoRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void EditUserInfoRequest::CopyFrom(const EditUserInfoRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:EditUserInfoRequest)
+  if (&from == this) return;
+  Clear();
+  UnsafeMergeFrom(from);
+}
+
+bool EditUserInfoRequest::IsInitialized() const {
+
+  return true;
+}
+
+void EditUserInfoRequest::Swap(EditUserInfoRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void EditUserInfoRequest::InternalSwap(EditUserInfoRequest* other) {
+  std::swap(uid_, other->uid_);
+  headimg_.Swap(&other->headimg_);
+  realname_.Swap(&other->realname_);
+  std::swap(sex_, other->sex_);
+  std::swap(age_, other->age_);
+  phonenumber_.Swap(&other->phonenumber_);
+  location_.Swap(&other->location_);
+  std::swap(ismanager_, other->ismanager_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata EditUserInfoRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = EditUserInfoRequest_descriptor_;
+  metadata.reflection = EditUserInfoRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// EditUserInfoRequest
+
+// optional int32 uid = 1;
+void EditUserInfoRequest::clear_uid() {
+  uid_ = 0;
+}
+::google::protobuf::int32 EditUserInfoRequest::uid() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.uid)
+  return uid_;
+}
+void EditUserInfoRequest::set_uid(::google::protobuf::int32 value) {
+  
+  uid_ = value;
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.uid)
+}
+
+// optional string headimg = 2;
+void EditUserInfoRequest::clear_headimg() {
+  headimg_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& EditUserInfoRequest::headimg() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.headimg)
+  return headimg_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_headimg(const ::std::string& value) {
+  
+  headimg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.headimg)
+}
+void EditUserInfoRequest::set_headimg(const char* value) {
+  
+  headimg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:EditUserInfoRequest.headimg)
+}
+void EditUserInfoRequest::set_headimg(const char* value, size_t size) {
+  
+  headimg_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:EditUserInfoRequest.headimg)
+}
+::std::string* EditUserInfoRequest::mutable_headimg() {
+  
+  // @@protoc_insertion_point(field_mutable:EditUserInfoRequest.headimg)
+  return headimg_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* EditUserInfoRequest::release_headimg() {
+  // @@protoc_insertion_point(field_release:EditUserInfoRequest.headimg)
+  
+  return headimg_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_allocated_headimg(::std::string* headimg) {
+  if (headimg != NULL) {
+    
+  } else {
+    
+  }
+  headimg_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), headimg);
+  // @@protoc_insertion_point(field_set_allocated:EditUserInfoRequest.headimg)
+}
+
+// optional string realName = 3;
+void EditUserInfoRequest::clear_realname() {
+  realname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& EditUserInfoRequest::realname() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.realName)
+  return realname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_realname(const ::std::string& value) {
+  
+  realname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.realName)
+}
+void EditUserInfoRequest::set_realname(const char* value) {
+  
+  realname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:EditUserInfoRequest.realName)
+}
+void EditUserInfoRequest::set_realname(const char* value, size_t size) {
+  
+  realname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:EditUserInfoRequest.realName)
+}
+::std::string* EditUserInfoRequest::mutable_realname() {
+  
+  // @@protoc_insertion_point(field_mutable:EditUserInfoRequest.realName)
+  return realname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* EditUserInfoRequest::release_realname() {
+  // @@protoc_insertion_point(field_release:EditUserInfoRequest.realName)
+  
+  return realname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_allocated_realname(::std::string* realname) {
+  if (realname != NULL) {
+    
+  } else {
+    
+  }
+  realname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), realname);
+  // @@protoc_insertion_point(field_set_allocated:EditUserInfoRequest.realName)
+}
+
+// optional bool sex = 4;
+void EditUserInfoRequest::clear_sex() {
+  sex_ = false;
+}
+bool EditUserInfoRequest::sex() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.sex)
+  return sex_;
+}
+void EditUserInfoRequest::set_sex(bool value) {
+  
+  sex_ = value;
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.sex)
+}
+
+// optional int32 age = 5;
+void EditUserInfoRequest::clear_age() {
+  age_ = 0;
+}
+::google::protobuf::int32 EditUserInfoRequest::age() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.age)
+  return age_;
+}
+void EditUserInfoRequest::set_age(::google::protobuf::int32 value) {
+  
+  age_ = value;
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.age)
+}
+
+// optional string phoneNumber = 6;
+void EditUserInfoRequest::clear_phonenumber() {
+  phonenumber_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& EditUserInfoRequest::phonenumber() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.phoneNumber)
+  return phonenumber_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_phonenumber(const ::std::string& value) {
+  
+  phonenumber_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.phoneNumber)
+}
+void EditUserInfoRequest::set_phonenumber(const char* value) {
+  
+  phonenumber_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:EditUserInfoRequest.phoneNumber)
+}
+void EditUserInfoRequest::set_phonenumber(const char* value, size_t size) {
+  
+  phonenumber_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:EditUserInfoRequest.phoneNumber)
+}
+::std::string* EditUserInfoRequest::mutable_phonenumber() {
+  
+  // @@protoc_insertion_point(field_mutable:EditUserInfoRequest.phoneNumber)
+  return phonenumber_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* EditUserInfoRequest::release_phonenumber() {
+  // @@protoc_insertion_point(field_release:EditUserInfoRequest.phoneNumber)
+  
+  return phonenumber_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_allocated_phonenumber(::std::string* phonenumber) {
+  if (phonenumber != NULL) {
+    
+  } else {
+    
+  }
+  phonenumber_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), phonenumber);
+  // @@protoc_insertion_point(field_set_allocated:EditUserInfoRequest.phoneNumber)
+}
+
+// optional string location = 7;
+void EditUserInfoRequest::clear_location() {
+  location_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& EditUserInfoRequest::location() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.location)
+  return location_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_location(const ::std::string& value) {
+  
+  location_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.location)
+}
+void EditUserInfoRequest::set_location(const char* value) {
+  
+  location_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:EditUserInfoRequest.location)
+}
+void EditUserInfoRequest::set_location(const char* value, size_t size) {
+  
+  location_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:EditUserInfoRequest.location)
+}
+::std::string* EditUserInfoRequest::mutable_location() {
+  
+  // @@protoc_insertion_point(field_mutable:EditUserInfoRequest.location)
+  return location_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* EditUserInfoRequest::release_location() {
+  // @@protoc_insertion_point(field_release:EditUserInfoRequest.location)
+  
+  return location_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void EditUserInfoRequest::set_allocated_location(::std::string* location) {
+  if (location != NULL) {
+    
+  } else {
+    
+  }
+  location_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), location);
+  // @@protoc_insertion_point(field_set_allocated:EditUserInfoRequest.location)
+}
+
+// optional bool isManager = 8;
+void EditUserInfoRequest::clear_ismanager() {
+  ismanager_ = false;
+}
+bool EditUserInfoRequest::ismanager() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoRequest.isManager)
+  return ismanager_;
+}
+void EditUserInfoRequest::set_ismanager(bool value) {
+  
+  ismanager_ = value;
+  // @@protoc_insertion_point(field_set:EditUserInfoRequest.isManager)
+}
+
+inline const EditUserInfoRequest* EditUserInfoRequest::internal_default_instance() {
+  return &EditUserInfoRequest_default_instance_.get();
+}
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EditUserInfoResponse::kResultFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+EditUserInfoResponse::EditUserInfoResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:EditUserInfoResponse)
+}
+
+void EditUserInfoResponse::InitAsDefaultInstance() {
+}
+
+EditUserInfoResponse::EditUserInfoResponse(const EditUserInfoResponse& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  UnsafeMergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:EditUserInfoResponse)
+}
+
+void EditUserInfoResponse::SharedCtor() {
+  result_ = 0;
+  _cached_size_ = 0;
+}
+
+EditUserInfoResponse::~EditUserInfoResponse() {
+  // @@protoc_insertion_point(destructor:EditUserInfoResponse)
+  SharedDtor();
+}
+
+void EditUserInfoResponse::SharedDtor() {
+}
+
+void EditUserInfoResponse::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* EditUserInfoResponse::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return EditUserInfoResponse_descriptor_;
+}
+
+const EditUserInfoResponse& EditUserInfoResponse::default_instance() {
+  protobuf_InitDefaults_farmshop_2eproto();
+  return *internal_default_instance();
+}
+
+::google::protobuf::internal::ExplicitlyConstructed<EditUserInfoResponse> EditUserInfoResponse_default_instance_;
+
+EditUserInfoResponse* EditUserInfoResponse::New(::google::protobuf::Arena* arena) const {
+  EditUserInfoResponse* n = new EditUserInfoResponse;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void EditUserInfoResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:EditUserInfoResponse)
+  result_ = 0;
+}
+
+bool EditUserInfoResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:EditUserInfoResponse)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -2059,40 +3355,40 @@ bool LoginResponse::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:farmshop.LoginResponse)
+  // @@protoc_insertion_point(parse_success:EditUserInfoResponse)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:farmshop.LoginResponse)
+  // @@protoc_insertion_point(parse_failure:EditUserInfoResponse)
   return false;
 #undef DO_
 }
 
-void LoginResponse::SerializeWithCachedSizes(
+void EditUserInfoResponse::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:farmshop.LoginResponse)
+  // @@protoc_insertion_point(serialize_start:EditUserInfoResponse)
   // optional int32 result = 1;
   if (this->result() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:farmshop.LoginResponse)
+  // @@protoc_insertion_point(serialize_end:EditUserInfoResponse)
 }
 
-::google::protobuf::uint8* LoginResponse::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* EditUserInfoResponse::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:farmshop.LoginResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:EditUserInfoResponse)
   // optional int32 result = 1;
   if (this->result() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:farmshop.LoginResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:EditUserInfoResponse)
   return target;
 }
 
-size_t LoginResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:farmshop.LoginResponse)
+size_t EditUserInfoResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:EditUserInfoResponse)
   size_t total_size = 0;
 
   // optional int32 result = 1;
@@ -2109,23 +3405,23 @@ size_t LoginResponse::ByteSizeLong() const {
   return total_size;
 }
 
-void LoginResponse::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:farmshop.LoginResponse)
+void EditUserInfoResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:EditUserInfoResponse)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const LoginResponse* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const LoginResponse>(
+  const EditUserInfoResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const EditUserInfoResponse>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.LoginResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:EditUserInfoResponse)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.LoginResponse)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:EditUserInfoResponse)
     UnsafeMergeFrom(*source);
   }
 }
 
-void LoginResponse::MergeFrom(const LoginResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.LoginResponse)
+void EditUserInfoResponse::MergeFrom(const EditUserInfoResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:EditUserInfoResponse)
   if (GOOGLE_PREDICT_TRUE(&from != this)) {
     UnsafeMergeFrom(from);
   } else {
@@ -2133,74 +3429,72 @@ void LoginResponse::MergeFrom(const LoginResponse& from) {
   }
 }
 
-void LoginResponse::UnsafeMergeFrom(const LoginResponse& from) {
+void EditUserInfoResponse::UnsafeMergeFrom(const EditUserInfoResponse& from) {
   GOOGLE_DCHECK(&from != this);
   if (from.result() != 0) {
     set_result(from.result());
   }
 }
 
-void LoginResponse::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:farmshop.LoginResponse)
+void EditUserInfoResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:EditUserInfoResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void LoginResponse::CopyFrom(const LoginResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.LoginResponse)
+void EditUserInfoResponse::CopyFrom(const EditUserInfoResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:EditUserInfoResponse)
   if (&from == this) return;
   Clear();
   UnsafeMergeFrom(from);
 }
 
-bool LoginResponse::IsInitialized() const {
+bool EditUserInfoResponse::IsInitialized() const {
 
   return true;
 }
 
-void LoginResponse::Swap(LoginResponse* other) {
+void EditUserInfoResponse::Swap(EditUserInfoResponse* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void LoginResponse::InternalSwap(LoginResponse* other) {
+void EditUserInfoResponse::InternalSwap(EditUserInfoResponse* other) {
   std::swap(result_, other->result_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata LoginResponse::GetMetadata() const {
+::google::protobuf::Metadata EditUserInfoResponse::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = LoginResponse_descriptor_;
-  metadata.reflection = LoginResponse_reflection_;
+  metadata.descriptor = EditUserInfoResponse_descriptor_;
+  metadata.reflection = EditUserInfoResponse_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// LoginResponse
+// EditUserInfoResponse
 
 // optional int32 result = 1;
-void LoginResponse::clear_result() {
+void EditUserInfoResponse::clear_result() {
   result_ = 0;
 }
-::google::protobuf::int32 LoginResponse::result() const {
-  // @@protoc_insertion_point(field_get:farmshop.LoginResponse.result)
+::google::protobuf::int32 EditUserInfoResponse::result() const {
+  // @@protoc_insertion_point(field_get:EditUserInfoResponse.result)
   return result_;
 }
-void LoginResponse::set_result(::google::protobuf::int32 value) {
+void EditUserInfoResponse::set_result(::google::protobuf::int32 value) {
   
   result_ = value;
-  // @@protoc_insertion_point(field_set:farmshop.LoginResponse.result)
+  // @@protoc_insertion_point(field_set:EditUserInfoResponse.result)
 }
 
-inline const LoginResponse* LoginResponse::internal_default_instance() {
-  return &LoginResponse_default_instance_.get();
+inline const EditUserInfoResponse* EditUserInfoResponse::internal_default_instance() {
+  return &EditUserInfoResponse_default_instance_.get();
 }
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
-
-}  // namespace farmshop
 
 // @@protoc_insertion_point(global_scope)
