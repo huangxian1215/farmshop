@@ -3287,19 +3287,6 @@ public final class Farmshop {
      */
     com.google.protobuf.ByteString
         getNameBytes();
-
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    boolean hasUserinfo();
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    Farmshop.EditUserInfoRequest getUserinfo();
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    Farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder();
   }
   /**
    * Protobuf type {@code LoginResponse}
@@ -3351,19 +3338,6 @@ public final class Farmshop {
               java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
-              break;
-            }
-            case 26: {
-              Farmshop.EditUserInfoRequest.Builder subBuilder = null;
-              if (userinfo_ != null) {
-                subBuilder = userinfo_.toBuilder();
-              }
-              userinfo_ = input.readMessage(Farmshop.EditUserInfoRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(userinfo_);
-                userinfo_ = subBuilder.buildPartial();
-              }
-
               break;
             }
           }
@@ -3432,27 +3406,6 @@ public final class Farmshop {
       }
     }
 
-    public static final int USERINFO_FIELD_NUMBER = 3;
-    private Farmshop.EditUserInfoRequest userinfo_;
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    public boolean hasUserinfo() {
-      return userinfo_ != null;
-    }
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    public Farmshop.EditUserInfoRequest getUserinfo() {
-      return userinfo_ == null ? Farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
-    }
-    /**
-     * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-     */
-    public Farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder() {
-      return getUserinfo();
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -3471,9 +3424,6 @@ public final class Farmshop {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
-      if (userinfo_ != null) {
-        output.writeMessage(3, getUserinfo());
-      }
     }
 
     public int getSerializedSize() {
@@ -3487,10 +3437,6 @@ public final class Farmshop {
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
-      }
-      if (userinfo_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getUserinfo());
       }
       memoizedSize = size;
       return size;
@@ -3512,11 +3458,6 @@ public final class Farmshop {
           == other.getResult());
       result = result && getName()
           .equals(other.getName());
-      result = result && (hasUserinfo() == other.hasUserinfo());
-      if (hasUserinfo()) {
-        result = result && getUserinfo()
-            .equals(other.getUserinfo());
-      }
       return result;
     }
 
@@ -3531,10 +3472,6 @@ public final class Farmshop {
       hash = (53 * hash) + getResult();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
-      if (hasUserinfo()) {
-        hash = (37 * hash) + USERINFO_FIELD_NUMBER;
-        hash = (53 * hash) + getUserinfo().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3657,12 +3594,6 @@ public final class Farmshop {
 
         name_ = "";
 
-        if (userinfoBuilder_ == null) {
-          userinfo_ = null;
-        } else {
-          userinfo_ = null;
-          userinfoBuilder_ = null;
-        }
         return this;
       }
 
@@ -3687,11 +3618,6 @@ public final class Farmshop {
         Farmshop.LoginResponse result = new Farmshop.LoginResponse(this);
         result.result_ = result_;
         result.name_ = name_;
-        if (userinfoBuilder_ == null) {
-          result.userinfo_ = userinfo_;
-        } else {
-          result.userinfo_ = userinfoBuilder_.build();
-        }
         onBuilt();
         return result;
       }
@@ -3739,9 +3665,6 @@ public final class Farmshop {
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
-        }
-        if (other.hasUserinfo()) {
-          mergeUserinfo(other.getUserinfo());
         }
         onChanged();
         return this;
@@ -3862,123 +3785,6 @@ public final class Farmshop {
         name_ = value;
         onChanged();
         return this;
-      }
-
-      private Farmshop.EditUserInfoRequest userinfo_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          Farmshop.EditUserInfoRequest, Farmshop.EditUserInfoRequest.Builder, Farmshop.EditUserInfoRequestOrBuilder> userinfoBuilder_;
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public boolean hasUserinfo() {
-        return userinfoBuilder_ != null || userinfo_ != null;
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Farmshop.EditUserInfoRequest getUserinfo() {
-        if (userinfoBuilder_ == null) {
-          return userinfo_ == null ? Farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
-        } else {
-          return userinfoBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Builder setUserinfo(Farmshop.EditUserInfoRequest value) {
-        if (userinfoBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          userinfo_ = value;
-          onChanged();
-        } else {
-          userinfoBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Builder setUserinfo(
-          Farmshop.EditUserInfoRequest.Builder builderForValue) {
-        if (userinfoBuilder_ == null) {
-          userinfo_ = builderForValue.build();
-          onChanged();
-        } else {
-          userinfoBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Builder mergeUserinfo(Farmshop.EditUserInfoRequest value) {
-        if (userinfoBuilder_ == null) {
-          if (userinfo_ != null) {
-            userinfo_ =
-              Farmshop.EditUserInfoRequest.newBuilder(userinfo_).mergeFrom(value).buildPartial();
-          } else {
-            userinfo_ = value;
-          }
-          onChanged();
-        } else {
-          userinfoBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Builder clearUserinfo() {
-        if (userinfoBuilder_ == null) {
-          userinfo_ = null;
-          onChanged();
-        } else {
-          userinfo_ = null;
-          userinfoBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Farmshop.EditUserInfoRequest.Builder getUserinfoBuilder() {
-        
-        onChanged();
-        return getUserinfoFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      public Farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder() {
-        if (userinfoBuilder_ != null) {
-          return userinfoBuilder_.getMessageOrBuilder();
-        } else {
-          return userinfo_ == null ?
-              Farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
-        }
-      }
-      /**
-       * <code>optional .EditUserInfoRequest userinfo = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          Farmshop.EditUserInfoRequest, Farmshop.EditUserInfoRequest.Builder, Farmshop.EditUserInfoRequestOrBuilder> 
-          getUserinfoFieldBuilder() {
-        if (userinfoBuilder_ == null) {
-          userinfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              Farmshop.EditUserInfoRequest, Farmshop.EditUserInfoRequest.Builder, Farmshop.EditUserInfoRequestOrBuilder>(
-                  getUserinfo(),
-                  getParentForChildren(),
-                  isClean());
-          userinfo_ = null;
-        }
-        return userinfoBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -5682,10 +5488,9 @@ public final class Farmshop {
       "otobuf.Any\"/\n\rRegistRequest\022\014\n\004name\030\001 \001(" +
       "\t\022\020\n\010password\030\002 \001(\t\" \n\016RegistResponse\022\016\n" +
       "\006result\030\001 \001(\005\".\n\014LoginRequest\022\014\n\004name\030\001 " +
-      "\001(\t\022\020\n\010password\030\002 \001(\t\"U\n\rLoginResponse\022\016" +
-      "\n\006result\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022&\n\010userinfo" +
-      "\030\003 \001(\0132\024.EditUserInfoRequest\"\231\001\n\023EditUse",
-      "rInfoRequest\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001" +
+      "\001(\t\022\020\n\010password\030\002 \001(\t\"-\n\rLoginResponse\022\016" +
+      "\n\006result\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\231\001\n\023EditUse" +
+      "rInfoRequest\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001",
       "(\t\022\020\n\010realName\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age" +
       "\030\005 \001(\005\022\023\n\013phoneNumber\030\006 \001(\t\022\020\n\010location\030" +
       "\007 \001(\t\022\021\n\tisManager\030\010 \001(\010\"&\n\024EditUserInfo" +
@@ -5743,7 +5548,7 @@ public final class Farmshop {
     internal_static_LoginResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_LoginResponse_descriptor,
-        new java.lang.String[] { "Result", "Name", "Userinfo", });
+        new java.lang.String[] { "Result", "Name", });
     internal_static_EditUserInfoRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_EditUserInfoRequest_fieldAccessorTable = new

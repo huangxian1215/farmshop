@@ -23,14 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
-        android:text="天马流星"
+        android:text="hx"
         android:textSize="17sp" />
     <EditText
         android:id="@+id/et_pwd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
-        android:text="%%..134/"
+        android:text="123654"
         android:textSize="17sp" />
     <Button
         android:id="@+id/btn_regist"

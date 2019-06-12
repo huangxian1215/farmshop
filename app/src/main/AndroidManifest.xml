@@ -33,6 +33,7 @@
         <activity android:name=".upfiles.activity.MediaStoreActivity"/>
         <activity android:name=".upfiles.activity.UpFileMainActivity"/>
         <activity android:name=".activity.UserDetailActivity"/>
+        <activity android:name=".activity.UserDetailEditActivity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,11 @@
 syntax = "proto3";
 
+
+
+package farmshop;
+option java_outer_classname = "farmshop";
+option java_package = "com.example.farmshop";
+
 import "google/protobuf/any.proto";
 
 message ClientSession{
@@ -43,16 +49,16 @@ message LoginResponse{
 }
 
 message EditUserInfoRequest{
-        int32 uid = 1;
-        string headimg = 2;
-        string realName = 3;
-        bool sex = 4;
-        int32 age = 5;
-        string phoneNumber = 6;
-        string location = 7;
-        bool isManager = 8;
+    int32 uid = 1;
+    string headimg = 2;
+    string realName = 3;
+    bool sex = 4;
+    int32 age = 5;
+    string phoneNumber = 6;
+    string location = 7;
+    bool isManager = 8;
 }
 
 message EditUserInfoResponse{
-        int32 result = 1;
+    int32 result = 1;
 }

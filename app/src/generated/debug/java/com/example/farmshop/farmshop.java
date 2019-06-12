@@ -43,6 +43,14 @@ public final class farmshop {
      * <code>LOGIN_RES = 5;</code>
      */
     LOGIN_RES(5),
+    /**
+     * <code>EditUserInfo_REQ = 6;</code>
+     */
+    EditUserInfo_REQ(6),
+    /**
+     * <code>EditUserInfo_RES = 7;</code>
+     */
+    EditUserInfo_RES(7),
     UNRECOGNIZED(-1),
     ;
 
@@ -70,6 +78,14 @@ public final class farmshop {
      * <code>LOGIN_RES = 5;</code>
      */
     public static final int LOGIN_RES_VALUE = 5;
+    /**
+     * <code>EditUserInfo_REQ = 6;</code>
+     */
+    public static final int EditUserInfo_REQ_VALUE = 6;
+    /**
+     * <code>EditUserInfo_RES = 7;</code>
+     */
+    public static final int EditUserInfo_RES_VALUE = 7;
 
 
     public final int getNumber() {
@@ -96,6 +112,8 @@ public final class farmshop {
         case 3: return REGIST_RES;
         case 4: return LOGIN_REQ;
         case 5: return LOGIN_RES;
+        case 6: return EditUserInfo_REQ;
+        case 7: return EditUserInfo_RES;
         default: return null;
       }
     }
@@ -3261,6 +3279,29 @@ public final class farmshop {
      * <code>optional int32 result = 1;</code>
      */
     int getResult();
+
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    boolean hasUserinfo();
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    com.example.farmshop.farmshop.EditUserInfoRequest getUserinfo();
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder();
   }
   /**
    * Protobuf type {@code farmshop.LoginResponse}
@@ -3275,6 +3316,7 @@ public final class farmshop {
     }
     private LoginResponse() {
       result_ = 0;
+      name_ = "";
     }
 
     @java.lang.Override
@@ -3305,6 +3347,25 @@ public final class farmshop {
             case 8: {
 
               result_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 26: {
+              com.example.farmshop.farmshop.EditUserInfoRequest.Builder subBuilder = null;
+              if (userinfo_ != null) {
+                subBuilder = userinfo_.toBuilder();
+              }
+              userinfo_ = input.readMessage(com.example.farmshop.farmshop.EditUserInfoRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(userinfo_);
+                userinfo_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -3339,6 +3400,61 @@ public final class farmshop {
       return result_;
     }
 
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int USERINFO_FIELD_NUMBER = 3;
+    private com.example.farmshop.farmshop.EditUserInfoRequest userinfo_;
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    public boolean hasUserinfo() {
+      return userinfo_ != null;
+    }
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    public com.example.farmshop.farmshop.EditUserInfoRequest getUserinfo() {
+      return userinfo_ == null ? com.example.farmshop.farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
+    }
+    /**
+     * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+     */
+    public com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder() {
+      return getUserinfo();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -3354,6 +3470,12 @@ public final class farmshop {
       if (result_ != 0) {
         output.writeInt32(1, result_);
       }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (userinfo_ != null) {
+        output.writeMessage(3, getUserinfo());
+      }
     }
 
     public int getSerializedSize() {
@@ -3364,6 +3486,13 @@ public final class farmshop {
       if (result_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, result_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (userinfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getUserinfo());
       }
       memoizedSize = size;
       return size;
@@ -3383,6 +3512,13 @@ public final class farmshop {
       boolean result = true;
       result = result && (getResult()
           == other.getResult());
+      result = result && getName()
+          .equals(other.getName());
+      result = result && (hasUserinfo() == other.hasUserinfo());
+      if (hasUserinfo()) {
+        result = result && getUserinfo()
+            .equals(other.getUserinfo());
+      }
       return result;
     }
 
@@ -3395,6 +3531,12 @@ public final class farmshop {
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + RESULT_FIELD_NUMBER;
       hash = (53 * hash) + getResult();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      if (hasUserinfo()) {
+        hash = (37 * hash) + USERINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getUserinfo().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3515,6 +3657,14 @@ public final class farmshop {
         super.clear();
         result_ = 0;
 
+        name_ = "";
+
+        if (userinfoBuilder_ == null) {
+          userinfo_ = null;
+        } else {
+          userinfo_ = null;
+          userinfoBuilder_ = null;
+        }
         return this;
       }
 
@@ -3538,6 +3688,12 @@ public final class farmshop {
       public com.example.farmshop.farmshop.LoginResponse buildPartial() {
         com.example.farmshop.farmshop.LoginResponse result = new com.example.farmshop.farmshop.LoginResponse(this);
         result.result_ = result_;
+        result.name_ = name_;
+        if (userinfoBuilder_ == null) {
+          result.userinfo_ = userinfo_;
+        } else {
+          result.userinfo_ = userinfoBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -3581,6 +3737,13 @@ public final class farmshop {
         if (other == com.example.farmshop.farmshop.LoginResponse.getDefaultInstance()) return this;
         if (other.getResult() != 0) {
           setResult(other.getResult());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasUserinfo()) {
+          mergeUserinfo(other.getUserinfo());
         }
         onChanged();
         return this;
@@ -3633,6 +3796,192 @@ public final class farmshop {
         onChanged();
         return this;
       }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 2;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.example.farmshop.farmshop.EditUserInfoRequest userinfo_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.farmshop.farmshop.EditUserInfoRequest, com.example.farmshop.farmshop.EditUserInfoRequest.Builder, com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder> userinfoBuilder_;
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public boolean hasUserinfo() {
+        return userinfoBuilder_ != null || userinfo_ != null;
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public com.example.farmshop.farmshop.EditUserInfoRequest getUserinfo() {
+        if (userinfoBuilder_ == null) {
+          return userinfo_ == null ? com.example.farmshop.farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
+        } else {
+          return userinfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public Builder setUserinfo(com.example.farmshop.farmshop.EditUserInfoRequest value) {
+        if (userinfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          userinfo_ = value;
+          onChanged();
+        } else {
+          userinfoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public Builder setUserinfo(
+          com.example.farmshop.farmshop.EditUserInfoRequest.Builder builderForValue) {
+        if (userinfoBuilder_ == null) {
+          userinfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          userinfoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public Builder mergeUserinfo(com.example.farmshop.farmshop.EditUserInfoRequest value) {
+        if (userinfoBuilder_ == null) {
+          if (userinfo_ != null) {
+            userinfo_ =
+              com.example.farmshop.farmshop.EditUserInfoRequest.newBuilder(userinfo_).mergeFrom(value).buildPartial();
+          } else {
+            userinfo_ = value;
+          }
+          onChanged();
+        } else {
+          userinfoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public Builder clearUserinfo() {
+        if (userinfoBuilder_ == null) {
+          userinfo_ = null;
+          onChanged();
+        } else {
+          userinfo_ = null;
+          userinfoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public com.example.farmshop.farmshop.EditUserInfoRequest.Builder getUserinfoBuilder() {
+        
+        onChanged();
+        return getUserinfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      public com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder getUserinfoOrBuilder() {
+        if (userinfoBuilder_ != null) {
+          return userinfoBuilder_.getMessageOrBuilder();
+        } else {
+          return userinfo_ == null ?
+              com.example.farmshop.farmshop.EditUserInfoRequest.getDefaultInstance() : userinfo_;
+        }
+      }
+      /**
+       * <code>optional .farmshop.EditUserInfoRequest userinfo = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.example.farmshop.farmshop.EditUserInfoRequest, com.example.farmshop.farmshop.EditUserInfoRequest.Builder, com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder> 
+          getUserinfoFieldBuilder() {
+        if (userinfoBuilder_ == null) {
+          userinfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.example.farmshop.farmshop.EditUserInfoRequest, com.example.farmshop.farmshop.EditUserInfoRequest.Builder, com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder>(
+                  getUserinfo(),
+                  getParentForChildren(),
+                  isClean());
+          userinfo_ = null;
+        }
+        return userinfoBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -3682,6 +4031,1603 @@ public final class farmshop {
 
   }
 
+  public interface EditUserInfoRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.EditUserInfoRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 uid = 1;</code>
+     */
+    int getUid();
+
+    /**
+     * <code>optional string headimg = 2;</code>
+     */
+    java.lang.String getHeadimg();
+    /**
+     * <code>optional string headimg = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getHeadimgBytes();
+
+    /**
+     * <code>optional string realName = 3;</code>
+     */
+    java.lang.String getRealName();
+    /**
+     * <code>optional string realName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRealNameBytes();
+
+    /**
+     * <code>optional bool sex = 4;</code>
+     */
+    boolean getSex();
+
+    /**
+     * <code>optional int32 age = 5;</code>
+     */
+    int getAge();
+
+    /**
+     * <code>optional string phoneNumber = 6;</code>
+     */
+    java.lang.String getPhoneNumber();
+    /**
+     * <code>optional string phoneNumber = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getPhoneNumberBytes();
+
+    /**
+     * <code>optional string location = 7;</code>
+     */
+    java.lang.String getLocation();
+    /**
+     * <code>optional string location = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getLocationBytes();
+
+    /**
+     * <code>optional bool isManager = 8;</code>
+     */
+    boolean getIsManager();
+  }
+  /**
+   * Protobuf type {@code farmshop.EditUserInfoRequest}
+   */
+  public  static final class EditUserInfoRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.EditUserInfoRequest)
+      EditUserInfoRequestOrBuilder {
+    // Use EditUserInfoRequest.newBuilder() to construct.
+    private EditUserInfoRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private EditUserInfoRequest() {
+      uid_ = 0;
+      headimg_ = "";
+      realName_ = "";
+      sex_ = false;
+      age_ = 0;
+      phoneNumber_ = "";
+      location_ = "";
+      isManager_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private EditUserInfoRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              uid_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              headimg_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              realName_ = s;
+              break;
+            }
+            case 32: {
+
+              sex_ = input.readBool();
+              break;
+            }
+            case 40: {
+
+              age_ = input.readInt32();
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              phoneNumber_ = s;
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              location_ = s;
+              break;
+            }
+            case 64: {
+
+              isManager_ = input.readBool();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.EditUserInfoRequest.class, com.example.farmshop.farmshop.EditUserInfoRequest.Builder.class);
+    }
+
+    public static final int UID_FIELD_NUMBER = 1;
+    private int uid_;
+    /**
+     * <code>optional int32 uid = 1;</code>
+     */
+    public int getUid() {
+      return uid_;
+    }
+
+    public static final int HEADIMG_FIELD_NUMBER = 2;
+    private volatile java.lang.Object headimg_;
+    /**
+     * <code>optional string headimg = 2;</code>
+     */
+    public java.lang.String getHeadimg() {
+      java.lang.Object ref = headimg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        headimg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string headimg = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHeadimgBytes() {
+      java.lang.Object ref = headimg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        headimg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REALNAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object realName_;
+    /**
+     * <code>optional string realName = 3;</code>
+     */
+    public java.lang.String getRealName() {
+      java.lang.Object ref = realName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        realName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string realName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRealNameBytes() {
+      java.lang.Object ref = realName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        realName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SEX_FIELD_NUMBER = 4;
+    private boolean sex_;
+    /**
+     * <code>optional bool sex = 4;</code>
+     */
+    public boolean getSex() {
+      return sex_;
+    }
+
+    public static final int AGE_FIELD_NUMBER = 5;
+    private int age_;
+    /**
+     * <code>optional int32 age = 5;</code>
+     */
+    public int getAge() {
+      return age_;
+    }
+
+    public static final int PHONENUMBER_FIELD_NUMBER = 6;
+    private volatile java.lang.Object phoneNumber_;
+    /**
+     * <code>optional string phoneNumber = 6;</code>
+     */
+    public java.lang.String getPhoneNumber() {
+      java.lang.Object ref = phoneNumber_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        phoneNumber_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string phoneNumber = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPhoneNumberBytes() {
+      java.lang.Object ref = phoneNumber_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        phoneNumber_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LOCATION_FIELD_NUMBER = 7;
+    private volatile java.lang.Object location_;
+    /**
+     * <code>optional string location = 7;</code>
+     */
+    public java.lang.String getLocation() {
+      java.lang.Object ref = location_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        location_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string location = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getLocationBytes() {
+      java.lang.Object ref = location_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        location_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ISMANAGER_FIELD_NUMBER = 8;
+    private boolean isManager_;
+    /**
+     * <code>optional bool isManager = 8;</code>
+     */
+    public boolean getIsManager() {
+      return isManager_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (uid_ != 0) {
+        output.writeInt32(1, uid_);
+      }
+      if (!getHeadimgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, headimg_);
+      }
+      if (!getRealNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, realName_);
+      }
+      if (sex_ != false) {
+        output.writeBool(4, sex_);
+      }
+      if (age_ != 0) {
+        output.writeInt32(5, age_);
+      }
+      if (!getPhoneNumberBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, phoneNumber_);
+      }
+      if (!getLocationBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, location_);
+      }
+      if (isManager_ != false) {
+        output.writeBool(8, isManager_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (uid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, uid_);
+      }
+      if (!getHeadimgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, headimg_);
+      }
+      if (!getRealNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, realName_);
+      }
+      if (sex_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, sex_);
+      }
+      if (age_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, age_);
+      }
+      if (!getPhoneNumberBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, phoneNumber_);
+      }
+      if (!getLocationBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, location_);
+      }
+      if (isManager_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, isManager_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.EditUserInfoRequest)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.EditUserInfoRequest other = (com.example.farmshop.farmshop.EditUserInfoRequest) obj;
+
+      boolean result = true;
+      result = result && (getUid()
+          == other.getUid());
+      result = result && getHeadimg()
+          .equals(other.getHeadimg());
+      result = result && getRealName()
+          .equals(other.getRealName());
+      result = result && (getSex()
+          == other.getSex());
+      result = result && (getAge()
+          == other.getAge());
+      result = result && getPhoneNumber()
+          .equals(other.getPhoneNumber());
+      result = result && getLocation()
+          .equals(other.getLocation());
+      result = result && (getIsManager()
+          == other.getIsManager());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + getUid();
+      hash = (37 * hash) + HEADIMG_FIELD_NUMBER;
+      hash = (53 * hash) + getHeadimg().hashCode();
+      hash = (37 * hash) + REALNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getRealName().hashCode();
+      hash = (37 * hash) + SEX_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSex());
+      hash = (37 * hash) + AGE_FIELD_NUMBER;
+      hash = (53 * hash) + getAge();
+      hash = (37 * hash) + PHONENUMBER_FIELD_NUMBER;
+      hash = (53 * hash) + getPhoneNumber().hashCode();
+      hash = (37 * hash) + LOCATION_FIELD_NUMBER;
+      hash = (53 * hash) + getLocation().hashCode();
+      hash = (37 * hash) + ISMANAGER_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsManager());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.EditUserInfoRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.EditUserInfoRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.EditUserInfoRequest)
+        com.example.farmshop.farmshop.EditUserInfoRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.EditUserInfoRequest.class, com.example.farmshop.farmshop.EditUserInfoRequest.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.EditUserInfoRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        uid_ = 0;
+
+        headimg_ = "";
+
+        realName_ = "";
+
+        sex_ = false;
+
+        age_ = 0;
+
+        phoneNumber_ = "";
+
+        location_ = "";
+
+        isManager_ = false;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoRequest_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoRequest getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.EditUserInfoRequest.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoRequest build() {
+        com.example.farmshop.farmshop.EditUserInfoRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoRequest buildPartial() {
+        com.example.farmshop.farmshop.EditUserInfoRequest result = new com.example.farmshop.farmshop.EditUserInfoRequest(this);
+        result.uid_ = uid_;
+        result.headimg_ = headimg_;
+        result.realName_ = realName_;
+        result.sex_ = sex_;
+        result.age_ = age_;
+        result.phoneNumber_ = phoneNumber_;
+        result.location_ = location_;
+        result.isManager_ = isManager_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.EditUserInfoRequest) {
+          return mergeFrom((com.example.farmshop.farmshop.EditUserInfoRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.EditUserInfoRequest other) {
+        if (other == com.example.farmshop.farmshop.EditUserInfoRequest.getDefaultInstance()) return this;
+        if (other.getUid() != 0) {
+          setUid(other.getUid());
+        }
+        if (!other.getHeadimg().isEmpty()) {
+          headimg_ = other.headimg_;
+          onChanged();
+        }
+        if (!other.getRealName().isEmpty()) {
+          realName_ = other.realName_;
+          onChanged();
+        }
+        if (other.getSex() != false) {
+          setSex(other.getSex());
+        }
+        if (other.getAge() != 0) {
+          setAge(other.getAge());
+        }
+        if (!other.getPhoneNumber().isEmpty()) {
+          phoneNumber_ = other.phoneNumber_;
+          onChanged();
+        }
+        if (!other.getLocation().isEmpty()) {
+          location_ = other.location_;
+          onChanged();
+        }
+        if (other.getIsManager() != false) {
+          setIsManager(other.getIsManager());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.EditUserInfoRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.EditUserInfoRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int uid_ ;
+      /**
+       * <code>optional int32 uid = 1;</code>
+       */
+      public int getUid() {
+        return uid_;
+      }
+      /**
+       * <code>optional int32 uid = 1;</code>
+       */
+      public Builder setUid(int value) {
+        
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 uid = 1;</code>
+       */
+      public Builder clearUid() {
+        
+        uid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object headimg_ = "";
+      /**
+       * <code>optional string headimg = 2;</code>
+       */
+      public java.lang.String getHeadimg() {
+        java.lang.Object ref = headimg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          headimg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string headimg = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHeadimgBytes() {
+        java.lang.Object ref = headimg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          headimg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string headimg = 2;</code>
+       */
+      public Builder setHeadimg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        headimg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string headimg = 2;</code>
+       */
+      public Builder clearHeadimg() {
+        
+        headimg_ = getDefaultInstance().getHeadimg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string headimg = 2;</code>
+       */
+      public Builder setHeadimgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        headimg_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object realName_ = "";
+      /**
+       * <code>optional string realName = 3;</code>
+       */
+      public java.lang.String getRealName() {
+        java.lang.Object ref = realName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          realName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string realName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRealNameBytes() {
+        java.lang.Object ref = realName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          realName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string realName = 3;</code>
+       */
+      public Builder setRealName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        realName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string realName = 3;</code>
+       */
+      public Builder clearRealName() {
+        
+        realName_ = getDefaultInstance().getRealName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string realName = 3;</code>
+       */
+      public Builder setRealNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        realName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean sex_ ;
+      /**
+       * <code>optional bool sex = 4;</code>
+       */
+      public boolean getSex() {
+        return sex_;
+      }
+      /**
+       * <code>optional bool sex = 4;</code>
+       */
+      public Builder setSex(boolean value) {
+        
+        sex_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool sex = 4;</code>
+       */
+      public Builder clearSex() {
+        
+        sex_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int age_ ;
+      /**
+       * <code>optional int32 age = 5;</code>
+       */
+      public int getAge() {
+        return age_;
+      }
+      /**
+       * <code>optional int32 age = 5;</code>
+       */
+      public Builder setAge(int value) {
+        
+        age_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 age = 5;</code>
+       */
+      public Builder clearAge() {
+        
+        age_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object phoneNumber_ = "";
+      /**
+       * <code>optional string phoneNumber = 6;</code>
+       */
+      public java.lang.String getPhoneNumber() {
+        java.lang.Object ref = phoneNumber_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          phoneNumber_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string phoneNumber = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPhoneNumberBytes() {
+        java.lang.Object ref = phoneNumber_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          phoneNumber_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string phoneNumber = 6;</code>
+       */
+      public Builder setPhoneNumber(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        phoneNumber_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string phoneNumber = 6;</code>
+       */
+      public Builder clearPhoneNumber() {
+        
+        phoneNumber_ = getDefaultInstance().getPhoneNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string phoneNumber = 6;</code>
+       */
+      public Builder setPhoneNumberBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        phoneNumber_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object location_ = "";
+      /**
+       * <code>optional string location = 7;</code>
+       */
+      public java.lang.String getLocation() {
+        java.lang.Object ref = location_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          location_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string location = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLocationBytes() {
+        java.lang.Object ref = location_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          location_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string location = 7;</code>
+       */
+      public Builder setLocation(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        location_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string location = 7;</code>
+       */
+      public Builder clearLocation() {
+        
+        location_ = getDefaultInstance().getLocation();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string location = 7;</code>
+       */
+      public Builder setLocationBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        location_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean isManager_ ;
+      /**
+       * <code>optional bool isManager = 8;</code>
+       */
+      public boolean getIsManager() {
+        return isManager_;
+      }
+      /**
+       * <code>optional bool isManager = 8;</code>
+       */
+      public Builder setIsManager(boolean value) {
+        
+        isManager_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isManager = 8;</code>
+       */
+      public Builder clearIsManager() {
+        
+        isManager_ = false;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.EditUserInfoRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.EditUserInfoRequest)
+    private static final com.example.farmshop.farmshop.EditUserInfoRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.EditUserInfoRequest();
+    }
+
+    public static com.example.farmshop.farmshop.EditUserInfoRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<EditUserInfoRequest>
+        PARSER = new com.google.protobuf.AbstractParser<EditUserInfoRequest>() {
+      public EditUserInfoRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new EditUserInfoRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<EditUserInfoRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<EditUserInfoRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.EditUserInfoRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface EditUserInfoResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.EditUserInfoResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    int getResult();
+  }
+  /**
+   * Protobuf type {@code farmshop.EditUserInfoResponse}
+   */
+  public  static final class EditUserInfoResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.EditUserInfoResponse)
+      EditUserInfoResponseOrBuilder {
+    // Use EditUserInfoResponse.newBuilder() to construct.
+    private EditUserInfoResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private EditUserInfoResponse() {
+      result_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private EditUserInfoResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              result_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.EditUserInfoResponse.class, com.example.farmshop.farmshop.EditUserInfoResponse.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    public int getResult() {
+      return result_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != 0) {
+        output.writeInt32(1, result_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, result_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.EditUserInfoResponse)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.EditUserInfoResponse other = (com.example.farmshop.farmshop.EditUserInfoResponse) obj;
+
+      boolean result = true;
+      result = result && (getResult()
+          == other.getResult());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.EditUserInfoResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.EditUserInfoResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.EditUserInfoResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.EditUserInfoResponse)
+        com.example.farmshop.farmshop.EditUserInfoResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.EditUserInfoResponse.class, com.example.farmshop.farmshop.EditUserInfoResponse.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.EditUserInfoResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_EditUserInfoResponse_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoResponse getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.EditUserInfoResponse.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoResponse build() {
+        com.example.farmshop.farmshop.EditUserInfoResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.EditUserInfoResponse buildPartial() {
+        com.example.farmshop.farmshop.EditUserInfoResponse result = new com.example.farmshop.farmshop.EditUserInfoResponse(this);
+        result.result_ = result_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.EditUserInfoResponse) {
+          return mergeFrom((com.example.farmshop.farmshop.EditUserInfoResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.EditUserInfoResponse other) {
+        if (other == com.example.farmshop.farmshop.EditUserInfoResponse.getDefaultInstance()) return this;
+        if (other.getResult() != 0) {
+          setResult(other.getResult());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.EditUserInfoResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.EditUserInfoResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int result_ ;
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public int getResult() {
+        return result_;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder setResult(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.EditUserInfoResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.EditUserInfoResponse)
+    private static final com.example.farmshop.farmshop.EditUserInfoResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.EditUserInfoResponse();
+    }
+
+    public static com.example.farmshop.farmshop.EditUserInfoResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<EditUserInfoResponse>
+        PARSER = new com.google.protobuf.AbstractParser<EditUserInfoResponse>() {
+      public EditUserInfoResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new EditUserInfoResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<EditUserInfoResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<EditUserInfoResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.EditUserInfoResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_farmshop_ClientSession_descriptor;
   private static final 
@@ -3712,6 +5658,16 @@ public final class farmshop {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_farmshop_LoginResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_EditUserInfoRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_EditUserInfoRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_EditUserInfoResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3729,11 +5685,19 @@ public final class farmshop {
       "equest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\" " +
       "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\".\n\014Logi" +
       "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
-      "\"\037\n\rLoginResponse\022\016\n\006result\030\001 \001(\005*g\n\005Msg" +
-      "Id\022\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\n",
-      "REGIST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_RE" +
-      "Q\020\004\022\r\n\tLOGIN_RES\020\005B \n\024com.example.farmsh" +
-      "opB\010farmshopb\006proto3"
+      "\"^\n\rLoginResponse\022\016\n\006result\030\001 \001(\005\022\014\n\004nam" +
+      "e\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132\035.farmshop.Edi",
+      "tUserInfoRequest\"\231\001\n\023EditUserInfoRequest" +
+      "\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001(\t\022\020\n\010realNa" +
+      "me\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age\030\005 \001(\005\022\023\n\013ph" +
+      "oneNumber\030\006 \001(\t\022\020\n\010location\030\007 \001(\t\022\021\n\tisM" +
+      "anager\030\010 \001(\010\"&\n\024EditUserInfoResponse\022\016\n\006" +
+      "result\030\001 \001(\005*\223\001\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022" +
+      "\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGI" +
+      "ST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024" +
+      "\n\020EditUserInfo_REQ\020\006\022\024\n\020EditUserInfo_RES" +
+      "\020\007B \n\024com.example.farmshopB\010farmshopb\006pr",
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3783,6 +5747,18 @@ public final class farmshop {
     internal_static_farmshop_LoginResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_farmshop_LoginResponse_descriptor,
+        new java.lang.String[] { "Result", "Name", "Userinfo", });
+    internal_static_farmshop_EditUserInfoRequest_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_farmshop_EditUserInfoRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_EditUserInfoRequest_descriptor,
+        new java.lang.String[] { "Uid", "Headimg", "RealName", "Sex", "Age", "PhoneNumber", "Location", "IsManager", });
+    internal_static_farmshop_EditUserInfoResponse_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_EditUserInfoResponse_descriptor,
         new java.lang.String[] { "Result", });
     com.google.protobuf.AnyProto.getDescriptor();
   }

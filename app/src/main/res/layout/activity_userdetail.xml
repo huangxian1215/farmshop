@@ -29,7 +29,7 @@
                     android:layout_height="50dp"
                     android:textSize="17sp"
                     android:gravity="left|center"
-                    android:text="账号id：1001"/>
+                    android:text="账号id："/>
 
             </LinearLayout>
         </LinearLayout>
@@ -39,35 +39,35 @@
             android:layout_height="50dp"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:text="真实姓名: 黄贤"/>
+            android:text="真实姓名: "/>
         <TextView
             android:id="@+id/tv_sex"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:text="性别: 男"/>
+            android:text="性别: "/>
         <TextView
             android:id="@+id/tv_age"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:text="年龄: 28"/>
+            android:text="年龄: "/>
         <TextView
             android:id="@+id/tv_phone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:text="电话号码: 18812345678"/>
+            android:text="电话号码: "/>
         <TextView
             android:id="@+id/tv_location"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:text="地址: 4-2-706"/>
+            android:text="地址: "/>
 
         <Button
             android:id="@+id/btn_edit"

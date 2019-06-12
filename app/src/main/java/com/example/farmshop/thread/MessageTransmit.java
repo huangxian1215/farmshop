@@ -8,9 +8,11 @@ import java.net.Socket;
 
 import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.MainApplication;
+import com.example.farmshop.activity.UserDetailEditActivity;
 import com.example.farmshop.bean.ByteData;
 import com.example.farmshop.activity.RegistActivity;
 import com.example.farmshop.farmshop;
+import com.google.protobuf.Any;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -60,6 +62,15 @@ public class MessageTransmit implements Runnable {
         public void handleMessage(Message msg) {
             byte[] bytearray = ((ByteData)msg.obj).data;
             try{
+                //
+                long dataLent = bytearray.length + 0;
+                byte[] buffer1 = new byte[8];
+                for (int i = 0; i < 8; i++) {
+                    int offset = 64 - (i + 1) * 8;
+                    buffer1[i] = (byte) ((dataLent >> offset) & 0xff);
+                }
+                mWriter.write(buffer1);
+
                 mWriter.write(bytearray);
             }catch (IOException e){
                 e.printStackTrace();
@@ -71,20 +82,49 @@ public class MessageTransmit implements Runnable {
     private class RecvBytThread extends  Thread{
         @Override
         public void run(){
+            long dataSize = 0;
+            long getDataSize = 0;
             try {
                 while(mInputStream != null){
-                    byte len[] = new byte[1024];
-                    int count = mInputStream.read(len);
-                    byte[] temp = new byte[count];
-                    for(int i = 0; i < count; i++){
-                        temp[i] = len[i];
+                    //读取数据头大小(自定义8位),应该使用mInputStream.available()来判断更方便，后续优化
+                    if(dataSize == 0){
+                        byte[] buffer = new byte[8];
+                        int count = mInputStream.read(buffer);
+                        for (int i = 0; i < 8; i++) {
+                            int offset = 64 - (i + 1) * 8;
+                            dataSize += (long) ((buffer[i] << offset) & 0xff);
+                        }
                     }
-                    farmshop.baseType base;
-                    try{
-                        base = farmshop.baseType.parseFrom(temp);
-                        dealDataFromServer(base);
-                    }catch (IOException e){
-                        e.printStackTrace();
+                    //根据头，读取指定大小数据(防止粘包)
+                    byte[] databufferfinal = new byte[(int)dataSize];
+                    byte[] databuffer = new byte[(int)dataSize];
+                    getDataSize = mInputStream.read(databuffer);
+                    for(int i = 0; i < dataSize; i++){
+                        databufferfinal[i] = databuffer[i];
+                    }
+                    //数据读取不足时拼接(接收包不足时拆包错误)
+                    int getLestSize = 0;
+                    while (getDataSize < dataSize){
+                        int lest = (int)dataSize - (int)getDataSize;
+                        byte[] lestdatabuffer = new byte[(int)lest];
+                        getLestSize = mInputStream.read(lestdatabuffer);
+                        for(int i = 0; i < getLestSize; i++){
+                            databufferfinal[i + (int)getDataSize] = lestdatabuffer[i];
+                        }
+                        getDataSize += getLestSize;
+                    }
+                    //拆包，初始化数据头
+                    if(getDataSize >= dataSize){
+                        getDataSize -= dataSize;
+                        dataSize = 0;
+                        farmshop.baseType base;
+                        try{
+                            base = farmshop.baseType.parseFrom(databufferfinal);
+                            dealDataFromServer(base);
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
+
                     }
                 }
             }catch (Exception e){
@@ -112,7 +152,19 @@ public class MessageTransmit implements Runnable {
             case LOGIN_RES:
                 msg.obj = data;
                 LoginActivity.mHandler.sendMessage(msg);
-                mListener.onGetNetData("login");
+                try {
+                    Any any = data.getObject(0);
+                    farmshop.LoginResponse resp = farmshop.LoginResponse.parseFrom(any.getValue());
+                    if (resp.getResult() == 0) {
+                        mListener.onGetNetData("login");
+                    }
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                break;
+            case EditUserInfo_RES:
+                msg.obj = data;
+                UserDetailEditActivity.mHandler.sendMessage(msg);
                 break;
             default:
                 break;

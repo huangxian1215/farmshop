@@ -3,6 +3,7 @@ package com.example.farmshop.activity;
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.bean.ByteData;
+import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.farmshop;
 import com.example.farmshop.thread.MessageTransmit.OnGetNetDataListener;
 import com.google.protobuf.Any;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     private MainApplication app;
     public static Context mContext;
     public static Boolean isConnect = false;
+    public static int connectType = 0; //0 登录 1 注册
 
 
     @Override
@@ -55,19 +57,17 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     public void onClick(View v) {
         //注册
         if (v.getId() == R.id.btn_regist) {
+            connectType = 1;
+            connetcServer();
             Intent intent = new Intent(this, RegistActivity.class);
             startActivity(intent);
         }
         //登录
         if(v.getId() == R.id.btn_login){
-//            String ipstr = et_ip.getText().toString();
-//            String strport = et_port.getText().toString();
-//            int port = Integer.parseInt(strport);
-//            app.mTransmit.setIpPort(ipstr, port);
-//            app.mTransmit.setOnNetListener(this);
-//            new Thread( app.mTransmit).start();
-            Intent intent = new Intent(mContext, CenterActivity.class);
-            startActivity(intent);
+            connectType = 0;
+            connetcServer();
+//            Intent intent = new Intent(mContext, CenterActivity.class);
+//            startActivity(intent);
         }
     }
 
@@ -76,7 +76,41 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         if(info.equals("login")){
             Intent intent = new Intent(mContext, CenterActivity.class);
             startActivity(intent);
+            finish();
         }
+    }
+
+    private void connetcServer(){
+        if(!isConnect){
+            String ipstr = et_ip.getText().toString();
+            String strport = et_port.getText().toString();
+            int port = Integer.parseInt(strport);
+            app.mTransmit.setIpPort(ipstr, port);
+            app.mTransmit.setOnNetListener(this);
+            new Thread( app.mTransmit).start();
+        }else {
+            loginUgly();
+        }
+    }
+
+    public static void loginUgly(){
+        farmshop.baseType.Builder regist = farmshop.baseType.newBuilder().setType(farmshop.MsgId.LOGIN_REQ).setSessionId(MainApplication.getInstance().mSessionId);
+        farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(s_et_name.getText().toString()).setPassword(s_et_pwd.getText().toString()).build();
+        regist.addObject(Any.pack(req));
+        byte[] bytearray = {};
+        farmshop.baseType bt =  regist.build();
+        ByteArrayOutputStream outp1 = new ByteArrayOutputStream();
+        try{
+            bt.writeTo(outp1);
+            bytearray = outp1.toByteArray();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        Message smsg = Message.obtain();
+        ByteData buffdata = new ByteData(bytearray);
+        smsg.obj = buffdata;
+
+        MainApplication.getInstance().mTransmit.mRecvHandler.sendMessage(smsg);
     }
 
     public static Handler mHandler = new Handler() {
@@ -89,6 +123,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                     farmshop.LoginResponse resp = farmshop.LoginResponse.parseFrom(any.getValue());
                     if(resp.getResult() == 0){
                         Toast.makeText(mContext, "登陆成功", Toast.LENGTH_SHORT).show();
+                        MainApplication.getInstance().mUserinfo = new UserInfo();
+                        MainApplication.getInstance().mUserinfo.name = resp.getName();
+                        MainApplication.getInstance().mUserinfo.detail = resp.getUserinfo();
                     }else{
                         Toast.makeText(mContext, "登陆失败", Toast.LENGTH_SHORT).show();
                     }
@@ -97,22 +134,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 }
             }else {
                 isConnect = true;
-                farmshop.baseType.Builder regist = farmshop.baseType.newBuilder().setType(farmshop.MsgId.LOGIN_REQ).setSessionId(MainApplication.getInstance().mSessionId);
-                farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(s_et_name.getText().toString()).setPassword(s_et_pwd.getText().toString()).build();
-                regist.addObject(Any.pack(req));
-                byte[] bytearray = {};
-                farmshop.baseType bt =  regist.build();
-                ByteArrayOutputStream outp1 = new ByteArrayOutputStream();
-                try{
-                    bt.writeTo(outp1);
-                    bytearray = outp1.toByteArray();
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                Message smsg = Message.obtain();
-                ByteData buffdata = new ByteData(bytearray);
-                smsg.obj = buffdata;
-                MainApplication.getInstance().mTransmit.mRecvHandler.sendMessage(smsg);
+                if(connectType == 1) return;
+                loginUgly();
             }
 
         }
