@@ -79,16 +79,9 @@ public class UpFileMainActivity extends AppCompatActivity{
                 }
             }
         });
-        getPermissions();
     }
 
-    private void getPermissions(){
-        //申请SD卡读写权限
-        ActivityCompat.requestPermissions(UpFileMainActivity.this, new String[]{android
-                .Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INTERNET,
-                Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_NETWORK_STATE
-        }, 1);
-    }
+
 
     public void refreshWidget(){
         tv_filename.setText(mFilename);
