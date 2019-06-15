@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_iflay).setOnClickListener(this);
         //test map SDK
-        findViewById(R.id.btn_cutpic).setOnClickListener(this);
         app = MainApplication.getInstance();
         mContext = this;
 
@@ -110,11 +109,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             connetcServer();
 //            Intent intent = new Intent(mContext, CenterActivity.class);
 //            startActivity(intent);
-        }
-        //裁剪图片
-        if(v.getId() == R.id.btn_cutpic){
-            Intent intent = new Intent(this, CutPictureActivity.class);
-            startActivity(intent);
         }
         //讯飞语音
         if(v.getId() == R.id.btn_iflay){
