@@ -33,6 +33,9 @@ public class MessageTransmit implements Runnable {
     //sessionId
     private String sessionId = "";
     private MainApplication app;
+
+    private byte[]  mBytearray;
+    private byte[]  mBuffer;
     public void setIpPort(String str, int port){
         SOCKET_IP = str;
         SOCKET_PORT = port;
@@ -61,19 +64,29 @@ public class MessageTransmit implements Runnable {
         @Override
         public void handleMessage(Message msg) {
             byte[] bytearray = ((ByteData)msg.obj).data;
-            try{
-                //
+            mBytearray = bytearray;
                 long dataLent = bytearray.length + 0;
                 byte[] buffer1 = new byte[8];
+
                 for (int i = 0; i < 8; i++) {
                     int offset = 64 - (i + 1) * 8;
                     buffer1[i] = (byte) ((dataLent >> offset) & 0xff);
                 }
-                mWriter.write(buffer1);
+                mBuffer = buffer1;
+                //网络请求需要开线程, new Thread() 不用手动回收
+                new Thread(runnable).start();
+        }
+    };
 
-                mWriter.write(bytearray);
-            }catch (IOException e){
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                mWriter.write(mBuffer);
+                mWriter.write(mBytearray);
+            } catch (IOException e) {
                 e.printStackTrace();
+
             }
         }
     };

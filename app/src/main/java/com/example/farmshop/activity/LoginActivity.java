@@ -53,6 +53,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
         // 注意该方法要在setContentView方法之前实现
         mLocationClient = new LocationClient(getApplicationContext());//声明LocationClient类
         mLocationClient.registerLocationListener(myListener);//注册监听函数
@@ -68,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_iflay).setOnClickListener(this);
         //test map SDK
-        findViewById(R.id.btn_locate).setOnClickListener(this);
+        findViewById(R.id.btn_cutpic).setOnClickListener(this);
         app = MainApplication.getInstance();
         mContext = this;
 
@@ -88,7 +90,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.CAMERA,
                 Manifest.permission.WAKE_LOCK,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.DELETE_CACHE_FILES
         }, 1);
     }
 
@@ -108,9 +111,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
 //            Intent intent = new Intent(mContext, CenterActivity.class);
 //            startActivity(intent);
         }
-        //定位
-        if(v.getId() == R.id.btn_locate){
-
+        //裁剪图片
+        if(v.getId() == R.id.btn_cutpic){
+            Intent intent = new Intent(this, CutPictureActivity.class);
+            startActivity(intent);
         }
         //讯飞语音
         if(v.getId() == R.id.btn_iflay){
@@ -134,9 +138,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             String ipstr = et_ip.getText().toString();
             String strport = et_port.getText().toString();
             int port = Integer.parseInt(strport);
+            //httpUrl = "http://192.168.6.176:8080/";
+            app.httpUrl = "http://"+ ipstr + ":8080/";
             app.mTransmit.setIpPort(ipstr, port);
             app.mTransmit.setOnNetListener(this);
-            new Thread( app.mTransmit).start();
+            new Thread(  app.mTransmit).start();
         }else {
             loginUgly();
         }

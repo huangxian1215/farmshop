@@ -73,85 +73,96 @@ public class TcpSendData implements Runnable {
         }
     }
 
-    public Handler mSendHandler = new Handler() {
+    Runnable runnable = new Runnable() {
         @Override
-        public void handleMessage(Message msg) {
-//            mFile = (File)msg.obj;
-            if (mFile.exists() && mFile.isFile()) {
+        public void run() {
+            sendfile();
+        }
+    };
+
+    private void sendfile(){
+        if (mFile.exists() && mFile.isFile()) {
+            try {
+                /**
+                 * 3.创建文件输入流，发送文件
+                 *   将文件输入的内容都放在file里面
+                 */
+                in = new FileInputStream(mFile);
+                long totlelength = mFile.length() + 24 + mType.getBytes().length + mFile.getName().getBytes().length;
+                // 向服务器发送[文件名字节长度 \r\n]
+                byte[] buffer1 = new byte[8];
+                for (int i = 0; i < 8; i++) {
+                    int offset = 64 - (i + 1) * 8;
+                    buffer1[i] = (byte) ((totlelength >> offset) & 0xff);
+                }
+                out.write(buffer1);
+                // 向服务器发送[文件字名节长度\r\n]
+                byte[] buffer2 = new byte[8];
+
+                long typeLength = mType.getBytes().length;
+                for (int i = 0; i < 8; i++) {
+                    int offset = 64 - (i + 1) * 8;
+                    buffer2[i] = (byte) ((typeLength >> offset) & 0xff);
+                }
+                out.write(buffer2);
+                // 向服务器发送[文件字名节长度\r\n]
+                byte[] buffer = new byte[8];
+                long filenamelength = mFile.getName().getBytes().length;
+                for (int i = 0; i < 8; i++) {
+                    int offset = 64 - (i + 1) * 8;
+                    buffer[i] = (byte) ((filenamelength >> offset) & 0xff);
+                }
+                out.write(buffer);
+
+                // 向服务器发送[type字节]
+                out.write(mType.getBytes());
+                // 向服务器发送[文件名字节]
+                out.write(mFile.getName().getBytes());
+                // 向服务器发送[文件字节内容]
+                byte[] data = new byte[1024];
+                int i = 0;
+                while ((i = in.read(data)) != -1) {
+                    out.write(data, 0, i);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                /**
+                 * 关闭Scanner，文件输入流，套接字
+                 * 套接字装饰了输出流，所以不用关闭输出流
+                 */
+
                 try {
-                    /**
-                     * 3.创建文件输入流，发送文件
-                     *   将文件输入的内容都放在file里面
-                     */
-                    in = new FileInputStream(mFile);
-                    long totlelength = mFile.length() + 24 + mType.getBytes().length + mFile.getName().getBytes().length;
-                    // 向服务器发送[文件名字节长度 \r\n]
-                    byte[] buffer1 = new byte[8];
-                    for (int i = 0; i < 8; i++) {
-                        int offset = 64 - (i + 1) * 8;
-                        buffer1[i] = (byte) ((totlelength >> offset) & 0xff);
-                    }
-                    out.write(buffer1);
-                    // 向服务器发送[文件字名节长度\r\n]
-                    byte[] buffer2 = new byte[8];
-
-                    long typeLength = mType.getBytes().length;
-                    for (int i = 0; i < 8; i++) {
-                        int offset = 64 - (i + 1) * 8;
-                        buffer2[i] = (byte) ((typeLength >> offset) & 0xff);
-                    }
-                    out.write(buffer2);
-                    // 向服务器发送[文件字名节长度\r\n]
-                    byte[] buffer = new byte[8];
-                    long filenamelength = mFile.getName().getBytes().length;
-                    for (int i = 0; i < 8; i++) {
-                        int offset = 64 - (i + 1) * 8;
-                        buffer[i] = (byte) ((filenamelength >> offset) & 0xff);
-                    }
-                    out.write(buffer);
-
-                    // 向服务器发送[type字节]
-                    out.write(mType.getBytes());
-                    // 向服务器发送[文件名字节]
-                    out.write(mFile.getName().getBytes());
-                    // 向服务器发送[文件字节内容]
-                    byte[] data = new byte[1024];
-                    int i = 0;
-                    while ((i = in.read(data)) != -1) {
-                        out.write(data, 0, i);
+                    if(in != null) {
+                        in.close();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }finally {
-                    /**
-                     * 关闭Scanner，文件输入流，套接字
-                     * 套接字装饰了输出流，所以不用关闭输出流
-                     */
-
-                    try {
-                        if(in != null) {
-                            in.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }finally {
-                        // 强制将输入流置为空
-                        in = null;
-                    }
-                    try {
-                        if(socket != null) {
-                            socket.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }finally {
-                        // 强制释放socket
-                        socket = null;
-                    }
-
+                    // 强制将输入流置为空
+                    in = null;
                 }
-                System.out.println("文件传输完毕");
+                try {
+                    if(socket != null) {
+                        socket.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    // 强制释放socket
+                    socket = null;
+                }
+
             }
+            System.out.println("文件传输完毕");
+        }
+    }
+
+    public Handler mSendHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+        new Thread(runnable).start();
+
         }
     };
 }

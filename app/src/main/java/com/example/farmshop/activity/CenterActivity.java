@@ -1,6 +1,7 @@
 package com.example.farmshop.activity;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -35,13 +36,14 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_center);
         tlFile = findViewById(R.id.tl_file);
         vpFile = findViewById(R.id.vp_file);
         app = MainApplication.getInstance();
         downLoadConfig();
         //for test 0606
-//        initData();
+        initData();
     }
 
     private void downLoadConfig(){

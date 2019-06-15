@@ -43,9 +43,6 @@ public class UpFileMainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         setContentView(R.layout.activity_main_upfile);
         btnMedia = findViewById(R.id.btn_media);
         et_ip = (EditText) findViewById(R.id.et_ip);
