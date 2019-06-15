@@ -2,7 +2,6 @@ package com.example.farmshop.activity;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
@@ -11,35 +10,26 @@ import com.example.farmshop.R;
 import com.example.farmshop.bean.ByteData;
 import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.farmshop;
+import com.example.farmshop.iflytek.IflayMainActivity;
 import com.example.farmshop.thread.MessageTransmit.OnGetNetDataListener;
-import com.example.farmshop.util.TimeUtils;
 import com.google.protobuf.Any;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by ouyangshen on 2016/11/11.
@@ -50,7 +40,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     private EditText et_port;
     private static EditText s_et_name;
     private static EditText s_et_pwd;
-    public static Button et_regst;
     public TextView tv_location;
     private MainApplication app;
     public static Context mContext;
@@ -74,25 +63,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         et_port = (EditText) findViewById(R.id.et_port);
         s_et_name = (EditText) findViewById(R.id.et_name);
         s_et_pwd = (EditText) findViewById(R.id.et_pwd);
-        et_regst = (Button) findViewById(R.id.btn_regist);
         tv_location = (TextView) findViewById(R.id.tv_location);
         findViewById(R.id.btn_regist).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
+        findViewById(R.id.btn_iflay).setOnClickListener(this);
         //test map SDK
         findViewById(R.id.btn_locate).setOnClickListener(this);
         app = MainApplication.getInstance();
         mContext = this;
 
         getPermissions();
-
-
-        //手机自带GPS  wifi SIM  start
-//        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED) {
-//            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 5, listener);
-//        }
-//        setLocationText(getLastKnownLocation());
-        //手机自带GPS  wifi SIM  end
     }
     private void getPermissions(){
         //申请SD卡读写权限
@@ -107,46 +87,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.CAMERA,
-                Manifest.permission.WAKE_LOCK
+                Manifest.permission.WAKE_LOCK,
+                Manifest.permission.RECORD_AUDIO
         }, 1);
-    }
-
-    @SuppressLint("DefaultLocale")
-    private void setLocationText(Location location) {
-        if (location != null) {
-            String desc = String.format("%s\n定位对象信息如下： " +
-                            "\n\t其中时间：%s" +
-                            "\n\t其中经度：%f，纬度：%f" +
-                            "\n\t其中高度：%d米，精度：%d米",
-                    mLocation, TimeUtils.getNowDateTimeFormat(),
-                    location.getLongitude(), location.getLatitude(),
-                    Math.round(location.getAltitude()), Math.round(location.getAccuracy()));
-            Log.d(TAG, desc);
-            tv_location.setText(desc);
-        } else {
-            tv_location.setText(mLocation+"\n暂未获取到定位对象");
-        }
-    }
-
-    public Location getLastKnownLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return null;
-        }
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        List<String> providers = locationManager.getAllProviders();
-        Location bestLocation = null;
-        for (String provider : providers) {
-
-            Location l = locationManager.getLastKnownLocation(provider);
-            if (l == null) {
-                continue;
-            }
-            if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                // Found best last known location: %s", l);
-                bestLocation = l;
-            }
-        }
-        return bestLocation;
     }
 
     @Override
@@ -168,6 +111,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         //定位
         if(v.getId() == R.id.btn_locate){
 
+        }
+        //讯飞语音
+        if(v.getId() == R.id.btn_iflay){
+            Intent intent = new Intent(this, IflayMainActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -239,25 +187,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 loginUgly();
             }
 
-        }
-    };
-
-    private LocationListener listener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            setLocationText(location);
-        }
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            tv_location.setText("onStatusChanged");
-        }
-        @Override
-        public void onProviderEnabled(String provider) {
-            tv_location.setText("onProviderEnabled");
-        }
-        @Override
-        public void onProviderDisabled(String provider) {
-            tv_location.setText("onProviderDisabled");
         }
     };
 

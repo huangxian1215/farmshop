@@ -29,6 +29,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     //程序在手机屏幕关闭后后台进程仍然运行
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 录像/录音 -->
+    <uses-permission android:name="android.permission.RECORD_VIDEO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -53,6 +56,11 @@
         <activity android:name=".upfiles.activity.UpFileMainActivity"/>
         <activity android:name=".activity.UserDetailActivity"/>
         <activity android:name=".activity.UserDetailEditActivity"/>
+        <!--讯飞语音-->
+        <activity android:name=".iflytek.IflayMainActivity" />
+        <activity android:name=".iflytek.VoiceRecognizeActivity" />
+        <activity android:name=".iflytek.VoiceComposeActivity" />
+        <activity android:name=".iflytek.VoiceSettingsActivity" />
 
         <service
             android:name="com.baidu.location.f"
