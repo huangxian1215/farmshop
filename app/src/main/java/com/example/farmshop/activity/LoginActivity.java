@@ -52,15 +52,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        setContentView(R.layout.activity_login);
         // 注意该方法要在setContentView方法之前实现
         mLocationClient = new LocationClient(getApplicationContext());//声明LocationClient类
         mLocationClient.registerLocationListener(myListener);//注册监听函数
         setBDMapSDKparm();
 
-        setContentView(R.layout.activity_login);
+
         et_ip = (EditText) findViewById(R.id.et_ip);
         et_port = (EditText) findViewById(R.id.et_port);
         s_et_name = (EditText) findViewById(R.id.et_name);
@@ -69,6 +67,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         findViewById(R.id.btn_regist).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_iflay).setOnClickListener(this);
+
+        //test
+        findViewById(R.id.btn_test).setOnClickListener(this);
         //test map SDK
         app = MainApplication.getInstance();
         mContext = this;
@@ -90,7 +91,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 Manifest.permission.CAMERA,
                 Manifest.permission.WAKE_LOCK,
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.DELETE_CACHE_FILES
+                Manifest.permission.DELETE_CACHE_FILES,
+                Manifest.permission.VIBRATE,
+                Manifest.permission.RECEIVE_SMS
         }, 1);
     }
 
@@ -113,6 +116,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         //讯飞语音
         if(v.getId() == R.id.btn_iflay){
             Intent intent = new Intent(this, IflayMainActivity.class);
+            startActivity(intent);
+        }
+        //测试
+        if(v.getId() == R.id.btn_test){
+            Intent intent = new Intent(this, NotificationActivity.class);
             startActivity(intent);
         }
     }
