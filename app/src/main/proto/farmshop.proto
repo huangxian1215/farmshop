@@ -57,6 +57,7 @@ message EditUserInfoRequest{
     string phoneNumber = 6;
     string location = 7;
     bool isManager = 8;
+    string petName = 9;
 }
 
 message EditUserInfoResponse{

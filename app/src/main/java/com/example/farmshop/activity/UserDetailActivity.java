@@ -17,6 +17,7 @@ public class UserDetailActivity extends AppCompatActivity{
     private ImageView iv_headimg;
     private TextView tv_name;
     private TextView tv_realname;
+    private TextView tv_petname;
     private TextView tv_id;
     private TextView tv_sex;
     private TextView tv_age;
@@ -39,6 +40,7 @@ public class UserDetailActivity extends AppCompatActivity{
         iv_headimg = (ImageView)findViewById(R.id.iv_head);
         tv_name = (TextView)findViewById(R.id.tv_name);
         tv_realname = (TextView)findViewById(R.id.tv_realname);
+        tv_petname = (TextView)findViewById(R.id.tv_petname);
         tv_id = (TextView)findViewById(R.id.tv_id);
         tv_sex = (TextView)findViewById(R.id.tv_sex);
         tv_age = (TextView)findViewById(R.id.tv_age);
@@ -58,7 +60,8 @@ public class UserDetailActivity extends AppCompatActivity{
 
     public void filldata(){
         if(mUserinfo == null) return;
-        tv_name.setText("昵称：" + mUserinfo.name);
+        tv_petname.setText("昵称："+mUserinfo.detail.getPetName());
+        tv_name.setText("账号：" + mUserinfo.name);
         tv_id.setText("账号id：" + String.valueOf(mUserinfo.detail.getUid()));
         tv_realname.setText("真实姓名：" + mUserinfo.detail.getRealName());
         if(mUserinfo.detail.getSex() == false){

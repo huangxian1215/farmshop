@@ -12,12 +12,13 @@
     <color name="black">#ff000000</color>
     <color name="grey">#eeeeee</color>
     <color name="dark_grey">#888888</color>
-    <color name="blue">#2DCD70</color>
+    <color name="blue">#2222ff</color>
     <color name="gold">#ffffd700</color>
+    <color name="orange">#ff8800</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#50000000</color>
     <color name="blue_light">#aaaaff</color>
-    <color name="green">#88ff88</color>
+    <color name="green">#229955</color>
     <!-- 画面背景色 -->
     <drawable name="layout_backgroud">#000000</drawable>
     <!-- 分割线背景色 -->

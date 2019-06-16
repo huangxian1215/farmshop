@@ -4094,6 +4094,16 @@ public final class farmshop {
      * <code>optional bool isManager = 8;</code>
      */
     boolean getIsManager();
+
+    /**
+     * <code>optional string petName = 9;</code>
+     */
+    java.lang.String getPetName();
+    /**
+     * <code>optional string petName = 9;</code>
+     */
+    com.google.protobuf.ByteString
+        getPetNameBytes();
   }
   /**
    * Protobuf type {@code farmshop.EditUserInfoRequest}
@@ -4115,6 +4125,7 @@ public final class farmshop {
       phoneNumber_ = "";
       location_ = "";
       isManager_ = false;
+      petName_ = "";
     }
 
     @java.lang.Override
@@ -4184,6 +4195,12 @@ public final class farmshop {
             case 64: {
 
               isManager_ = input.readBool();
+              break;
+            }
+            case 74: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              petName_ = s;
               break;
             }
           }
@@ -4381,6 +4398,40 @@ public final class farmshop {
       return isManager_;
     }
 
+    public static final int PETNAME_FIELD_NUMBER = 9;
+    private volatile java.lang.Object petName_;
+    /**
+     * <code>optional string petName = 9;</code>
+     */
+    public java.lang.String getPetName() {
+      java.lang.Object ref = petName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        petName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string petName = 9;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPetNameBytes() {
+      java.lang.Object ref = petName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        petName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4417,6 +4468,9 @@ public final class farmshop {
       if (isManager_ != false) {
         output.writeBool(8, isManager_);
       }
+      if (!getPetNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, petName_);
+      }
     }
 
     public int getSerializedSize() {
@@ -4452,6 +4506,9 @@ public final class farmshop {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, isManager_);
       }
+      if (!getPetNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, petName_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -4484,6 +4541,8 @@ public final class farmshop {
           .equals(other.getLocation());
       result = result && (getIsManager()
           == other.getIsManager());
+      result = result && getPetName()
+          .equals(other.getPetName());
       return result;
     }
 
@@ -4512,6 +4571,8 @@ public final class farmshop {
       hash = (37 * hash) + ISMANAGER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsManager());
+      hash = (37 * hash) + PETNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPetName().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4646,6 +4707,8 @@ public final class farmshop {
 
         isManager_ = false;
 
+        petName_ = "";
+
         return this;
       }
 
@@ -4676,6 +4739,7 @@ public final class farmshop {
         result.phoneNumber_ = phoneNumber_;
         result.location_ = location_;
         result.isManager_ = isManager_;
+        result.petName_ = petName_;
         onBuilt();
         return result;
       }
@@ -4744,6 +4808,10 @@ public final class farmshop {
         }
         if (other.getIsManager() != false) {
           setIsManager(other.getIsManager());
+        }
+        if (!other.getPetName().isEmpty()) {
+          petName_ = other.petName_;
+          onChanged();
         }
         onChanged();
         return this;
@@ -5147,6 +5215,75 @@ public final class farmshop {
       public Builder clearIsManager() {
         
         isManager_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object petName_ = "";
+      /**
+       * <code>optional string petName = 9;</code>
+       */
+      public java.lang.String getPetName() {
+        java.lang.Object ref = petName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          petName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string petName = 9;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPetNameBytes() {
+        java.lang.Object ref = petName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          petName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string petName = 9;</code>
+       */
+      public Builder setPetName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        petName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string petName = 9;</code>
+       */
+      public Builder clearPetName() {
+        
+        petName_ = getDefaultInstance().getPetName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string petName = 9;</code>
+       */
+      public Builder setPetNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        petName_ = value;
         onChanged();
         return this;
       }
@@ -5687,17 +5824,17 @@ public final class farmshop {
       "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
       "\"^\n\rLoginResponse\022\016\n\006result\030\001 \001(\005\022\014\n\004nam" +
       "e\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132\035.farmshop.Edi",
-      "tUserInfoRequest\"\231\001\n\023EditUserInfoRequest" +
+      "tUserInfoRequest\"\252\001\n\023EditUserInfoRequest" +
       "\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001(\t\022\020\n\010realNa" +
       "me\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age\030\005 \001(\005\022\023\n\013ph" +
       "oneNumber\030\006 \001(\t\022\020\n\010location\030\007 \001(\t\022\021\n\tisM" +
-      "anager\030\010 \001(\010\"&\n\024EditUserInfoResponse\022\016\n\006" +
-      "result\030\001 \001(\005*\223\001\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022" +
-      "\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGI" +
-      "ST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024" +
-      "\n\020EditUserInfo_REQ\020\006\022\024\n\020EditUserInfo_RES" +
-      "\020\007B \n\024com.example.farmshopB\010farmshopb\006pr",
-      "oto3"
+      "anager\030\010 \001(\010\022\017\n\007petName\030\t \001(\t\"&\n\024EditUse" +
+      "rInfoResponse\022\016\n\006result\030\001 \001(\005*\223\001\n\005MsgId\022" +
+      "\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREG" +
+      "IST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004" +
+      "\022\r\n\tLOGIN_RES\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n" +
+      "\020EditUserInfo_RES\020\007B \n\024com.example.farms",
+      "hopB\010farmshopb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5753,7 +5890,7 @@ public final class farmshop {
     internal_static_farmshop_EditUserInfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_farmshop_EditUserInfoRequest_descriptor,
-        new java.lang.String[] { "Uid", "Headimg", "RealName", "Sex", "Age", "PhoneNumber", "Location", "IsManager", });
+        new java.lang.String[] { "Uid", "Headimg", "RealName", "Sex", "Age", "PhoneNumber", "Location", "IsManager", "PetName", });
     internal_static_farmshop_EditUserInfoResponse_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable = new

@@ -1,15 +1,19 @@
 package com.example.farmshop.bean;
 
 public class VegetableInfo {
-    public String picPath;
+    public String pictureurl;
     public String name;
     public String desc;
+    public Boolean hasstore;
+    public String timetoeat;
     public double price;
 
     public VegetableInfo(){
-        picPath = "";
         name = "";
-        desc = "";
+        pictureurl = "";
+        timetoeat = "";
+        hasstore = false;
         price = 0.0;
+        desc = "";
     }
 }

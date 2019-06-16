@@ -1,5 +1,7 @@
 package com.example.farmshop.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -17,6 +19,7 @@ import com.example.farmshop.fragment.TodaySellFragment;
 import com.example.farmshop.fragment.VegetableGardenFragment;
 import com.example.farmshop.task.LoadFilesTask;
 import com.example.farmshop.task.LoadFilesTask.OnGetFileListener;
+import com.example.farmshop.util.MyUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
     private String savePath;
     private List<String> mTabTitle = new ArrayList<>();
     private List<Fragment> mFragment = new ArrayList<>();
-
+    private Boolean isDown = false;
     LoadFilesTask mloadconfig;
 
     @Override
@@ -41,37 +44,55 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         tlFile = findViewById(R.id.tl_file);
         vpFile = findViewById(R.id.vp_file);
         app = MainApplication.getInstance();
-        downLoadConfig();
+        //检查新同学去填写详细资料
+        checkNewUser();
+
+        downLoadConfigs();
         //for test 0606
-        initData();
+//        initData();
     }
 
-    private void downLoadConfig(){
-        configUrl = app.httpUrl + "pictureConfig.json";
-        savePath = app.savePath + "pictureConfig.json";
+    private void checkNewUser(){
+        SharedPreferences shareinfo = getSharedPreferences("farmshop", MODE_PRIVATE);
+        SharedPreferences.Editor editor = shareinfo.edit();
+        Boolean flag = shareinfo.getBoolean("is_new_user", true);
+        if(flag){
+            editor.putBoolean("is_new_user", false);
+            editor.commit();
+            Intent intent = new Intent(this, UserDetailEditActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void downLoadConfigs(){
         File file = new File(app.savePath);
         if(!file.exists()){
             Boolean flag = file.mkdirs();
         }
-
-        //判断是否需要下载，并初始化数据
-        mloadconfig = new LoadFilesTask();
-        mloadconfig.setOnGetFileListener(this);
-        mloadconfig.execute(configUrl, savePath, "json");
+        String[] configFile = {"vegetableConfig.json", "pictureConfig.json"};
+        for(int i = 0; i < configFile.length; i++){
+            configUrl = app.httpUrl + configFile[i];
+            savePath = app.savePath + configFile[i];
+            mloadconfig = new LoadFilesTask();
+            mloadconfig.setOnGetFileListener(this);
+            mloadconfig.execute(configUrl, savePath, "json");
+        }
     }
-
+    //下载好一个就先加载
     @Override
     public void onGetFile(String info){
-//        Toast.makeText(this, "下载pictureConfig.json成功", Toast.LENGTH_SHORT).show();
-        initData();
+        if(!isDown) {
+            initData();
+            isDown = true;
+        }
     }
 
     private void initData() {
         mTabTitle = new ArrayList<>();
         mFragment = new ArrayList<>();
-        mTabTitle.add("garden");
-        mTabTitle.add("todaySell");
-        mTabTitle.add("me");
+        mTabTitle.add("菜园");
+        mTabTitle.add("活动");
+        mTabTitle.add("我");
 
         VegetableGardenFragment vgtb = new VegetableGardenFragment();
         mFragment.add(vgtb);

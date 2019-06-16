@@ -805,6 +805,17 @@ class EditUserInfoRequest : public ::google::protobuf::Message /* @@protoc_inser
   bool ismanager() const;
   void set_ismanager(bool value);
 
+  // optional string petName = 9;
+  void clear_petname();
+  static const int kPetNameFieldNumber = 9;
+  const ::std::string& petname() const;
+  void set_petname(const ::std::string& value);
+  void set_petname(const char* value);
+  void set_petname(const char* value, size_t size);
+  ::std::string* mutable_petname();
+  ::std::string* release_petname();
+  void set_allocated_petname(::std::string* petname);
+
   // @@protoc_insertion_point(class_scope:farmshop.EditUserInfoRequest)
  private:
 
@@ -813,6 +824,7 @@ class EditUserInfoRequest : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::internal::ArenaStringPtr realname_;
   ::google::protobuf::internal::ArenaStringPtr phonenumber_;
   ::google::protobuf::internal::ArenaStringPtr location_;
+  ::google::protobuf::internal::ArenaStringPtr petname_;
   ::google::protobuf::int32 uid_;
   ::google::protobuf::int32 age_;
   bool sex_;
@@ -1582,6 +1594,50 @@ inline void EditUserInfoRequest::set_ismanager(bool value) {
   
   ismanager_ = value;
   // @@protoc_insertion_point(field_set:farmshop.EditUserInfoRequest.isManager)
+}
+
+// optional string petName = 9;
+inline void EditUserInfoRequest::clear_petname() {
+  petname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& EditUserInfoRequest::petname() const {
+  // @@protoc_insertion_point(field_get:farmshop.EditUserInfoRequest.petName)
+  return petname_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void EditUserInfoRequest::set_petname(const ::std::string& value) {
+  
+  petname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.EditUserInfoRequest.petName)
+}
+inline void EditUserInfoRequest::set_petname(const char* value) {
+  
+  petname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.EditUserInfoRequest.petName)
+}
+inline void EditUserInfoRequest::set_petname(const char* value, size_t size) {
+  
+  petname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.EditUserInfoRequest.petName)
+}
+inline ::std::string* EditUserInfoRequest::mutable_petname() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.EditUserInfoRequest.petName)
+  return petname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* EditUserInfoRequest::release_petname() {
+  // @@protoc_insertion_point(field_release:farmshop.EditUserInfoRequest.petName)
+  
+  return petname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void EditUserInfoRequest::set_allocated_petname(::std::string* petname) {
+  if (petname != NULL) {
+    
+  } else {
+    
+  }
+  petname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), petname);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.EditUserInfoRequest.petName)
 }
 
 inline const EditUserInfoRequest* EditUserInfoRequest::internal_default_instance() {
