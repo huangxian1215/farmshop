@@ -64,6 +64,9 @@ public class VegetableGardenFragment extends Fragment implements onGetFileListen
         Intent intent = new Intent(getActivity(), VegetableDetailActivity.class);
         intent.putExtra("click_vegetable_type", click.type);
         intent.putExtra("click_vegetable_name", click.name);
+        intent.putExtra("click_vegetable_ads", click.ads);
+        intent.putExtra("click_vegetable_url", click.pictureurl);
+        intent.putExtra("click_vegetable_price", click.price);
         startActivity(intent);
     }
 
@@ -119,6 +122,9 @@ public class VegetableGardenFragment extends Fragment implements onGetFileListen
                         break;
                     case "desc":
                         vg.desc = value;
+                        break;
+                    case "ads":
+                        vg.ads = value;
                         break;
                 }
             }

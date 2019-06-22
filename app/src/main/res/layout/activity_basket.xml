@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <ListView
+        android:id="@+id/lv_vegetable"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:listSelector="@color/transparent"
+        android:scrollbars="none"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textSize="17sp"
+            android:gravity="left|center"
+            android:textColor="@color/colorAccent"
+            android:text="总价:"/>
+        <TextView
+            android:id="@+id/tv_totle"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:textSize="17sp"
+            android:textColor="@color/colorAccent"
+            android:gravity="left|center"
+            android:text="20.00￥"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:textSize="17sp"
+            android:gravity="left|center"
+            android:text="留言:"/>
+        <EditText
+            android:id="@+id/et_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="我全都要！"
+            android:textSize="15sp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_adminId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/click_copy_adminid"
+            android:textSize="17sp"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_upOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="提交订单"
+            android:textSize="17sp"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

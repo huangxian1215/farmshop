@@ -5,5 +5,7 @@
     <string name="compose_source">锄禾日当午，\n汗滴禾下土。\n谁知盘中餐，\n粒粒皆辛苦。\n</string>
     <string name="compose_source_en">Who knows Chinese food, every grain of hard work.</string>
     <string name="click_to_baike">到百度百科了解更多</string>
-    <string name="click_addtobasket">添加到篮子</string>
+    <string name="click_basket">篮子(0)</string>
+    <string name="click_copy_adminid">点击复制微信号</string>
+
 </resources>

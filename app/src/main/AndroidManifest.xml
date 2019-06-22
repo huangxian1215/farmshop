@@ -60,6 +60,7 @@
         <activity android:name=".activity.UserDetailEditActivity"/>
         <activity android:name=".activity.NotificationActivity"/>
         <activity android:name=".activity.VegetableDetailActivity" />
+        <activity android:name=".activity.BasketActivity" />
         <!--网页-->
         <activity android:name=".activity.WebBrowserActivity" />
         <!--讯飞语音-->

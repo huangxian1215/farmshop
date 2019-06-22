@@ -1,19 +1,19 @@
 package com.example.farmshop.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.adapter.DetailPictureAdapter;
+import com.example.farmshop.bean.BuyBuyBuyList;
 import com.example.farmshop.task.LoadFilesTask;
 import com.example.farmshop.task.LoadFilesTask.onGetFileListener;
 import com.example.farmshop.util.JsonUtil;
@@ -26,10 +26,16 @@ import java.util.Map;
 
 public class VegetableDetailActivity extends AppCompatActivity implements OnClickListener ,onGetFileListener {
     private TextView tv_desc;
+    private TextView tv_add;
+    private TextView tv_delete;
+    private TextView tv_basket;
     private ListView lv_img;
     private DetailPictureAdapter madapter;
     private String mName = "";
     private String mType = "";
+    private String mAds = "";
+    private String mPicUrl = "";
+    private double mPrice = 0.0;
     private ArrayList<String> mInfo;
 
     LoadFilesTask mloadconfig;
@@ -44,11 +50,22 @@ public class VegetableDetailActivity extends AppCompatActivity implements OnClic
         Bundle bundle = intent.getExtras();
         mType = bundle.getString("click_vegetable_type");
         mName = bundle.getString("click_vegetable_name");
-        setContentView(R.layout.activity_vegetabledetail);
-        tv_desc = (TextView) findViewById(R.id.tv_descript);
-        tv_desc.setOnClickListener(this);
-        lv_img = (ListView) findViewById(R.id.lv_img);
+        mAds = bundle.getString("click_vegetable_ads");
+        mPicUrl = bundle.getString("click_vegetable_url");
+        mPrice = bundle.getDouble("click_vegetable_price", 0.0);
 
+        setContentView(R.layout.activity_vegetabledetail);
+        lv_img = (ListView) findViewById(R.id.lv_img);
+        tv_desc = (TextView) findViewById(R.id.tv_descript);
+        tv_basket = (TextView) findViewById(R.id.tv_basket);
+        tv_delete = (TextView) findViewById(R.id.tv_delete_this);
+        tv_add = (TextView) findViewById(R.id.tv_add_this);
+        tv_desc.setOnClickListener(this);
+        tv_basket.setOnClickListener(this);
+        tv_delete.setOnClickListener(this);
+        tv_add.setOnClickListener(this);
+
+        displayCount();
         initPictureConfig();
         startDownLoadTask();
     }
@@ -60,11 +77,49 @@ public class VegetableDetailActivity extends AppCompatActivity implements OnClic
             intent.putExtra("baidubaike_search", mName);
             startActivity(intent);
         }
+        if(v.getId() == R.id.tv_basket){
+            Intent intent = new Intent(this, BasketActivity.class);
+            startActivity(intent);
+        }
+        if(v.getId() == R.id.tv_delete_this){
+            if(indexOfChoose(mName) >= 0){
+
+                MainApplication.getInstance().mBasketList.remove(indexOfChoose(mName));
+                displayCount();
+            }else {
+                Toast.makeText(this, "已拿掉", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if(v.getId() == R.id.tv_add_this){
+            if(indexOfChoose(mName) >= 0){
+                Toast.makeText(this, "已放入", Toast.LENGTH_SHORT).show();
+            }else {
+                BuyBuyBuyList buyone = new BuyBuyBuyList(mPicUrl,mName,mPrice,"");
+                MainApplication.getInstance().mBasketList.add(buyone);
+                displayCount();
+            }
+        }
+    }
+
+    private int indexOfChoose(String name){
+        int index = -1;
+        ArrayList<BuyBuyBuyList> list = MainApplication.getInstance().mBasketList;
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).name.equals(name)){
+                return i;
+            }
+        }
+        return index;
+    }
+
+    private void displayCount(){
+        String des = "篮子(" + String.valueOf(MainApplication.getInstance().mBasketList.size()) + ")";
+        tv_basket.setText(des);
     }
     //将所有图片下载缓存到全局变量供使用
     private void initPictureConfig(){
         mInfo = new ArrayList<>();
-        mInfo.add("好消息！大减价，赶快抢购啊啊啊啊啊 啊啊!!!");
+        mInfo.add(mAds);
         String savePath = MainApplication.getInstance().savePath + "pictureConfig.json";
         String strJson = JsonUtil.getText(savePath);
         mVegetableDownList = new ArrayList<>();

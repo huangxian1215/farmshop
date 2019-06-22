@@ -34,41 +34,71 @@
                 android:textColor="@color/color_212121"
                 android:textSize="17dp" />
             <TextView
-                android:id="@+id/tv_timetoeat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/color_212121"
-                android:textSize="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_hasstore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/green"
-                android:textSize="17dp" />
-            <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/orange"
                 android:textSize="14dp" />
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="删除"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="14dp" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/tv_desc"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/color_212121"
-            android:textSize="14dp" />
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_sub"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textAlignment="center"
+                android:textColor="@color/color_212121"
+                android:textSize="17sp" />
+            <EditText
+                android:id="@+id/et_count"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="10"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textColor="@android:color/darker_gray"/>
+            <TextView
+                android:id="@+id/tv_add"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textAlignment="center"
+                android:textColor="@color/color_212121"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tv_amount_tip"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="总价:"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_amount"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="0.00￥"
+                android:textAlignment="center"
+
+                android:textColor="@color/orange"
+                android:textSize="14sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

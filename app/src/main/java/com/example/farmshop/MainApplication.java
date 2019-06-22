@@ -8,8 +8,13 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.os.Environment;
 
+import com.example.farmshop.bean.BuyBuyBuyList;
 import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.thread.MessageTransmit;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainApplication extends Application {
     private static final String TAG = "MainApplication";
@@ -22,6 +27,8 @@ public class MainApplication extends Application {
     public String upFileUrl = "http://192.168.6.176:8020/";
     public String savePath = "";
     public String selectFileUrl = "";
+
+    public ArrayList<BuyBuyBuyList> mBasketList = new ArrayList<>();
     public static MainApplication getInstance() {
         return mApp;
     }

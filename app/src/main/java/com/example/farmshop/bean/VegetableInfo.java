@@ -5,6 +5,7 @@ public class VegetableInfo {
     public String name;
     public String type;
     public String desc;
+    public String ads;
     public Boolean hasstore;
     public String timetoeat;
     public double price;
@@ -17,5 +18,6 @@ public class VegetableInfo {
         price = 0.0;
         desc = "";
         type = "";
+        ads = "";
     }
 }
