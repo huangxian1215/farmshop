@@ -1,10 +1,13 @@
+/*
+* 单例模式
+* 存放全局变量，部分通用方法
+* */
 package com.example.farmshop;
 
 import android.app.Application;
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Environment;
 
-import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.thread.MessageTransmit;
 
@@ -18,7 +21,6 @@ public class MainApplication extends Application {
     public String Url = "http://192.168.6.176:8010/";
     public String upFileUrl = "http://192.168.6.176:8020/";
     public String savePath = "";
-
     public String selectFileUrl = "";
     public static MainApplication getInstance() {
         return mApp;
@@ -31,6 +33,20 @@ public class MainApplication extends Application {
         mSessionId = "";
         mTransmit = new MessageTransmit();
         savePath = Environment.getExternalStorageDirectory()+"/farmshop/";
+    }
+
+    //先只支持返回string
+    public String getLocalStore(String key){
+        SharedPreferences shareinfo = getSharedPreferences("farmshop", MODE_PRIVATE);
+        SharedPreferences.Editor editor = shareinfo.edit();
+        return shareinfo.getString(key, "");
+    }
+    //先只支持string
+    public void setLocalStore(String key, String value){
+        SharedPreferences shareinfo = getSharedPreferences("farmshop", MODE_PRIVATE);
+        SharedPreferences.Editor editor = shareinfo.edit();
+        editor.putString(key, value);
+        editor.commit();
     }
 
 }

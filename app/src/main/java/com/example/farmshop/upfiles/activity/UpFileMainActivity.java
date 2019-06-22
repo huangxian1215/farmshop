@@ -1,12 +1,10 @@
 package com.example.farmshop.upfiles.activity;
 
-import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,13 +15,15 @@ import android.widget.Toast;
 
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
+import com.example.farmshop.dialog.MyDialog;
 import com.example.farmshop.upfiles.thread.TcpSendData;
+import com.example.farmshop.util.VirtureUtil.updateProgressListener;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class UpFileMainActivity extends AppCompatActivity{
+public class UpFileMainActivity extends AppCompatActivity implements updateProgressListener{
 
     private EditText et_type;
     private Button btnMedia;
@@ -37,12 +37,15 @@ public class UpFileMainActivity extends AppCompatActivity{
     private int socket_port = 0;
     private File mFile;
 
-    TcpSendData sd = null;
+    private MyDialog myDialog;
+
+    TcpSendData sdFile = null;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mContext = this;
         setContentView(R.layout.activity_main_upfile);
         btnMedia = findViewById(R.id.btn_media);
         et_ip = (EditText) findViewById(R.id.et_ip);
@@ -51,7 +54,8 @@ public class UpFileMainActivity extends AppCompatActivity{
         tv_filename = (TextView) findViewById(R.id.tv_filename);
         et_type = (EditText) findViewById(R.id.et_type);
 
-        sd = new TcpSendData();
+        sdFile = new TcpSendData();
+        sdFile.setProgressListener(this);
         btnMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +64,8 @@ public class UpFileMainActivity extends AppCompatActivity{
             }
         });
 
+        myDialog = new MyDialog();
+        myDialog.createProgressDialog(mContext);
         findViewById(R.id.btn_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,15 +76,14 @@ public class UpFileMainActivity extends AppCompatActivity{
                 if(mFileurl.equals("")){
                     showMessage("请选择一个文件");
                 }else{
-                    sd.setIpPort(socket_ip, socket_port);
-                    sd.setInfo(mFile, type);
-                    new Thread(sd).start();
+                    sdFile.setIpPort(socket_ip, socket_port);
+                    sdFile.setInfo(mFile, type);
+                    new Thread(sdFile).start();
+                    myDialog.showProgressDialog("稍等", "文件上传中...");
                 }
             }
         });
     }
-
-
 
     public void refreshWidget(){
         tv_filename.setText(mFilename);
@@ -95,10 +100,20 @@ public class UpFileMainActivity extends AppCompatActivity{
     public void showMessage(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void updateProgress(int progress){
+        if(myDialog != null){
+            myDialog.freshProgress(progress);
+            if(progress >= 100){
+                myDialog.hideProgressDialog();
+            }
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-
         mFileurl = MainApplication.getInstance().selectFileUrl;
         mFile = new File(mFileurl);
         if(mFile.exists()){

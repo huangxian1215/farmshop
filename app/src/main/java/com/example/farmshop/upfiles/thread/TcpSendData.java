@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
+import com.example.farmshop.util.VirtureUtil.updateProgressListener;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,13 +17,13 @@ import java.net.Socket;
 public class TcpSendData implements Runnable {
     private  String SOCKET_IP = "";
     private  int SOCKET_PORT = 0;
-
     public Socket socket = null;
     public OutputStream out = null;
     public InputStream in = null;
     private InputStream mInputStream = null;
     private File mFile;
     private String mType;
+    private long mFileSize = 0;
 
     public void setIpPort(String str, int port){
         SOCKET_IP = str;
@@ -41,7 +43,6 @@ public class TcpSendData implements Runnable {
             socket.connect(new InetSocketAddress(SOCKET_IP, SOCKET_PORT), 3000);
             out = socket.getOutputStream();
             mInputStream = socket.getInputStream();
-
             new RecvBytThread().start();
             Looper.prepare();
             Looper.loop();
@@ -64,7 +65,6 @@ public class TcpSendData implements Runnable {
                     }
                     //回应表示接收
                     Message msg = Message.obtain();
-//                    msg.obj = mFile;
                     mSendHandler.sendMessage(msg);
                 }
             }catch (Exception e){
@@ -88,6 +88,7 @@ public class TcpSendData implements Runnable {
                  *   将文件输入的内容都放在file里面
                  */
                 in = new FileInputStream(mFile);
+                mFileSize = mFile.length();
                 long totlelength = mFile.length() + 24 + mType.getBytes().length + mFile.getName().getBytes().length;
                 // 向服务器发送[文件名字节长度 \r\n]
                 byte[] buffer1 = new byte[8];
@@ -121,8 +122,12 @@ public class TcpSendData implements Runnable {
                 // 向服务器发送[文件字节内容]
                 byte[] data = new byte[1024];
                 int i = 0;
+                int havesend = 0;
                 while ((i = in.read(data)) != -1) {
                     out.write(data, 0, i);
+                    havesend += data.length;
+                    int progress = (int)(havesend*100/mFileSize);
+                    updateProgress(progress);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -131,7 +136,6 @@ public class TcpSendData implements Runnable {
                  * 关闭Scanner，文件输入流，套接字
                  * 套接字装饰了输出流，所以不用关闭输出流
                  */
-
                 try {
                     if(in != null) {
                         in.close();
@@ -152,7 +156,6 @@ public class TcpSendData implements Runnable {
                     // 强制释放socket
                     socket = null;
                 }
-
             }
             System.out.println("文件传输完毕");
         }
@@ -165,4 +168,13 @@ public class TcpSendData implements Runnable {
 
         }
     };
+
+    //上传进度等通知
+    private updateProgressListener progressListener;
+    public void setProgressListener(updateProgressListener listener){
+        progressListener = listener;
+    }
+    private void updateProgress(int progress){
+        progressListener.updateProgress(progress);
+    }
 }

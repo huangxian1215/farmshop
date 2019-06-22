@@ -50,12 +50,17 @@
         android:layout_height="wrap_content"
         android:text="测试"
         android:textSize="17sp" />
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="match_parent"
+    <ScrollView
         android:layout_height="wrap_content"
-        android:text="坐标:"
-        android:textSize="17sp" />
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="坐标:"
+            android:textSize="17sp" />
+    </ScrollView>
+
     <Button
         android:id="@+id/btn_iflay"
         android:layout_width="match_parent"

@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">farmshop</string>
+    <string name="app_name">小菜园</string>
     <!-- 请替换成在语音云官网申请的appid -->
     <string name="app_id">5d02f40d</string>
     <string name="compose_source">锄禾日当午，\n汗滴禾下土。\n谁知盘中餐，\n粒粒皆辛苦。\n</string>
     <string name="compose_source_en">Who knows Chinese food, every grain of hard work.</string>
+    <string name="click_to_baike">到百度百科了解更多</string>
+    <string name="click_addtobasket">添加到篮子</string>
 </resources>

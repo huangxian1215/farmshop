@@ -39,11 +39,11 @@ public class LoadFilesTask extends AsyncTask<String, Integer, String> implements
         mListener.onGetFile(info);
     }
 
-    private OnGetFileListener mListener;
-    public void setOnGetFileListener(OnGetFileListener listener){
+    private onGetFileListener mListener;
+    public void setOnGetFileListener(onGetFileListener listener){
         mListener = listener;
     }
-    public static interface OnGetFileListener{
+    public static interface onGetFileListener {
         public abstract void onGetFile(String info);
     }
 

@@ -1,5 +1,6 @@
 package com.example.farmshop.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,12 +12,14 @@ import android.view.ViewGroup;
 
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
+import com.example.farmshop.activity.VegetableDetailActivity;
 import com.example.farmshop.adapter.VegetableItemAdapter;
 import com.example.farmshop.bean.VegetableInfo;
 import com.example.farmshop.util.JsonUtil;
 import com.example.farmshop.task.LoadFilesTask;
-import com.example.farmshop.task.LoadFilesTask.OnGetFileListener;
+import com.example.farmshop.task.LoadFilesTask.onGetFileListener;
 import com.example.farmshop.util.MyUtil;
+import com.example.farmshop.util.VirtureUtil.onClickItemListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VegetableGardenFragment extends Fragment implements OnGetFileListener {
+public class VegetableGardenFragment extends Fragment implements onGetFileListener, onClickItemListener {
     private RecyclerView rvDoc;
     private MainApplication app;
     LoadFilesTask mloadconfig;
@@ -35,7 +38,7 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
     //需要下载
     private List<VegetableInfo> mDataDown;
     private String mSavePath = "";
-    private VegetableItemAdapter mpptListAdapter;
+    private VegetableItemAdapter mVegetableListAdapter;
 
     @Nullable
     @Override
@@ -55,13 +58,23 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
         startDownLoadTask();
     }
 
+    @Override
+    public void onItemClick(View v, int position){
+        VegetableInfo click = mData.get(position);
+        Intent intent = new Intent(getActivity(), VegetableDetailActivity.class);
+        intent.putExtra("click_vegetable_type", click.type);
+        intent.putExtra("click_vegetable_name", click.name);
+        startActivity(intent);
+    }
+
     private void initData() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rvDoc.setLayoutManager(linearLayoutManager);
         mData = new ArrayList<>();
         mDataDown = new ArrayList<>();
-        mpptListAdapter = new VegetableItemAdapter(getActivity(), mData);
-        rvDoc.setAdapter(mpptListAdapter);
+        mVegetableListAdapter = new VegetableItemAdapter(getActivity(), mData);
+        mVegetableListAdapter.setOnClickItemListener(this);
+        rvDoc.setAdapter(mVegetableListAdapter);
     }
 
     private void getVegetablePicList(){
@@ -83,8 +96,10 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
                     case "name":
                         vg.name = value;
                         break;
+                    case "type":
+                        vg.type = value;
+                        break;
                     case "pictureurl":
-
                         String filePath = app.savePath + MyUtil.getFileName(value)+".jpg";
                         vg.pictureurl = filePath;
                         File File = new File(filePath);
@@ -112,36 +127,9 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
                 mDataDown.add(vg);
             }else{
                 mData.add(vg);
-                mpptListAdapter.notifyDataSetChanged();
+                mVegetableListAdapter.notifyDataSetChanged();
             }
 
-        }
-    }
-
-    private void getPicLoadList(){
-        String savePath = app.savePath + "pictureConfig.json";
-        String strJson = JsonUtil.getText(savePath);
-        ArrayList<String>  config = new ArrayList<>();
-        mDownTaskList = new ArrayList<>();
-        config = JsonUtil.objStringToArrayList(strJson);
-        for(int i = 0; i < config.size(); i++){
-            ArrayList<String>  every = new ArrayList<>();
-            every = JsonUtil.arrayStringToArrayList(config.get(i));
-            for(int n = 0; n < every.size(); n++){
-                String filePath = app.savePath + MyUtil.getFileName(every.get(n))+".jpg";
-                File File = new File(filePath);
-                if(!File.exists()){
-                    mDownTaskList.add(every.get(n));
-                }else{
-                    VegetableInfo vg = new VegetableInfo();
-                    vg.pictureurl = filePath;
-                    vg.name = MyUtil.getFileName(every.get(n));
-                    vg.desc = "test pic";
-                    vg.price = 2.0;
-                    mData.add(vg);
-                    mpptListAdapter.notifyDataSetChanged();
-                }
-            }
         }
     }
 
@@ -160,7 +148,7 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
     @Override
     public void onGetFile(String info){
         mData.add(mDataDown.get(mDownCount - 1));
-        mpptListAdapter.notifyDataSetChanged();
+        mVegetableListAdapter.notifyDataSetChanged();
         if(mDownCount < mDownTaskList.size()){
             String savePath = app.savePath + MyUtil.getFileName(mDownTaskList.get(mDownCount))+".jpg";
             mloadconfig = new LoadFilesTask();
@@ -168,7 +156,6 @@ public class VegetableGardenFragment extends Fragment implements OnGetFileListen
             String downUrl = app.httpUrl + mDownTaskList.get(mDownCount);
             mSavePath = savePath;
             mloadconfig.execute(downUrl, savePath, "jpg");
-
             mDownCount++;
         }
     }

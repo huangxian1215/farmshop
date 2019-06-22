@@ -128,17 +128,17 @@ public class FileUtil {
     }
 
     public static int getFileTypeImageId(Context mContext, String fileName) {
-        int id;
-        if (checkSuffix(fileName, new String[]{"doc", "docx"})) {
-            id = R.mipmap.word;
-        } else if (checkSuffix(fileName, new String[]{"ppt", "pptx"})) {
-            id = R.mipmap.ppt;
-        } else if (checkSuffix(fileName, new String[]{"xls", "xlsx"})) {
-            id = R.mipmap.xls;
-        } else if (checkSuffix(fileName, new String[]{"pdf"})) {
-            id = R.mipmap.pdf;
-        } else
-            id = R.mipmap.image;
+        int id = R.mipmap.image;
+//        if (checkSuffix(fileName, new String[]{"doc", "docx"})) {
+//            id = R.mipmap.word;
+//        } else if (checkSuffix(fileName, new String[]{"ppt", "pptx"})) {
+//            id = R.mipmap.ppt;
+//        } else if (checkSuffix(fileName, new String[]{"xls", "xlsx"})) {
+//            id = R.mipmap.xls;
+//        } else if (checkSuffix(fileName, new String[]{"pdf"})) {
+//            id = R.mipmap.pdf;
+//        } else
+//            id = R.mipmap.image;
         return id;
     }
 

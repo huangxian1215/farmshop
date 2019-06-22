@@ -1,15 +1,18 @@
 package com.example.farmshop.activity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
@@ -18,14 +21,14 @@ import com.example.farmshop.fragment.MyselfFragment;
 import com.example.farmshop.fragment.TodaySellFragment;
 import com.example.farmshop.fragment.VegetableGardenFragment;
 import com.example.farmshop.task.LoadFilesTask;
-import com.example.farmshop.task.LoadFilesTask.OnGetFileListener;
-import com.example.farmshop.util.MyUtil;
+import com.example.farmshop.task.LoadFilesTask.onGetFileListener;
+import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CenterActivity extends AppCompatActivity implements OnGetFileListener {
+public class CenterActivity extends AppCompatActivity implements onGetFileListener, onGetNetDataListener {
     private TabLayout tlFile;
     private ViewPager vpFile;
     private MainApplication app;
@@ -39,26 +42,20 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_center);
         tlFile = findViewById(R.id.tl_file);
         vpFile = findViewById(R.id.vp_file);
         app = MainApplication.getInstance();
+//        app.mTransmit.setOnNetListener(this);
+        app.mTransmit.addOnNetListener("CenterAcitivity", this);
         //检查新同学去填写详细资料
         checkNewUser();
-
         downLoadConfigs();
-        //for test 0606
-//        initData();
     }
 
     private void checkNewUser(){
-        SharedPreferences shareinfo = getSharedPreferences("farmshop", MODE_PRIVATE);
-        SharedPreferences.Editor editor = shareinfo.edit();
-        Boolean flag = shareinfo.getBoolean("is_new_user", true);
-        if(flag){
-            editor.putBoolean("is_new_user", false);
-            editor.commit();
+        if(!app.getLocalStore("is_new_user").equals("no")){
+            app.setLocalStore("is_new_user", "no");
             Intent intent = new Intent(this, UserDetailEditActivity.class);
             startActivity(intent);
         }
@@ -84,6 +81,13 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
         if(!isDown) {
             initData();
             isDown = true;
+        }
+    }
+
+    @Override
+    public void onGetNetData(String info){
+        if(info.equals("login")){
+            sendSimpleNotify("test", "小红帽", "1", "farmshop");
         }
     }
 
@@ -122,5 +126,35 @@ public class CenterActivity extends AppCompatActivity implements OnGetFileListen
 
             }
         });
+    }
+
+    private void sendSimpleNotify(String title, String message, String id, String name) {
+        //android 8.0 的坑，使用NotificationChannel
+
+        Intent clickIntent = new Intent(this, LoginActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this,
+                R.string.app_name, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(this)
+                    .setContentIntent(contentIntent)
+                    .setChannelId(id)
+                    .setContentTitle("5 new messages")
+                    .setContentText("hahaha")
+                    .setSmallIcon(R.mipmap.ic_launcher).build();
+        } else {
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setContentIntent(contentIntent)
+                    .setContentTitle("5 new messages")
+                    .setContentText("hahaha")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setOngoing(true);
+            notification = notificationBuilder.build();
+        }
+        notificationManager.notify(111123, notification);
     }
 }

@@ -6,6 +6,7 @@ import android.support.annotation.ColorRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -15,11 +16,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.farmshop.R;
 import com.example.farmshop.bean.VegetableInfo;
+import com.example.farmshop.util.VirtureUtil.onClickItemListener;
 import com.google.protobuf.StringValue;
 
 import java.util.List;
 
-public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdapter.ViewHolder>{
+public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdapter.ViewHolder> implements OnClickListener {
 
     private Context mContext;
     private List<VegetableInfo> data;
@@ -35,6 +37,7 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vegetable, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.setTag(mcount++);
         return viewHolder;
     }
 
@@ -54,7 +57,9 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
 
         //封面图
         Glide.with(mContext).load(data.get(position).pictureurl).into(holder.iv_img);
-        holder.rlMain.setId(mcount++);
+
+        holder.rlMain.setId(holder.tag);
+        holder.rlMain.setOnClickListener(this);
     }
 
     @Override
@@ -62,8 +67,19 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
         return data.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public void onClick(View v){
+        if(mClickListener != null){
+            mClickListener.onItemClick(v, v.getId());
+        }
+    }
 
+    private onClickItemListener mClickListener;
+    public void setOnClickItemListener(onClickItemListener listener){
+        mClickListener = listener;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout rlMain;
         TextView tv_name;
         TextView tv_desc;
@@ -71,6 +87,7 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
         TextView tv_hasstore;
         TextView tv_timetoeat;
         ImageView iv_img;
+        int tag = -1;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +98,10 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
             tv_hasstore = itemView.findViewById(R.id.tv_hasstore);
             tv_timetoeat = itemView.findViewById(R.id.tv_timetoeat);
             iv_img = itemView.findViewById(R.id.iv_img);
+        }
+
+        public void setTag(int info){
+            tag = info;
         }
     }
 }

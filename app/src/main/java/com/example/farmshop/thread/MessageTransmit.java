@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.MainApplication;
@@ -12,6 +14,7 @@ import com.example.farmshop.activity.UserDetailEditActivity;
 import com.example.farmshop.bean.ByteData;
 import com.example.farmshop.activity.RegistActivity;
 import com.example.farmshop.farmshop;
+import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.google.protobuf.Any;
 
 import android.os.Handler;
@@ -86,7 +89,6 @@ public class MessageTransmit implements Runnable {
                 mWriter.write(mBytearray);
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
         }
     };
@@ -169,7 +171,7 @@ public class MessageTransmit implements Runnable {
                     Any any = data.getObject(0);
                     farmshop.LoginResponse resp = farmshop.LoginResponse.parseFrom(any.getValue());
                     if (resp.getResult() == 0) {
-                        mListener.onGetNetData("login");
+                        dealNetDataToType("LoginAcityty","LoginAcityty" );
                     }
                 }catch (IOException e){
                     e.printStackTrace();
@@ -184,12 +186,19 @@ public class MessageTransmit implements Runnable {
         }
     }
 
-    private OnGetNetDataListener mListener;
-    public void setOnNetListener(OnGetNetDataListener listener){
-        mListener = listener;
+    private Map<String, onGetNetDataListener> mapListener = new HashMap<>();
+
+    //添加监听, 不再使用时关闭监听
+    public void addOnNetListener(String listenerName, onGetNetDataListener listener){
+        mapListener.put(listenerName, listener);
     }
-    public static interface OnGetNetDataListener{
-        public abstract void onGetNetData(String info);
+
+    public void deleteOnNetListener(String listenerName){
+        mapListener.remove(listenerName);
+    }
+
+    public void dealNetDataToType(String type, String info){
+        mapListener.get(type).onGetNetData(info);
     }
 
 }
