@@ -12,13 +12,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
+import com.example.farmshop.activity.BasketActivity;
+import com.example.farmshop.activity.QueryOrdersActivity;
 import com.example.farmshop.activity.UserDetailActivity;
+import com.example.farmshop.farmshop;
+import com.example.farmshop.iflytek.MyVoiceSettingActivity;
+import com.example.farmshop.iflytek.VoiceSettingsActivity;
 import com.example.farmshop.upfiles.activity.UpFileMainActivity;
+import com.example.farmshop.upfiles.utils.PackProtoUtil;
+import com.google.protobuf.Any;
 
 public class MyselfFragment extends Fragment implements OnClickListener{
     private Button bt_upfile;
     private TextView tv_edtuserinfo;
+    private TextView tv_basket;
+    private TextView tv_voiceStyleSet;
 
     @Nullable
     @Override
@@ -26,8 +36,14 @@ public class MyselfFragment extends Fragment implements OnClickListener{
         View rootView = inflater.inflate(R.layout.fragment_myself, container, false);
         bt_upfile = rootView.findViewById(R.id.btn_upfile);
         tv_edtuserinfo = rootView.findViewById(R.id.tv_editUserinfo);
+        tv_basket  = rootView.findViewById(R.id.tv_basket);
+        tv_voiceStyleSet  = rootView.findViewById(R.id.tv_voiceStyleSet);
         bt_upfile.setOnClickListener(this);
+        tv_basket.setOnClickListener(this);
+        tv_voiceStyleSet.setOnClickListener(this);
         tv_edtuserinfo.setOnClickListener(this);
+        rootView.findViewById(R.id.tv_queryOrder).setOnClickListener(this);
+
         return rootView;
     }
 
@@ -47,6 +63,18 @@ public class MyselfFragment extends Fragment implements OnClickListener{
                 break;
             case R.id.btn_upfile:
                 intent = new Intent(getActivity(), UpFileMainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_basket:
+                intent = new Intent(getActivity(), BasketActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_voiceStyleSet:
+                intent = new Intent(getActivity(), MyVoiceSettingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_queryOrder:
+                intent = new Intent(getActivity(), QueryOrdersActivity.class);
                 startActivity(intent);
                 break;
         }

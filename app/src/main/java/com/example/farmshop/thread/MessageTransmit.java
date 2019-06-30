@@ -5,14 +5,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.example.farmshop.activity.LoginActivity;
 import com.example.farmshop.MainApplication;
-import com.example.farmshop.activity.UserDetailEditActivity;
 import com.example.farmshop.bean.ByteData;
-import com.example.farmshop.activity.RegistActivity;
 import com.example.farmshop.farmshop;
 import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.google.protobuf.Any;
@@ -27,7 +26,6 @@ public class MessageTransmit implements Runnable {
     // 以下为Socket服务器的ip和端口，根据实际情况修改
     private  String SOCKET_IP = "";
     private  int SOCKET_PORT = 0;
-
     private Socket mSocket;
     //缓冲字符流用于字符串
     private BufferedReader mReader = null;
@@ -37,12 +35,15 @@ public class MessageTransmit implements Runnable {
     private String sessionId = "";
     private MainApplication app;
 
-    private byte[]  mBytearray;
-    private byte[]  mBuffer;
+    //数据写状态
+    private static Boolean isWritting = false;
+    //数据列表
+    private static ArrayList<SendDataStruct> sendDataList = new ArrayList<>();
+
+
     public void setIpPort(String str, int port){
         SOCKET_IP = str;
         SOCKET_PORT = port;
-
         app = MainApplication.getInstance();
     }
 
@@ -67,29 +68,50 @@ public class MessageTransmit implements Runnable {
         @Override
         public void handleMessage(Message msg) {
             byte[] bytearray = ((ByteData)msg.obj).data;
-            mBytearray = bytearray;
-                long dataLent = bytearray.length + 0;
-                byte[] buffer1 = new byte[8];
+            long dataLent = bytearray.length + 0;
+            byte[] head = new byte[8];
+            for (int i = 0; i < 8; i++) {
+                int offset = 64 - (i + 1) * 8;
+                head[i] = (byte) ((dataLent >> offset) & 0xff);
+            }
 
-                for (int i = 0; i < 8; i++) {
-                    int offset = 64 - (i + 1) * 8;
-                    buffer1[i] = (byte) ((dataLent >> offset) & 0xff);
-                }
-                mBuffer = buffer1;
-                //网络请求需要开线程, new Thread() 不用手动回收
-                new Thread(runnable).start();
+            sendDataList.add(new SendDataStruct(head, bytearray));
+            //网络请求需要开线程, new Thread() 不用手动回收
+            new Thread(rb_sendtoserver).start();
         }
     };
 
-    Runnable runnable = new Runnable() {
+    Runnable rb_sendtoserver = new Runnable() {
         @Override
         public void run() {
-            try {
-                mWriter.write(mBuffer);
-                mWriter.write(mBytearray);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            while (sendDataList.size() > 0 && !isWritting){
+                byte[] t_head = sendDataList.get(0).head;
+                byte[] t_body = sendDataList.get(0).body;
+                if( !isWritting){
+                    isWritting = true;
+                    try {
+                        //写数据大小头
+                        mWriter.write(t_head);
+                        int i = 0;
+                        //写数据
+                        while (i < t_body.length){
+                            int lest = t_body.length - i;
+                            if(lest < 512){
+                                mWriter.write(t_body, i,lest);
+                                i += lest;
+                            }else{
+                                mWriter.write(t_body, i,512);
+                                i += 512;
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    sendDataList.remove(0);
+                    isWritting = false;
+                }
+              }
+
         }
     };
 
@@ -105,10 +127,15 @@ public class MessageTransmit implements Runnable {
                     if(dataSize == 0){
                         byte[] buffer = new byte[8];
                         int count = mInputStream.read(buffer);
+                        //考虑大小断？
                         for (int i = 0; i < 8; i++) {
-                            int offset = 64 - (i + 1) * 8;
-                            dataSize += (long) ((buffer[i] << offset) & 0xff);
+//                            int offset = 64 - (i + 1) * 8;
+//                            dataSize += (long) ((buffer[i] << offset) & 0xff);
                         }
+                        ByteBuffer btbf = ByteBuffer.allocate(8);
+                        btbf.put(buffer, 0, buffer.length);
+                        btbf.flip();
+                        dataSize = btbf.getLong();
                     }
                     //根据头，读取指定大小数据(防止粘包)
                     byte[] databufferfinal = new byte[(int)dataSize];
@@ -139,7 +166,6 @@ public class MessageTransmit implements Runnable {
                         }catch (IOException e){
                             e.printStackTrace();
                         }
-
                     }
                 }
             }catch (Exception e){
@@ -151,36 +177,28 @@ public class MessageTransmit implements Runnable {
     //处理消息
     public void dealDataFromServer(farmshop.baseType data){
         farmshop.MsgId type = data.getType();
-        Log.d("MessageTtrnsmit: ", "getserver data" + String.valueOf(type));
-        Message msg = Message.obtain();
         switch (type){
             case CONNECT_RES:
                 sessionId = data.getSessionId();
                 app.mSessionId = sessionId;
-                msg.obj = data;
-                LoginActivity.mHandler.sendMessage(msg);
+                dealNetDataToType("LoginActivity", "connectOK");
                 break;
             case REGIST_RES:
-                msg.obj = data;
-                RegistActivity.mHandler.sendMessage(msg);
+                dealNetDataToType("RegistAcityty", data);
                 break;
             case LOGIN_RES:
-                msg.obj = data;
-                LoginActivity.mHandler.sendMessage(msg);
-                try {
-                    Any any = data.getObject(0);
-                    farmshop.LoginResponse resp = farmshop.LoginResponse.parseFrom(any.getValue());
-                    if (resp.getResult() == 0) {
-                        dealNetDataToType("LoginAcityty","LoginAcityty" );
-                    }
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+                dealNetDataToType("LoginActivity", data);
                 break;
             case EditUserInfo_RES:
-                msg.obj = data;
-                UserDetailEditActivity.mHandler.sendMessage(msg);
+                dealNetDataToType("UserDetailEditActivity", data);
                 break;
+            case SEND_MESSAGE_RES:
+                dealNetDataToType("CommunityFragment", data);
+            case UPORDER_RES:
+                dealNetDataToType("BasketActivity", data);
+            case QUERYORDER_RES:
+                dealNetDataToType("QueryOrdersActivity", data);
+
             default:
                 break;
         }
@@ -197,9 +215,17 @@ public class MessageTransmit implements Runnable {
         mapListener.remove(listenerName);
     }
 
-    public void dealNetDataToType(String type, String info){
+    public void dealNetDataToType(String type, Object info){
         mapListener.get(type).onGetNetData(info);
     }
 
+    public class SendDataStruct{
+        byte[] head;
+        byte[] body;
+        public SendDataStruct(byte[] headdata, byte[] bodydata){
+            head = headdata;
+            body = bodydata;
+        }
+    }
 }
 

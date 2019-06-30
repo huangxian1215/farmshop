@@ -9,7 +9,7 @@ import android.view.View;
 public class VirtureUtil {
     //网络监听用，与服务器
     public static interface onGetNetDataListener {
-        public abstract void onGetNetData(String info);
+        public abstract void onGetNetData(Object info);
     }
     public interface updateProgressListener{
         public abstract void updateProgress(int progress);
@@ -32,5 +32,15 @@ public class VirtureUtil {
     }
     public interface onClickCancleListener{
         public abstract void onClickCancle();
+    }
+
+    //讯飞语音事件
+    public interface onPlayVoiceListener{
+        public abstract void finishSpeak();
+    }
+
+    //百度地图事件
+    public interface onMyLocationListener{
+        public abstract void getMyAllLocation(String info);
     }
 }

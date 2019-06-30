@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.adapter.PublicTabViewPagerAdapter;
+import com.example.farmshop.fragment.CommunityFragment;
 import com.example.farmshop.fragment.MyselfFragment;
 import com.example.farmshop.fragment.TodaySellFragment;
 import com.example.farmshop.fragment.VegetableGardenFragment;
@@ -85,10 +86,8 @@ public class CenterActivity extends AppCompatActivity implements onGetFileListen
     }
 
     @Override
-    public void onGetNetData(String info){
-        if(info.equals("login")){
-            sendSimpleNotify("test", "小红帽", "1", "farmshop");
-        }
+    public void onGetNetData(Object info){
+
     }
 
     private void initData() {
@@ -96,13 +95,16 @@ public class CenterActivity extends AppCompatActivity implements onGetFileListen
         mFragment = new ArrayList<>();
         mTabTitle.add("菜园");
         mTabTitle.add("活动");
+        mTabTitle.add("社区");
         mTabTitle.add("我");
 
         VegetableGardenFragment vgtb = new VegetableGardenFragment();
         mFragment.add(vgtb);
         TodaySellFragment tdsl = new TodaySellFragment();
         MyselfFragment mysf = new MyselfFragment();
+        CommunityFragment cmnt = new CommunityFragment();
         mFragment.add(tdsl);
+        mFragment.add(cmnt);
         mFragment.add(mysf);
 
         FragmentManager fragmentManager = getSupportFragmentManager();

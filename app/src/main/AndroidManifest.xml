@@ -61,9 +61,11 @@
         <activity android:name=".activity.NotificationActivity"/>
         <activity android:name=".activity.VegetableDetailActivity" />
         <activity android:name=".activity.BasketActivity" />
+        <activity android:name=".activity.QueryOrdersActivity" />
         <!--网页-->
         <activity android:name=".activity.WebBrowserActivity" />
         <!--讯飞语音-->
+        <activity android:name=".iflytek.MyVoiceSettingActivity" />
         <activity android:name=".iflytek.IflayMainActivity" />
         <activity android:name=".iflytek.VoiceRecognizeActivity" />
         <activity android:name=".iflytek.VoiceComposeActivity" />

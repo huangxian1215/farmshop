@@ -19,18 +19,20 @@ import com.example.farmshop.R;
 import com.example.farmshop.bean.ByteData;
 import com.example.farmshop.bean.UserInfo;
 import com.example.farmshop.farmshop;
+import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.google.protobuf.Any;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class UserDetailEditActivity extends AppCompatActivity {
+public class UserDetailEditActivity extends AppCompatActivity implements onGetNetDataListener {
     private EditText et_petname;
     private EditText et_realname;
     private EditText et_age;
     private EditText et_phone;
     private EditText et_location;
     private Button btn_save;
+    private Boolean isEditOk = false;
     private static Context mContext;
 
     RadioGroup rg_admit;
@@ -50,6 +52,8 @@ public class UserDetailEditActivity extends AppCompatActivity {
         mUserinfo = MainApplication.getInstance().mUserinfo;
         tempUserinfo = mUserinfo;
         filldata();
+
+        MainApplication.getInstance().mTransmit.addOnNetListener("UserDetailEditActivity", this);
         mContext = this;
     }
 
@@ -133,22 +137,34 @@ public class UserDetailEditActivity extends AppCompatActivity {
         et_location.setText(mUserinfo.detail.getLocation());
     }
 
-    public static Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            farmshop.baseType data = (farmshop.baseType) msg.obj;
-            try{
-                Any any = data.getObject(0);
-                farmshop.EditUserInfoResponse resp = farmshop.EditUserInfoResponse.parseFrom(any.getValue());
-                if(resp.getResult() == 0){
-                    Toast.makeText(mContext, "修改成功", Toast.LENGTH_LONG).show();
-                    MainApplication.getInstance().mUserinfo = tempUserinfo;
-                }else{
-                    Toast.makeText(mContext, "修改失败", Toast.LENGTH_LONG).show();
-                }
-            }catch (IOException e){
-                e.printStackTrace();
+    @Override
+    public void onGetNetData(Object info){
+        farmshop.baseType data = (farmshop.baseType) info;
+        try{
+            Any any = data.getObject(0);
+            farmshop.EditUserInfoResponse resp = farmshop.EditUserInfoResponse.parseFrom(any.getValue());
+            if(resp.getResult() == 0){
+                isEditOk = true;
+            }else {
+                isEditOk = false;
             }
+            hd_showedit.postDelayed(rb_showedit, 0);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    Handler hd_showedit = new Handler();
+    Runnable rb_showedit = new Runnable() {
+        @Override
+        public void run() {
+            if(isEditOk){
+                Toast.makeText(getApplicationContext(), "修改成功", Toast.LENGTH_SHORT).show();
+                MainApplication.getInstance().mTransmit.deleteOnNetListener("UserDetailEditActivity");
+            }else{
+                Toast.makeText(getApplicationContext(), "修改失败", Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
 }

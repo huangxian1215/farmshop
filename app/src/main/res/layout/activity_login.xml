@@ -53,11 +53,18 @@
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <TextView
-            android:id="@+id/tv_location"
+        <!--<TextView-->
+            <!--android:id="@+id/tv_location"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="坐标:"-->
+            <!--android:textSize="17sp" />-->
+        <EditText
+            android:id="@+id/ev_location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="坐标:"
+            android:layout_height="40dp"
+            android:gravity="left|center"
+            android:text="hx"
             android:textSize="17sp" />
     </ScrollView>
 

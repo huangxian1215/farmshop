@@ -39,13 +39,21 @@ void protobuf_InitDefaults_farmshop_2eproto();
 void protobuf_AssignDesc_farmshop_2eproto();
 void protobuf_ShutdownFile_farmshop_2eproto();
 
+class BuyOneInfo;
 class ClientSession;
 class EditUserInfoRequest;
 class EditUserInfoResponse;
 class LoginRequest;
 class LoginResponse;
+class Order;
+class QueryOrderRequest;
+class QueryOrderResponse;
 class RegistRequest;
 class RegistResponse;
+class SendMessageRequest;
+class SendMessageResponse;
+class UpOrderRequest;
+class UpOrderResponse;
 class baseType;
 
 enum MsgId {
@@ -57,12 +65,18 @@ enum MsgId {
   LOGIN_RES = 5,
   EditUserInfo_REQ = 6,
   EditUserInfo_RES = 7,
+  SEND_MESSAGE_REQ = 8,
+  SEND_MESSAGE_RES = 9,
+  UPORDER_REQ = 10,
+  UPORDER_RES = 11,
+  QUERYORDER_REQ = 12,
+  QUERYORDER_RES = 13,
   MsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   MsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool MsgId_IsValid(int value);
 const MsgId MsgId_MIN = CONNECT_REQ;
-const MsgId MsgId_MAX = EditUserInfo_RES;
+const MsgId MsgId_MAX = QUERYORDER_RES;
 const int MsgId_ARRAYSIZE = MsgId_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MsgId_descriptor();
@@ -74,6 +88,30 @@ inline bool MsgId_Parse(
     const ::std::string& name, MsgId* value) {
   return ::google::protobuf::internal::ParseNamedEnum<MsgId>(
     MsgId_descriptor(), name, value);
+}
+enum OrderState {
+  ORDER_NOTRECIEVE = 0,
+  ORDER_CANCEL = 1,
+  ORDER_RECIEVE = 2,
+  ORDER_NOSTOCK = 3,
+  ORDER_FINISH = 4,
+  OrderState_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  OrderState_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool OrderState_IsValid(int value);
+const OrderState OrderState_MIN = ORDER_NOTRECIEVE;
+const OrderState OrderState_MAX = ORDER_FINISH;
+const int OrderState_ARRAYSIZE = OrderState_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* OrderState_descriptor();
+inline const ::std::string& OrderState_Name(OrderState value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    OrderState_descriptor(), value);
+}
+inline bool OrderState_Parse(
+    const ::std::string& name, OrderState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<OrderState>(
+    OrderState_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -925,6 +963,835 @@ class EditUserInfoResponse : public ::google::protobuf::Message /* @@protoc_inse
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<EditUserInfoResponse> EditUserInfoResponse_default_instance_;
 
+// -------------------------------------------------------------------
+
+class SendMessageRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.SendMessageRequest) */ {
+ public:
+  SendMessageRequest();
+  virtual ~SendMessageRequest();
+
+  SendMessageRequest(const SendMessageRequest& from);
+
+  inline SendMessageRequest& operator=(const SendMessageRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SendMessageRequest& default_instance();
+
+  static const SendMessageRequest* internal_default_instance();
+
+  void Swap(SendMessageRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline SendMessageRequest* New() const { return New(NULL); }
+
+  SendMessageRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SendMessageRequest& from);
+  void MergeFrom(const SendMessageRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SendMessageRequest* other);
+  void UnsafeMergeFrom(const SendMessageRequest& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string words = 1;
+  void clear_words();
+  static const int kWordsFieldNumber = 1;
+  const ::std::string& words() const;
+  void set_words(const ::std::string& value);
+  void set_words(const char* value);
+  void set_words(const char* value, size_t size);
+  ::std::string* mutable_words();
+  ::std::string* release_words();
+  void set_allocated_words(::std::string* words);
+
+  // @@protoc_insertion_point(class_scope:farmshop.SendMessageRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr words_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<SendMessageRequest> SendMessageRequest_default_instance_;
+
+// -------------------------------------------------------------------
+
+class SendMessageResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.SendMessageResponse) */ {
+ public:
+  SendMessageResponse();
+  virtual ~SendMessageResponse();
+
+  SendMessageResponse(const SendMessageResponse& from);
+
+  inline SendMessageResponse& operator=(const SendMessageResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SendMessageResponse& default_instance();
+
+  static const SendMessageResponse* internal_default_instance();
+
+  void Swap(SendMessageResponse* other);
+
+  // implements Message ----------------------------------------------
+
+  inline SendMessageResponse* New() const { return New(NULL); }
+
+  SendMessageResponse* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SendMessageResponse& from);
+  void MergeFrom(const SendMessageResponse& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SendMessageResponse* other);
+  void UnsafeMergeFrom(const SendMessageResponse& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // optional string words = 2;
+  void clear_words();
+  static const int kWordsFieldNumber = 2;
+  const ::std::string& words() const;
+  void set_words(const ::std::string& value);
+  void set_words(const char* value);
+  void set_words(const char* value, size_t size);
+  ::std::string* mutable_words();
+  ::std::string* release_words();
+  void set_allocated_words(::std::string* words);
+
+  // @@protoc_insertion_point(class_scope:farmshop.SendMessageResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr words_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<SendMessageResponse> SendMessageResponse_default_instance_;
+
+// -------------------------------------------------------------------
+
+class UpOrderRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.UpOrderRequest) */ {
+ public:
+  UpOrderRequest();
+  virtual ~UpOrderRequest();
+
+  UpOrderRequest(const UpOrderRequest& from);
+
+  inline UpOrderRequest& operator=(const UpOrderRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const UpOrderRequest& default_instance();
+
+  static const UpOrderRequest* internal_default_instance();
+
+  void Swap(UpOrderRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline UpOrderRequest* New() const { return New(NULL); }
+
+  UpOrderRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const UpOrderRequest& from);
+  void MergeFrom(const UpOrderRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(UpOrderRequest* other);
+  void UnsafeMergeFrom(const UpOrderRequest& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
+  // repeated .farmshop.BuyOneInfo buyList = 2;
+  int buylist_size() const;
+  void clear_buylist();
+  static const int kBuyListFieldNumber = 2;
+  const ::farmshop::BuyOneInfo& buylist(int index) const;
+  ::farmshop::BuyOneInfo* mutable_buylist(int index);
+  ::farmshop::BuyOneInfo* add_buylist();
+  ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >*
+      mutable_buylist();
+  const ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >&
+      buylist() const;
+
+  // optional int64 time = 3;
+  void clear_time();
+  static const int kTimeFieldNumber = 3;
+  ::google::protobuf::int64 time() const;
+  void set_time(::google::protobuf::int64 value);
+
+  // optional int32 amount = 4;
+  void clear_amount();
+  static const int kAmountFieldNumber = 4;
+  ::google::protobuf::int32 amount() const;
+  void set_amount(::google::protobuf::int32 value);
+
+  // optional string message = 5;
+  void clear_message();
+  static const int kMessageFieldNumber = 5;
+  const ::std::string& message() const;
+  void set_message(const ::std::string& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  ::std::string* mutable_message();
+  ::std::string* release_message();
+  void set_allocated_message(::std::string* message);
+
+  // @@protoc_insertion_point(class_scope:farmshop.UpOrderRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo > buylist_;
+  ::google::protobuf::internal::ArenaStringPtr message_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 amount_;
+  ::google::protobuf::int64 time_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<UpOrderRequest> UpOrderRequest_default_instance_;
+
+// -------------------------------------------------------------------
+
+class BuyOneInfo : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.BuyOneInfo) */ {
+ public:
+  BuyOneInfo();
+  virtual ~BuyOneInfo();
+
+  BuyOneInfo(const BuyOneInfo& from);
+
+  inline BuyOneInfo& operator=(const BuyOneInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const BuyOneInfo& default_instance();
+
+  static const BuyOneInfo* internal_default_instance();
+
+  void Swap(BuyOneInfo* other);
+
+  // implements Message ----------------------------------------------
+
+  inline BuyOneInfo* New() const { return New(NULL); }
+
+  BuyOneInfo* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const BuyOneInfo& from);
+  void MergeFrom(const BuyOneInfo& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(BuyOneInfo* other);
+  void UnsafeMergeFrom(const BuyOneInfo& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // optional int32 weight = 2;
+  void clear_weight();
+  static const int kWeightFieldNumber = 2;
+  ::google::protobuf::int32 weight() const;
+  void set_weight(::google::protobuf::int32 value);
+
+  // optional int32 price = 3;
+  void clear_price();
+  static const int kPriceFieldNumber = 3;
+  ::google::protobuf::int32 price() const;
+  void set_price(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.BuyOneInfo)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::int32 weight_;
+  ::google::protobuf::int32 price_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<BuyOneInfo> BuyOneInfo_default_instance_;
+
+// -------------------------------------------------------------------
+
+class UpOrderResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.UpOrderResponse) */ {
+ public:
+  UpOrderResponse();
+  virtual ~UpOrderResponse();
+
+  UpOrderResponse(const UpOrderResponse& from);
+
+  inline UpOrderResponse& operator=(const UpOrderResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const UpOrderResponse& default_instance();
+
+  static const UpOrderResponse* internal_default_instance();
+
+  void Swap(UpOrderResponse* other);
+
+  // implements Message ----------------------------------------------
+
+  inline UpOrderResponse* New() const { return New(NULL); }
+
+  UpOrderResponse* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const UpOrderResponse& from);
+  void MergeFrom(const UpOrderResponse& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(UpOrderResponse* other);
+  void UnsafeMergeFrom(const UpOrderResponse& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.UpOrderResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<UpOrderResponse> UpOrderResponse_default_instance_;
+
+// -------------------------------------------------------------------
+
+class QueryOrderRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.QueryOrderRequest) */ {
+ public:
+  QueryOrderRequest();
+  virtual ~QueryOrderRequest();
+
+  QueryOrderRequest(const QueryOrderRequest& from);
+
+  inline QueryOrderRequest& operator=(const QueryOrderRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const QueryOrderRequest& default_instance();
+
+  static const QueryOrderRequest* internal_default_instance();
+
+  void Swap(QueryOrderRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline QueryOrderRequest* New() const { return New(NULL); }
+
+  QueryOrderRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const QueryOrderRequest& from);
+  void MergeFrom(const QueryOrderRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(QueryOrderRequest* other);
+  void UnsafeMergeFrom(const QueryOrderRequest& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int64 lastTime = 1;
+  void clear_lasttime();
+  static const int kLastTimeFieldNumber = 1;
+  ::google::protobuf::int64 lasttime() const;
+  void set_lasttime(::google::protobuf::int64 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.QueryOrderRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int64 lasttime_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<QueryOrderRequest> QueryOrderRequest_default_instance_;
+
+// -------------------------------------------------------------------
+
+class QueryOrderResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.QueryOrderResponse) */ {
+ public:
+  QueryOrderResponse();
+  virtual ~QueryOrderResponse();
+
+  QueryOrderResponse(const QueryOrderResponse& from);
+
+  inline QueryOrderResponse& operator=(const QueryOrderResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const QueryOrderResponse& default_instance();
+
+  static const QueryOrderResponse* internal_default_instance();
+
+  void Swap(QueryOrderResponse* other);
+
+  // implements Message ----------------------------------------------
+
+  inline QueryOrderResponse* New() const { return New(NULL); }
+
+  QueryOrderResponse* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const QueryOrderResponse& from);
+  void MergeFrom(const QueryOrderResponse& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(QueryOrderResponse* other);
+  void UnsafeMergeFrom(const QueryOrderResponse& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // repeated .farmshop.Order orders = 2;
+  int orders_size() const;
+  void clear_orders();
+  static const int kOrdersFieldNumber = 2;
+  const ::farmshop::Order& orders(int index) const;
+  ::farmshop::Order* mutable_orders(int index);
+  ::farmshop::Order* add_orders();
+  ::google::protobuf::RepeatedPtrField< ::farmshop::Order >*
+      mutable_orders();
+  const ::google::protobuf::RepeatedPtrField< ::farmshop::Order >&
+      orders() const;
+
+  // @@protoc_insertion_point(class_scope:farmshop.QueryOrderResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::farmshop::Order > orders_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<QueryOrderResponse> QueryOrderResponse_default_instance_;
+
+// -------------------------------------------------------------------
+
+class Order : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.Order) */ {
+ public:
+  Order();
+  virtual ~Order();
+
+  Order(const Order& from);
+
+  inline Order& operator=(const Order& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Order& default_instance();
+
+  static const Order* internal_default_instance();
+
+  void Swap(Order* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Order* New() const { return New(NULL); }
+
+  Order* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Order& from);
+  void MergeFrom(const Order& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Order* other);
+  void UnsafeMergeFrom(const Order& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 id = 1;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
+  // optional int32 type = 2;
+  void clear_type();
+  static const int kTypeFieldNumber = 2;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
+  // optional int64 time = 3;
+  void clear_time();
+  static const int kTimeFieldNumber = 3;
+  ::google::protobuf::int64 time() const;
+  void set_time(::google::protobuf::int64 value);
+
+  // optional int32 amount = 4;
+  void clear_amount();
+  static const int kAmountFieldNumber = 4;
+  ::google::protobuf::int32 amount() const;
+  void set_amount(::google::protobuf::int32 value);
+
+  // optional string message = 5;
+  void clear_message();
+  static const int kMessageFieldNumber = 5;
+  const ::std::string& message() const;
+  void set_message(const ::std::string& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  ::std::string* mutable_message();
+  ::std::string* release_message();
+  void set_allocated_message(::std::string* message);
+
+  // repeated .farmshop.BuyOneInfo list = 6;
+  int list_size() const;
+  void clear_list();
+  static const int kListFieldNumber = 6;
+  const ::farmshop::BuyOneInfo& list(int index) const;
+  ::farmshop::BuyOneInfo* mutable_list(int index);
+  ::farmshop::BuyOneInfo* add_list();
+  ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >*
+      mutable_list();
+  const ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >&
+      list() const;
+
+  // optional int32 state = 7;
+  void clear_state();
+  static const int kStateFieldNumber = 7;
+  ::google::protobuf::int32 state() const;
+  void set_state(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.Order)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo > list_;
+  ::google::protobuf::internal::ArenaStringPtr message_;
+  ::google::protobuf::int32 id_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int64 time_;
+  ::google::protobuf::int32 amount_;
+  ::google::protobuf::int32 state_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<Order> Order_default_instance_;
+
 // ===================================================================
 
 
@@ -1664,7 +2531,585 @@ inline void EditUserInfoResponse::set_result(::google::protobuf::int32 value) {
 inline const EditUserInfoResponse* EditUserInfoResponse::internal_default_instance() {
   return &EditUserInfoResponse_default_instance_.get();
 }
+// -------------------------------------------------------------------
+
+// SendMessageRequest
+
+// optional string words = 1;
+inline void SendMessageRequest::clear_words() {
+  words_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SendMessageRequest::words() const {
+  // @@protoc_insertion_point(field_get:farmshop.SendMessageRequest.words)
+  return words_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SendMessageRequest::set_words(const ::std::string& value) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.SendMessageRequest.words)
+}
+inline void SendMessageRequest::set_words(const char* value) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.SendMessageRequest.words)
+}
+inline void SendMessageRequest::set_words(const char* value, size_t size) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.SendMessageRequest.words)
+}
+inline ::std::string* SendMessageRequest::mutable_words() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.SendMessageRequest.words)
+  return words_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SendMessageRequest::release_words() {
+  // @@protoc_insertion_point(field_release:farmshop.SendMessageRequest.words)
+  
+  return words_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SendMessageRequest::set_allocated_words(::std::string* words) {
+  if (words != NULL) {
+    
+  } else {
+    
+  }
+  words_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), words);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.SendMessageRequest.words)
+}
+
+inline const SendMessageRequest* SendMessageRequest::internal_default_instance() {
+  return &SendMessageRequest_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// SendMessageResponse
+
+// optional int32 result = 1;
+inline void SendMessageResponse::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 SendMessageResponse::result() const {
+  // @@protoc_insertion_point(field_get:farmshop.SendMessageResponse.result)
+  return result_;
+}
+inline void SendMessageResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.SendMessageResponse.result)
+}
+
+// optional string words = 2;
+inline void SendMessageResponse::clear_words() {
+  words_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& SendMessageResponse::words() const {
+  // @@protoc_insertion_point(field_get:farmshop.SendMessageResponse.words)
+  return words_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SendMessageResponse::set_words(const ::std::string& value) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.SendMessageResponse.words)
+}
+inline void SendMessageResponse::set_words(const char* value) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.SendMessageResponse.words)
+}
+inline void SendMessageResponse::set_words(const char* value, size_t size) {
+  
+  words_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.SendMessageResponse.words)
+}
+inline ::std::string* SendMessageResponse::mutable_words() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.SendMessageResponse.words)
+  return words_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* SendMessageResponse::release_words() {
+  // @@protoc_insertion_point(field_release:farmshop.SendMessageResponse.words)
+  
+  return words_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void SendMessageResponse::set_allocated_words(::std::string* words) {
+  if (words != NULL) {
+    
+  } else {
+    
+  }
+  words_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), words);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.SendMessageResponse.words)
+}
+
+inline const SendMessageResponse* SendMessageResponse::internal_default_instance() {
+  return &SendMessageResponse_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// UpOrderRequest
+
+// optional int32 type = 1;
+inline void UpOrderRequest::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 UpOrderRequest::type() const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderRequest.type)
+  return type_;
+}
+inline void UpOrderRequest::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.UpOrderRequest.type)
+}
+
+// repeated .farmshop.BuyOneInfo buyList = 2;
+inline int UpOrderRequest::buylist_size() const {
+  return buylist_.size();
+}
+inline void UpOrderRequest::clear_buylist() {
+  buylist_.Clear();
+}
+inline const ::farmshop::BuyOneInfo& UpOrderRequest::buylist(int index) const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderRequest.buyList)
+  return buylist_.Get(index);
+}
+inline ::farmshop::BuyOneInfo* UpOrderRequest::mutable_buylist(int index) {
+  // @@protoc_insertion_point(field_mutable:farmshop.UpOrderRequest.buyList)
+  return buylist_.Mutable(index);
+}
+inline ::farmshop::BuyOneInfo* UpOrderRequest::add_buylist() {
+  // @@protoc_insertion_point(field_add:farmshop.UpOrderRequest.buyList)
+  return buylist_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >*
+UpOrderRequest::mutable_buylist() {
+  // @@protoc_insertion_point(field_mutable_list:farmshop.UpOrderRequest.buyList)
+  return &buylist_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >&
+UpOrderRequest::buylist() const {
+  // @@protoc_insertion_point(field_list:farmshop.UpOrderRequest.buyList)
+  return buylist_;
+}
+
+// optional int64 time = 3;
+inline void UpOrderRequest::clear_time() {
+  time_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 UpOrderRequest::time() const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderRequest.time)
+  return time_;
+}
+inline void UpOrderRequest::set_time(::google::protobuf::int64 value) {
+  
+  time_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.UpOrderRequest.time)
+}
+
+// optional int32 amount = 4;
+inline void UpOrderRequest::clear_amount() {
+  amount_ = 0;
+}
+inline ::google::protobuf::int32 UpOrderRequest::amount() const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderRequest.amount)
+  return amount_;
+}
+inline void UpOrderRequest::set_amount(::google::protobuf::int32 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.UpOrderRequest.amount)
+}
+
+// optional string message = 5;
+inline void UpOrderRequest::clear_message() {
+  message_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& UpOrderRequest::message() const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderRequest.message)
+  return message_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void UpOrderRequest::set_message(const ::std::string& value) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.UpOrderRequest.message)
+}
+inline void UpOrderRequest::set_message(const char* value) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.UpOrderRequest.message)
+}
+inline void UpOrderRequest::set_message(const char* value, size_t size) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.UpOrderRequest.message)
+}
+inline ::std::string* UpOrderRequest::mutable_message() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.UpOrderRequest.message)
+  return message_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* UpOrderRequest::release_message() {
+  // @@protoc_insertion_point(field_release:farmshop.UpOrderRequest.message)
+  
+  return message_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void UpOrderRequest::set_allocated_message(::std::string* message) {
+  if (message != NULL) {
+    
+  } else {
+    
+  }
+  message_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), message);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.UpOrderRequest.message)
+}
+
+inline const UpOrderRequest* UpOrderRequest::internal_default_instance() {
+  return &UpOrderRequest_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// BuyOneInfo
+
+// optional string name = 1;
+inline void BuyOneInfo::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& BuyOneInfo::name() const {
+  // @@protoc_insertion_point(field_get:farmshop.BuyOneInfo.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BuyOneInfo::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.BuyOneInfo.name)
+}
+inline void BuyOneInfo::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.BuyOneInfo.name)
+}
+inline void BuyOneInfo::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.BuyOneInfo.name)
+}
+inline ::std::string* BuyOneInfo::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.BuyOneInfo.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* BuyOneInfo::release_name() {
+  // @@protoc_insertion_point(field_release:farmshop.BuyOneInfo.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void BuyOneInfo::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.BuyOneInfo.name)
+}
+
+// optional int32 weight = 2;
+inline void BuyOneInfo::clear_weight() {
+  weight_ = 0;
+}
+inline ::google::protobuf::int32 BuyOneInfo::weight() const {
+  // @@protoc_insertion_point(field_get:farmshop.BuyOneInfo.weight)
+  return weight_;
+}
+inline void BuyOneInfo::set_weight(::google::protobuf::int32 value) {
+  
+  weight_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.BuyOneInfo.weight)
+}
+
+// optional int32 price = 3;
+inline void BuyOneInfo::clear_price() {
+  price_ = 0;
+}
+inline ::google::protobuf::int32 BuyOneInfo::price() const {
+  // @@protoc_insertion_point(field_get:farmshop.BuyOneInfo.price)
+  return price_;
+}
+inline void BuyOneInfo::set_price(::google::protobuf::int32 value) {
+  
+  price_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.BuyOneInfo.price)
+}
+
+inline const BuyOneInfo* BuyOneInfo::internal_default_instance() {
+  return &BuyOneInfo_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// UpOrderResponse
+
+// optional int32 result = 1;
+inline void UpOrderResponse::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 UpOrderResponse::result() const {
+  // @@protoc_insertion_point(field_get:farmshop.UpOrderResponse.result)
+  return result_;
+}
+inline void UpOrderResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.UpOrderResponse.result)
+}
+
+inline const UpOrderResponse* UpOrderResponse::internal_default_instance() {
+  return &UpOrderResponse_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// QueryOrderRequest
+
+// optional int64 lastTime = 1;
+inline void QueryOrderRequest::clear_lasttime() {
+  lasttime_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 QueryOrderRequest::lasttime() const {
+  // @@protoc_insertion_point(field_get:farmshop.QueryOrderRequest.lastTime)
+  return lasttime_;
+}
+inline void QueryOrderRequest::set_lasttime(::google::protobuf::int64 value) {
+  
+  lasttime_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.QueryOrderRequest.lastTime)
+}
+
+inline const QueryOrderRequest* QueryOrderRequest::internal_default_instance() {
+  return &QueryOrderRequest_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// QueryOrderResponse
+
+// optional int32 result = 1;
+inline void QueryOrderResponse::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 QueryOrderResponse::result() const {
+  // @@protoc_insertion_point(field_get:farmshop.QueryOrderResponse.result)
+  return result_;
+}
+inline void QueryOrderResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.QueryOrderResponse.result)
+}
+
+// repeated .farmshop.Order orders = 2;
+inline int QueryOrderResponse::orders_size() const {
+  return orders_.size();
+}
+inline void QueryOrderResponse::clear_orders() {
+  orders_.Clear();
+}
+inline const ::farmshop::Order& QueryOrderResponse::orders(int index) const {
+  // @@protoc_insertion_point(field_get:farmshop.QueryOrderResponse.orders)
+  return orders_.Get(index);
+}
+inline ::farmshop::Order* QueryOrderResponse::mutable_orders(int index) {
+  // @@protoc_insertion_point(field_mutable:farmshop.QueryOrderResponse.orders)
+  return orders_.Mutable(index);
+}
+inline ::farmshop::Order* QueryOrderResponse::add_orders() {
+  // @@protoc_insertion_point(field_add:farmshop.QueryOrderResponse.orders)
+  return orders_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::farmshop::Order >*
+QueryOrderResponse::mutable_orders() {
+  // @@protoc_insertion_point(field_mutable_list:farmshop.QueryOrderResponse.orders)
+  return &orders_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::farmshop::Order >&
+QueryOrderResponse::orders() const {
+  // @@protoc_insertion_point(field_list:farmshop.QueryOrderResponse.orders)
+  return orders_;
+}
+
+inline const QueryOrderResponse* QueryOrderResponse::internal_default_instance() {
+  return &QueryOrderResponse_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// Order
+
+// optional int32 id = 1;
+inline void Order::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 Order::id() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.id)
+  return id_;
+}
+inline void Order::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.Order.id)
+}
+
+// optional int32 type = 2;
+inline void Order::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 Order::type() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.type)
+  return type_;
+}
+inline void Order::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.Order.type)
+}
+
+// optional int64 time = 3;
+inline void Order::clear_time() {
+  time_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 Order::time() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.time)
+  return time_;
+}
+inline void Order::set_time(::google::protobuf::int64 value) {
+  
+  time_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.Order.time)
+}
+
+// optional int32 amount = 4;
+inline void Order::clear_amount() {
+  amount_ = 0;
+}
+inline ::google::protobuf::int32 Order::amount() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.amount)
+  return amount_;
+}
+inline void Order::set_amount(::google::protobuf::int32 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.Order.amount)
+}
+
+// optional string message = 5;
+inline void Order::clear_message() {
+  message_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Order::message() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.message)
+  return message_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Order::set_message(const ::std::string& value) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:farmshop.Order.message)
+}
+inline void Order::set_message(const char* value) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:farmshop.Order.message)
+}
+inline void Order::set_message(const char* value, size_t size) {
+  
+  message_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:farmshop.Order.message)
+}
+inline ::std::string* Order::mutable_message() {
+  
+  // @@protoc_insertion_point(field_mutable:farmshop.Order.message)
+  return message_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Order::release_message() {
+  // @@protoc_insertion_point(field_release:farmshop.Order.message)
+  
+  return message_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Order::set_allocated_message(::std::string* message) {
+  if (message != NULL) {
+    
+  } else {
+    
+  }
+  message_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), message);
+  // @@protoc_insertion_point(field_set_allocated:farmshop.Order.message)
+}
+
+// repeated .farmshop.BuyOneInfo list = 6;
+inline int Order::list_size() const {
+  return list_.size();
+}
+inline void Order::clear_list() {
+  list_.Clear();
+}
+inline const ::farmshop::BuyOneInfo& Order::list(int index) const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.list)
+  return list_.Get(index);
+}
+inline ::farmshop::BuyOneInfo* Order::mutable_list(int index) {
+  // @@protoc_insertion_point(field_mutable:farmshop.Order.list)
+  return list_.Mutable(index);
+}
+inline ::farmshop::BuyOneInfo* Order::add_list() {
+  // @@protoc_insertion_point(field_add:farmshop.Order.list)
+  return list_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >*
+Order::mutable_list() {
+  // @@protoc_insertion_point(field_mutable_list:farmshop.Order.list)
+  return &list_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::farmshop::BuyOneInfo >&
+Order::list() const {
+  // @@protoc_insertion_point(field_list:farmshop.Order.list)
+  return list_;
+}
+
+// optional int32 state = 7;
+inline void Order::clear_state() {
+  state_ = 0;
+}
+inline ::google::protobuf::int32 Order::state() const {
+  // @@protoc_insertion_point(field_get:farmshop.Order.state)
+  return state_;
+}
+inline void Order::set_state(::google::protobuf::int32 value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.Order.state)
+}
+
+inline const Order* Order::internal_default_instance() {
+  return &Order_default_instance_.get();
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1692,6 +3137,11 @@ template <> struct is_proto_enum< ::farmshop::MsgId> : ::google::protobuf::inter
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::farmshop::MsgId>() {
   return ::farmshop::MsgId_descriptor();
+}
+template <> struct is_proto_enum< ::farmshop::OrderState> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::farmshop::OrderState>() {
+  return ::farmshop::OrderState_descriptor();
 }
 
 }  // namespace protobuf

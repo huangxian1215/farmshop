@@ -41,4 +41,8 @@ public class TimeUtils {
         return s_format.format(new Date());
     }
 
+    public static long getNowTimeLongSS(){
+        return new Date().getTime()/1000;
+    }
+
 }

@@ -15,6 +15,10 @@ public final class farmshop {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * <pre>
+   *由于double 在值为1.0时 C++解析出数据有问题，统一只用int32转换
+   * </pre>
+   *
    * Protobuf enum {@code farmshop.MsgId}
    */
   public enum MsgId
@@ -51,6 +55,30 @@ public final class farmshop {
      * <code>EditUserInfo_RES = 7;</code>
      */
     EditUserInfo_RES(7),
+    /**
+     * <code>SEND_MESSAGE_REQ = 8;</code>
+     */
+    SEND_MESSAGE_REQ(8),
+    /**
+     * <code>SEND_MESSAGE_RES = 9;</code>
+     */
+    SEND_MESSAGE_RES(9),
+    /**
+     * <code>UPORDER_REQ = 10;</code>
+     */
+    UPORDER_REQ(10),
+    /**
+     * <code>UPORDER_RES = 11;</code>
+     */
+    UPORDER_RES(11),
+    /**
+     * <code>QUERYORDER_REQ = 12;</code>
+     */
+    QUERYORDER_REQ(12),
+    /**
+     * <code>QUERYORDER_RES = 13;</code>
+     */
+    QUERYORDER_RES(13),
     UNRECOGNIZED(-1),
     ;
 
@@ -86,6 +114,30 @@ public final class farmshop {
      * <code>EditUserInfo_RES = 7;</code>
      */
     public static final int EditUserInfo_RES_VALUE = 7;
+    /**
+     * <code>SEND_MESSAGE_REQ = 8;</code>
+     */
+    public static final int SEND_MESSAGE_REQ_VALUE = 8;
+    /**
+     * <code>SEND_MESSAGE_RES = 9;</code>
+     */
+    public static final int SEND_MESSAGE_RES_VALUE = 9;
+    /**
+     * <code>UPORDER_REQ = 10;</code>
+     */
+    public static final int UPORDER_REQ_VALUE = 10;
+    /**
+     * <code>UPORDER_RES = 11;</code>
+     */
+    public static final int UPORDER_RES_VALUE = 11;
+    /**
+     * <code>QUERYORDER_REQ = 12;</code>
+     */
+    public static final int QUERYORDER_REQ_VALUE = 12;
+    /**
+     * <code>QUERYORDER_RES = 13;</code>
+     */
+    public static final int QUERYORDER_RES_VALUE = 13;
 
 
     public final int getNumber() {
@@ -114,6 +166,12 @@ public final class farmshop {
         case 5: return LOGIN_RES;
         case 6: return EditUserInfo_REQ;
         case 7: return EditUserInfo_RES;
+        case 8: return SEND_MESSAGE_REQ;
+        case 9: return SEND_MESSAGE_RES;
+        case 10: return UPORDER_REQ;
+        case 11: return UPORDER_RES;
+        case 12: return QUERYORDER_REQ;
+        case 13: return QUERYORDER_RES;
         default: return null;
       }
     }
@@ -164,6 +222,171 @@ public final class farmshop {
     }
 
     // @@protoc_insertion_point(enum_scope:farmshop.MsgId)
+  }
+
+  /**
+   * Protobuf enum {@code farmshop.OrderState}
+   */
+  public enum OrderState
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     *未接收
+     * </pre>
+     *
+     * <code>ORDER_NOTRECIEVE = 0;</code>
+     */
+    ORDER_NOTRECIEVE(0),
+    /**
+     * <pre>
+     *用户取消
+     * </pre>
+     *
+     * <code>ORDER_CANCEL = 1;</code>
+     */
+    ORDER_CANCEL(1),
+    /**
+     * <pre>
+     *买家接收
+     * </pre>
+     *
+     * <code>ORDER_RECIEVE = 2;</code>
+     */
+    ORDER_RECIEVE(2),
+    /**
+     * <pre>
+     *没有库存
+     * </pre>
+     *
+     * <code>ORDER_NOSTOCK = 3;</code>
+     */
+    ORDER_NOSTOCK(3),
+    /**
+     * <pre>
+     *完结
+     * </pre>
+     *
+     * <code>ORDER_FINISH = 4;</code>
+     */
+    ORDER_FINISH(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     *未接收
+     * </pre>
+     *
+     * <code>ORDER_NOTRECIEVE = 0;</code>
+     */
+    public static final int ORDER_NOTRECIEVE_VALUE = 0;
+    /**
+     * <pre>
+     *用户取消
+     * </pre>
+     *
+     * <code>ORDER_CANCEL = 1;</code>
+     */
+    public static final int ORDER_CANCEL_VALUE = 1;
+    /**
+     * <pre>
+     *买家接收
+     * </pre>
+     *
+     * <code>ORDER_RECIEVE = 2;</code>
+     */
+    public static final int ORDER_RECIEVE_VALUE = 2;
+    /**
+     * <pre>
+     *没有库存
+     * </pre>
+     *
+     * <code>ORDER_NOSTOCK = 3;</code>
+     */
+    public static final int ORDER_NOSTOCK_VALUE = 3;
+    /**
+     * <pre>
+     *完结
+     * </pre>
+     *
+     * <code>ORDER_FINISH = 4;</code>
+     */
+    public static final int ORDER_FINISH_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static OrderState valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static OrderState forNumber(int value) {
+      switch (value) {
+        case 0: return ORDER_NOTRECIEVE;
+        case 1: return ORDER_CANCEL;
+        case 2: return ORDER_RECIEVE;
+        case 3: return ORDER_NOSTOCK;
+        case 4: return ORDER_FINISH;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<OrderState>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        OrderState> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<OrderState>() {
+            public OrderState findValueByNumber(int number) {
+              return OrderState.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final OrderState[] VALUES = values();
+
+    public static OrderState valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private OrderState(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:farmshop.OrderState)
   }
 
   public interface ClientSessionOrBuilder extends
@@ -1587,6 +1810,10 @@ public final class farmshop {
         getPasswordBytes();
   }
   /**
+   * <pre>
+   *REGIST_REQ
+   * </pre>
+   *
    * Protobuf type {@code farmshop.RegistRequest}
    */
   public  static final class RegistRequest extends
@@ -1878,6 +2105,10 @@ public final class farmshop {
       return builder;
     }
     /**
+     * <pre>
+     *REGIST_REQ
+     * </pre>
+     *
      * Protobuf type {@code farmshop.RegistRequest}
      */
     public static final class Builder extends
@@ -2656,6 +2887,10 @@ public final class farmshop {
         getPasswordBytes();
   }
   /**
+   * <pre>
+   *LOGIN_REQ
+   * </pre>
+   *
    * Protobuf type {@code farmshop.LoginRequest}
    */
   public  static final class LoginRequest extends
@@ -2947,6 +3182,10 @@ public final class farmshop {
       return builder;
     }
     /**
+     * <pre>
+     *LOGIN_REQ
+     * </pre>
+     *
      * Protobuf type {@code farmshop.LoginRequest}
      */
     public static final class Builder extends
@@ -4041,10 +4280,18 @@ public final class farmshop {
     int getUid();
 
     /**
+     * <pre>
+     *头像路径
+     * </pre>
+     *
      * <code>optional string headimg = 2;</code>
      */
     java.lang.String getHeadimg();
     /**
+     * <pre>
+     *头像路径
+     * </pre>
+     *
      * <code>optional string headimg = 2;</code>
      */
     com.google.protobuf.ByteString
@@ -4091,21 +4338,37 @@ public final class farmshop {
         getLocationBytes();
 
     /**
+     * <pre>
+     *是否管理员
+     * </pre>
+     *
      * <code>optional bool isManager = 8;</code>
      */
     boolean getIsManager();
 
     /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
      * <code>optional string petName = 9;</code>
      */
     java.lang.String getPetName();
     /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
      * <code>optional string petName = 9;</code>
      */
     com.google.protobuf.ByteString
         getPetNameBytes();
   }
   /**
+   * <pre>
+   *EditUserInfo_REQ
+   * </pre>
+   *
    * Protobuf type {@code farmshop.EditUserInfoRequest}
    */
   public  static final class EditUserInfoRequest extends
@@ -4238,6 +4501,10 @@ public final class farmshop {
     public static final int HEADIMG_FIELD_NUMBER = 2;
     private volatile java.lang.Object headimg_;
     /**
+     * <pre>
+     *头像路径
+     * </pre>
+     *
      * <code>optional string headimg = 2;</code>
      */
     public java.lang.String getHeadimg() {
@@ -4253,6 +4520,10 @@ public final class farmshop {
       }
     }
     /**
+     * <pre>
+     *头像路径
+     * </pre>
+     *
      * <code>optional string headimg = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -4392,6 +4663,10 @@ public final class farmshop {
     public static final int ISMANAGER_FIELD_NUMBER = 8;
     private boolean isManager_;
     /**
+     * <pre>
+     *是否管理员
+     * </pre>
+     *
      * <code>optional bool isManager = 8;</code>
      */
     public boolean getIsManager() {
@@ -4401,6 +4676,10 @@ public final class farmshop {
     public static final int PETNAME_FIELD_NUMBER = 9;
     private volatile java.lang.Object petName_;
     /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
      * <code>optional string petName = 9;</code>
      */
     public java.lang.String getPetName() {
@@ -4416,6 +4695,10 @@ public final class farmshop {
       }
     }
     /**
+     * <pre>
+     *昵称
+     * </pre>
+     *
      * <code>optional string petName = 9;</code>
      */
     public com.google.protobuf.ByteString
@@ -4656,6 +4939,10 @@ public final class farmshop {
       return builder;
     }
     /**
+     * <pre>
+     *EditUserInfo_REQ
+     * </pre>
+     *
      * Protobuf type {@code farmshop.EditUserInfoRequest}
      */
     public static final class Builder extends
@@ -4867,6 +5154,10 @@ public final class farmshop {
 
       private java.lang.Object headimg_ = "";
       /**
+       * <pre>
+       *头像路径
+       * </pre>
+       *
        * <code>optional string headimg = 2;</code>
        */
       public java.lang.String getHeadimg() {
@@ -4882,6 +5173,10 @@ public final class farmshop {
         }
       }
       /**
+       * <pre>
+       *头像路径
+       * </pre>
+       *
        * <code>optional string headimg = 2;</code>
        */
       public com.google.protobuf.ByteString
@@ -4898,6 +5193,10 @@ public final class farmshop {
         }
       }
       /**
+       * <pre>
+       *头像路径
+       * </pre>
+       *
        * <code>optional string headimg = 2;</code>
        */
       public Builder setHeadimg(
@@ -4911,6 +5210,10 @@ public final class farmshop {
         return this;
       }
       /**
+       * <pre>
+       *头像路径
+       * </pre>
+       *
        * <code>optional string headimg = 2;</code>
        */
       public Builder clearHeadimg() {
@@ -4920,6 +5223,10 @@ public final class farmshop {
         return this;
       }
       /**
+       * <pre>
+       *头像路径
+       * </pre>
+       *
        * <code>optional string headimg = 2;</code>
        */
       public Builder setHeadimgBytes(
@@ -5195,12 +5502,20 @@ public final class farmshop {
 
       private boolean isManager_ ;
       /**
+       * <pre>
+       *是否管理员
+       * </pre>
+       *
        * <code>optional bool isManager = 8;</code>
        */
       public boolean getIsManager() {
         return isManager_;
       }
       /**
+       * <pre>
+       *是否管理员
+       * </pre>
+       *
        * <code>optional bool isManager = 8;</code>
        */
       public Builder setIsManager(boolean value) {
@@ -5210,6 +5525,10 @@ public final class farmshop {
         return this;
       }
       /**
+       * <pre>
+       *是否管理员
+       * </pre>
+       *
        * <code>optional bool isManager = 8;</code>
        */
       public Builder clearIsManager() {
@@ -5221,6 +5540,10 @@ public final class farmshop {
 
       private java.lang.Object petName_ = "";
       /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
        * <code>optional string petName = 9;</code>
        */
       public java.lang.String getPetName() {
@@ -5236,6 +5559,10 @@ public final class farmshop {
         }
       }
       /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
        * <code>optional string petName = 9;</code>
        */
       public com.google.protobuf.ByteString
@@ -5252,6 +5579,10 @@ public final class farmshop {
         }
       }
       /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
        * <code>optional string petName = 9;</code>
        */
       public Builder setPetName(
@@ -5265,6 +5596,10 @@ public final class farmshop {
         return this;
       }
       /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
        * <code>optional string petName = 9;</code>
        */
       public Builder clearPetName() {
@@ -5274,6 +5609,10 @@ public final class farmshop {
         return this;
       }
       /**
+       * <pre>
+       *昵称
+       * </pre>
+       *
        * <code>optional string petName = 9;</code>
        */
       public Builder setPetNameBytes(
@@ -5765,6 +6104,6308 @@ public final class farmshop {
 
   }
 
+  public interface SendMessageRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.SendMessageRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional string words = 1;</code>
+     */
+    java.lang.String getWords();
+    /**
+     * <code>optional string words = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getWordsBytes();
+  }
+  /**
+   * <pre>
+   *SEND_MESSAGE_REQ
+   * </pre>
+   *
+   * Protobuf type {@code farmshop.SendMessageRequest}
+   */
+  public  static final class SendMessageRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.SendMessageRequest)
+      SendMessageRequestOrBuilder {
+    // Use SendMessageRequest.newBuilder() to construct.
+    private SendMessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SendMessageRequest() {
+      words_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private SendMessageRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              words_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.SendMessageRequest.class, com.example.farmshop.farmshop.SendMessageRequest.Builder.class);
+    }
+
+    public static final int WORDS_FIELD_NUMBER = 1;
+    private volatile java.lang.Object words_;
+    /**
+     * <code>optional string words = 1;</code>
+     */
+    public java.lang.String getWords() {
+      java.lang.Object ref = words_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        words_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string words = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWordsBytes() {
+      java.lang.Object ref = words_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        words_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getWordsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, words_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getWordsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, words_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.SendMessageRequest)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.SendMessageRequest other = (com.example.farmshop.farmshop.SendMessageRequest) obj;
+
+      boolean result = true;
+      result = result && getWords()
+          .equals(other.getWords());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + WORDS_FIELD_NUMBER;
+      hash = (53 * hash) + getWords().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.SendMessageRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *SEND_MESSAGE_REQ
+     * </pre>
+     *
+     * Protobuf type {@code farmshop.SendMessageRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.SendMessageRequest)
+        com.example.farmshop.farmshop.SendMessageRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.SendMessageRequest.class, com.example.farmshop.farmshop.SendMessageRequest.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.SendMessageRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        words_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageRequest_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.SendMessageRequest getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.SendMessageRequest.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.SendMessageRequest build() {
+        com.example.farmshop.farmshop.SendMessageRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.SendMessageRequest buildPartial() {
+        com.example.farmshop.farmshop.SendMessageRequest result = new com.example.farmshop.farmshop.SendMessageRequest(this);
+        result.words_ = words_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.SendMessageRequest) {
+          return mergeFrom((com.example.farmshop.farmshop.SendMessageRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.SendMessageRequest other) {
+        if (other == com.example.farmshop.farmshop.SendMessageRequest.getDefaultInstance()) return this;
+        if (!other.getWords().isEmpty()) {
+          words_ = other.words_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.SendMessageRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.SendMessageRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object words_ = "";
+      /**
+       * <code>optional string words = 1;</code>
+       */
+      public java.lang.String getWords() {
+        java.lang.Object ref = words_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          words_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string words = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWordsBytes() {
+        java.lang.Object ref = words_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          words_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string words = 1;</code>
+       */
+      public Builder setWords(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        words_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string words = 1;</code>
+       */
+      public Builder clearWords() {
+        
+        words_ = getDefaultInstance().getWords();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string words = 1;</code>
+       */
+      public Builder setWordsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        words_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.SendMessageRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.SendMessageRequest)
+    private static final com.example.farmshop.farmshop.SendMessageRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.SendMessageRequest();
+    }
+
+    public static com.example.farmshop.farmshop.SendMessageRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SendMessageRequest>
+        PARSER = new com.google.protobuf.AbstractParser<SendMessageRequest>() {
+      public SendMessageRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SendMessageRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SendMessageRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendMessageRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.SendMessageRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SendMessageResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.SendMessageResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    int getResult();
+
+    /**
+     * <code>optional string words = 2;</code>
+     */
+    java.lang.String getWords();
+    /**
+     * <code>optional string words = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getWordsBytes();
+  }
+  /**
+   * Protobuf type {@code farmshop.SendMessageResponse}
+   */
+  public  static final class SendMessageResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.SendMessageResponse)
+      SendMessageResponseOrBuilder {
+    // Use SendMessageResponse.newBuilder() to construct.
+    private SendMessageResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SendMessageResponse() {
+      result_ = 0;
+      words_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private SendMessageResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              result_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              words_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.SendMessageResponse.class, com.example.farmshop.farmshop.SendMessageResponse.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    public int getResult() {
+      return result_;
+    }
+
+    public static final int WORDS_FIELD_NUMBER = 2;
+    private volatile java.lang.Object words_;
+    /**
+     * <code>optional string words = 2;</code>
+     */
+    public java.lang.String getWords() {
+      java.lang.Object ref = words_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        words_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string words = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getWordsBytes() {
+      java.lang.Object ref = words_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        words_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != 0) {
+        output.writeInt32(1, result_);
+      }
+      if (!getWordsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, words_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, result_);
+      }
+      if (!getWordsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, words_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.SendMessageResponse)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.SendMessageResponse other = (com.example.farmshop.farmshop.SendMessageResponse) obj;
+
+      boolean result = true;
+      result = result && (getResult()
+          == other.getResult());
+      result = result && getWords()
+          .equals(other.getWords());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult();
+      hash = (37 * hash) + WORDS_FIELD_NUMBER;
+      hash = (53 * hash) + getWords().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.SendMessageResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.SendMessageResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.SendMessageResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.SendMessageResponse)
+        com.example.farmshop.farmshop.SendMessageResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.SendMessageResponse.class, com.example.farmshop.farmshop.SendMessageResponse.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.SendMessageResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = 0;
+
+        words_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_SendMessageResponse_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.SendMessageResponse getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.SendMessageResponse.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.SendMessageResponse build() {
+        com.example.farmshop.farmshop.SendMessageResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.SendMessageResponse buildPartial() {
+        com.example.farmshop.farmshop.SendMessageResponse result = new com.example.farmshop.farmshop.SendMessageResponse(this);
+        result.result_ = result_;
+        result.words_ = words_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.SendMessageResponse) {
+          return mergeFrom((com.example.farmshop.farmshop.SendMessageResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.SendMessageResponse other) {
+        if (other == com.example.farmshop.farmshop.SendMessageResponse.getDefaultInstance()) return this;
+        if (other.getResult() != 0) {
+          setResult(other.getResult());
+        }
+        if (!other.getWords().isEmpty()) {
+          words_ = other.words_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.SendMessageResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.SendMessageResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int result_ ;
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public int getResult() {
+        return result_;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder setResult(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object words_ = "";
+      /**
+       * <code>optional string words = 2;</code>
+       */
+      public java.lang.String getWords() {
+        java.lang.Object ref = words_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          words_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string words = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getWordsBytes() {
+        java.lang.Object ref = words_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          words_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string words = 2;</code>
+       */
+      public Builder setWords(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        words_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string words = 2;</code>
+       */
+      public Builder clearWords() {
+        
+        words_ = getDefaultInstance().getWords();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string words = 2;</code>
+       */
+      public Builder setWordsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        words_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.SendMessageResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.SendMessageResponse)
+    private static final com.example.farmshop.farmshop.SendMessageResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.SendMessageResponse();
+    }
+
+    public static com.example.farmshop.farmshop.SendMessageResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SendMessageResponse>
+        PARSER = new com.google.protobuf.AbstractParser<SendMessageResponse>() {
+      public SendMessageResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new SendMessageResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SendMessageResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendMessageResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.SendMessageResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpOrderRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.UpOrderRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *备用，订单类型
+     * </pre>
+     *
+     * <code>optional int32 type = 1;</code>
+     */
+    int getType();
+
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    java.util.List<com.example.farmshop.farmshop.BuyOneInfo> 
+        getBuyListList();
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    com.example.farmshop.farmshop.BuyOneInfo getBuyList(int index);
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    int getBuyListCount();
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+        getBuyListOrBuilderList();
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    com.example.farmshop.farmshop.BuyOneInfoOrBuilder getBuyListOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     *购买时间
+     * </pre>
+     *
+     * <code>optional int64 time = 3;</code>
+     */
+    long getTime();
+
+    /**
+     * <pre>
+     *分
+     * </pre>
+     *
+     * <code>optional int32 amount = 4;</code>
+     */
+    int getAmount();
+
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+  }
+  /**
+   * <pre>
+   *UPORDER_REQ
+   * </pre>
+   *
+   * Protobuf type {@code farmshop.UpOrderRequest}
+   */
+  public  static final class UpOrderRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.UpOrderRequest)
+      UpOrderRequestOrBuilder {
+    // Use UpOrderRequest.newBuilder() to construct.
+    private UpOrderRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpOrderRequest() {
+      type_ = 0;
+      buyList_ = java.util.Collections.emptyList();
+      time_ = 0L;
+      amount_ = 0;
+      message_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private UpOrderRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              type_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                buyList_ = new java.util.ArrayList<com.example.farmshop.farmshop.BuyOneInfo>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              buyList_.add(
+                  input.readMessage(com.example.farmshop.farmshop.BuyOneInfo.parser(), extensionRegistry));
+              break;
+            }
+            case 24: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            case 32: {
+
+              amount_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          buyList_ = java.util.Collections.unmodifiableList(buyList_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.UpOrderRequest.class, com.example.farmshop.farmshop.UpOrderRequest.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <pre>
+     *备用，订单类型
+     * </pre>
+     *
+     * <code>optional int32 type = 1;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
+    public static final int BUYLIST_FIELD_NUMBER = 2;
+    private java.util.List<com.example.farmshop.farmshop.BuyOneInfo> buyList_;
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    public java.util.List<com.example.farmshop.farmshop.BuyOneInfo> getBuyListList() {
+      return buyList_;
+    }
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    public java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+        getBuyListOrBuilderList() {
+      return buyList_;
+    }
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    public int getBuyListCount() {
+      return buyList_.size();
+    }
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    public com.example.farmshop.farmshop.BuyOneInfo getBuyList(int index) {
+      return buyList_.get(index);
+    }
+    /**
+     * <pre>
+     *购买清单
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+     */
+    public com.example.farmshop.farmshop.BuyOneInfoOrBuilder getBuyListOrBuilder(
+        int index) {
+      return buyList_.get(index);
+    }
+
+    public static final int TIME_FIELD_NUMBER = 3;
+    private long time_;
+    /**
+     * <pre>
+     *购买时间
+     * </pre>
+     *
+     * <code>optional int64 time = 3;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    public static final int AMOUNT_FIELD_NUMBER = 4;
+    private int amount_;
+    /**
+     * <pre>
+     *分
+     * </pre>
+     *
+     * <code>optional int32 amount = 4;</code>
+     */
+    public int getAmount() {
+      return amount_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 5;
+    private volatile java.lang.Object message_;
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != 0) {
+        output.writeInt32(1, type_);
+      }
+      for (int i = 0; i < buyList_.size(); i++) {
+        output.writeMessage(2, buyList_.get(i));
+      }
+      if (time_ != 0L) {
+        output.writeInt64(3, time_);
+      }
+      if (amount_ != 0) {
+        output.writeInt32(4, amount_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, message_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, type_);
+      }
+      for (int i = 0; i < buyList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, buyList_.get(i));
+      }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, time_);
+      }
+      if (amount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, amount_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, message_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.UpOrderRequest)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.UpOrderRequest other = (com.example.farmshop.farmshop.UpOrderRequest) obj;
+
+      boolean result = true;
+      result = result && (getType()
+          == other.getType());
+      result = result && getBuyListList()
+          .equals(other.getBuyListList());
+      result = result && (getTime()
+          == other.getTime());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && getMessage()
+          .equals(other.getMessage());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      if (getBuyListCount() > 0) {
+        hash = (37 * hash) + BUYLIST_FIELD_NUMBER;
+        hash = (53 * hash) + getBuyListList().hashCode();
+      }
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getAmount();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.UpOrderRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *UPORDER_REQ
+     * </pre>
+     *
+     * Protobuf type {@code farmshop.UpOrderRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.UpOrderRequest)
+        com.example.farmshop.farmshop.UpOrderRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.UpOrderRequest.class, com.example.farmshop.farmshop.UpOrderRequest.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.UpOrderRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getBuyListFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        type_ = 0;
+
+        if (buyListBuilder_ == null) {
+          buyList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          buyListBuilder_.clear();
+        }
+        time_ = 0L;
+
+        amount_ = 0;
+
+        message_ = "";
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderRequest_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.UpOrderRequest getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.UpOrderRequest.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.UpOrderRequest build() {
+        com.example.farmshop.farmshop.UpOrderRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.UpOrderRequest buildPartial() {
+        com.example.farmshop.farmshop.UpOrderRequest result = new com.example.farmshop.farmshop.UpOrderRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.type_ = type_;
+        if (buyListBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            buyList_ = java.util.Collections.unmodifiableList(buyList_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.buyList_ = buyList_;
+        } else {
+          result.buyList_ = buyListBuilder_.build();
+        }
+        result.time_ = time_;
+        result.amount_ = amount_;
+        result.message_ = message_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.UpOrderRequest) {
+          return mergeFrom((com.example.farmshop.farmshop.UpOrderRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.UpOrderRequest other) {
+        if (other == com.example.farmshop.farmshop.UpOrderRequest.getDefaultInstance()) return this;
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (buyListBuilder_ == null) {
+          if (!other.buyList_.isEmpty()) {
+            if (buyList_.isEmpty()) {
+              buyList_ = other.buyList_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureBuyListIsMutable();
+              buyList_.addAll(other.buyList_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.buyList_.isEmpty()) {
+            if (buyListBuilder_.isEmpty()) {
+              buyListBuilder_.dispose();
+              buyListBuilder_ = null;
+              buyList_ = other.buyList_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              buyListBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getBuyListFieldBuilder() : null;
+            } else {
+              buyListBuilder_.addAllMessages(other.buyList_);
+            }
+          }
+        }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
+        if (other.getAmount() != 0) {
+          setAmount(other.getAmount());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.UpOrderRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.UpOrderRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int type_ ;
+      /**
+       * <pre>
+       *备用，订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 1;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       *备用，订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 1;</code>
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *备用，订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 1;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.example.farmshop.farmshop.BuyOneInfo> buyList_ =
+        java.util.Collections.emptyList();
+      private void ensureBuyListIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          buyList_ = new java.util.ArrayList<com.example.farmshop.farmshop.BuyOneInfo>(buyList_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder> buyListBuilder_;
+
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.BuyOneInfo> getBuyListList() {
+        if (buyListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(buyList_);
+        } else {
+          return buyListBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public int getBuyListCount() {
+        if (buyListBuilder_ == null) {
+          return buyList_.size();
+        } else {
+          return buyListBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo getBuyList(int index) {
+        if (buyListBuilder_ == null) {
+          return buyList_.get(index);
+        } else {
+          return buyListBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder setBuyList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (buyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuyListIsMutable();
+          buyList_.set(index, value);
+          onChanged();
+        } else {
+          buyListBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder setBuyList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (buyListBuilder_ == null) {
+          ensureBuyListIsMutable();
+          buyList_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          buyListBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder addBuyList(com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (buyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuyListIsMutable();
+          buyList_.add(value);
+          onChanged();
+        } else {
+          buyListBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder addBuyList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (buyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuyListIsMutable();
+          buyList_.add(index, value);
+          onChanged();
+        } else {
+          buyListBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder addBuyList(
+          com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (buyListBuilder_ == null) {
+          ensureBuyListIsMutable();
+          buyList_.add(builderForValue.build());
+          onChanged();
+        } else {
+          buyListBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder addBuyList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (buyListBuilder_ == null) {
+          ensureBuyListIsMutable();
+          buyList_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          buyListBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder addAllBuyList(
+          java.lang.Iterable<? extends com.example.farmshop.farmshop.BuyOneInfo> values) {
+        if (buyListBuilder_ == null) {
+          ensureBuyListIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, buyList_);
+          onChanged();
+        } else {
+          buyListBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder clearBuyList() {
+        if (buyListBuilder_ == null) {
+          buyList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          buyListBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public Builder removeBuyList(int index) {
+        if (buyListBuilder_ == null) {
+          ensureBuyListIsMutable();
+          buyList_.remove(index);
+          onChanged();
+        } else {
+          buyListBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder getBuyListBuilder(
+          int index) {
+        return getBuyListFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfoOrBuilder getBuyListOrBuilder(
+          int index) {
+        if (buyListBuilder_ == null) {
+          return buyList_.get(index);  } else {
+          return buyListBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+           getBuyListOrBuilderList() {
+        if (buyListBuilder_ != null) {
+          return buyListBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(buyList_);
+        }
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder addBuyListBuilder() {
+        return getBuyListFieldBuilder().addBuilder(
+            com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder addBuyListBuilder(
+          int index) {
+        return getBuyListFieldBuilder().addBuilder(
+            index, com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *购买清单
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo buyList = 2;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.BuyOneInfo.Builder> 
+           getBuyListBuilderList() {
+        return getBuyListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+          getBuyListFieldBuilder() {
+        if (buyListBuilder_ == null) {
+          buyListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder>(
+                  buyList_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          buyList_ = null;
+        }
+        return buyListBuilder_;
+      }
+
+      private long time_ ;
+      /**
+       * <pre>
+       *购买时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <pre>
+       *购买时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *购买时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int amount_ ;
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public int getAmount() {
+        return amount_;
+      }
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public Builder setAmount(int value) {
+        
+        amount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public Builder clearAmount() {
+        
+        amount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.UpOrderRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.UpOrderRequest)
+    private static final com.example.farmshop.farmshop.UpOrderRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.UpOrderRequest();
+    }
+
+    public static com.example.farmshop.farmshop.UpOrderRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpOrderRequest>
+        PARSER = new com.google.protobuf.AbstractParser<UpOrderRequest>() {
+      public UpOrderRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UpOrderRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpOrderRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpOrderRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.UpOrderRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BuyOneInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.BuyOneInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *菜名
+     * </pre>
+     *
+     * <code>optional string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <pre>
+     *菜名
+     * </pre>
+     *
+     * <code>optional string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <pre>
+     *两
+     * </pre>
+     *
+     * <code>optional int32 weight = 2;</code>
+     */
+    int getWeight();
+
+    /**
+     * <pre>
+     *分
+     * </pre>
+     *
+     * <code>optional int32 price = 3;</code>
+     */
+    int getPrice();
+  }
+  /**
+   * Protobuf type {@code farmshop.BuyOneInfo}
+   */
+  public  static final class BuyOneInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.BuyOneInfo)
+      BuyOneInfoOrBuilder {
+    // Use BuyOneInfo.newBuilder() to construct.
+    private BuyOneInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BuyOneInfo() {
+      name_ = "";
+      weight_ = 0;
+      price_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private BuyOneInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 16: {
+
+              weight_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              price_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_BuyOneInfo_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_BuyOneInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.BuyOneInfo.class, com.example.farmshop.farmshop.BuyOneInfo.Builder.class);
+    }
+
+    public static final int NAME_FIELD_NUMBER = 1;
+    private volatile java.lang.Object name_;
+    /**
+     * <pre>
+     *菜名
+     * </pre>
+     *
+     * <code>optional string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *菜名
+     * </pre>
+     *
+     * <code>optional string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int WEIGHT_FIELD_NUMBER = 2;
+    private int weight_;
+    /**
+     * <pre>
+     *两
+     * </pre>
+     *
+     * <code>optional int32 weight = 2;</code>
+     */
+    public int getWeight() {
+      return weight_;
+    }
+
+    public static final int PRICE_FIELD_NUMBER = 3;
+    private int price_;
+    /**
+     * <pre>
+     *分
+     * </pre>
+     *
+     * <code>optional int32 price = 3;</code>
+     */
+    public int getPrice() {
+      return price_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+      }
+      if (weight_ != 0) {
+        output.writeInt32(2, weight_);
+      }
+      if (price_ != 0) {
+        output.writeInt32(3, price_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+      }
+      if (weight_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, weight_);
+      }
+      if (price_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, price_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.BuyOneInfo)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.BuyOneInfo other = (com.example.farmshop.farmshop.BuyOneInfo) obj;
+
+      boolean result = true;
+      result = result && getName()
+          .equals(other.getName());
+      result = result && (getWeight()
+          == other.getWeight());
+      result = result && (getPrice()
+          == other.getPrice());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + getWeight();
+      hash = (37 * hash) + PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + getPrice();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.BuyOneInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.BuyOneInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.BuyOneInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.BuyOneInfo)
+        com.example.farmshop.farmshop.BuyOneInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_BuyOneInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_BuyOneInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.BuyOneInfo.class, com.example.farmshop.farmshop.BuyOneInfo.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.BuyOneInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+
+        weight_ = 0;
+
+        price_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_BuyOneInfo_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.BuyOneInfo getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.BuyOneInfo build() {
+        com.example.farmshop.farmshop.BuyOneInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.BuyOneInfo buildPartial() {
+        com.example.farmshop.farmshop.BuyOneInfo result = new com.example.farmshop.farmshop.BuyOneInfo(this);
+        result.name_ = name_;
+        result.weight_ = weight_;
+        result.price_ = price_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.BuyOneInfo) {
+          return mergeFrom((com.example.farmshop.farmshop.BuyOneInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.BuyOneInfo other) {
+        if (other == com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance()) return this;
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.getWeight() != 0) {
+          setWeight(other.getWeight());
+        }
+        if (other.getPrice() != 0) {
+          setPrice(other.getPrice());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.BuyOneInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.BuyOneInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <pre>
+       *菜名
+       * </pre>
+       *
+       * <code>optional string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *菜名
+       * </pre>
+       *
+       * <code>optional string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *菜名
+       * </pre>
+       *
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *菜名
+       * </pre>
+       *
+       * <code>optional string name = 1;</code>
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *菜名
+       * </pre>
+       *
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int weight_ ;
+      /**
+       * <pre>
+       *两
+       * </pre>
+       *
+       * <code>optional int32 weight = 2;</code>
+       */
+      public int getWeight() {
+        return weight_;
+      }
+      /**
+       * <pre>
+       *两
+       * </pre>
+       *
+       * <code>optional int32 weight = 2;</code>
+       */
+      public Builder setWeight(int value) {
+        
+        weight_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *两
+       * </pre>
+       *
+       * <code>optional int32 weight = 2;</code>
+       */
+      public Builder clearWeight() {
+        
+        weight_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int price_ ;
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 price = 3;</code>
+       */
+      public int getPrice() {
+        return price_;
+      }
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 price = 3;</code>
+       */
+      public Builder setPrice(int value) {
+        
+        price_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *分
+       * </pre>
+       *
+       * <code>optional int32 price = 3;</code>
+       */
+      public Builder clearPrice() {
+        
+        price_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.BuyOneInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.BuyOneInfo)
+    private static final com.example.farmshop.farmshop.BuyOneInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.BuyOneInfo();
+    }
+
+    public static com.example.farmshop.farmshop.BuyOneInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BuyOneInfo>
+        PARSER = new com.google.protobuf.AbstractParser<BuyOneInfo>() {
+      public BuyOneInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new BuyOneInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BuyOneInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BuyOneInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.BuyOneInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface UpOrderResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.UpOrderResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    int getResult();
+  }
+  /**
+   * Protobuf type {@code farmshop.UpOrderResponse}
+   */
+  public  static final class UpOrderResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.UpOrderResponse)
+      UpOrderResponseOrBuilder {
+    // Use UpOrderResponse.newBuilder() to construct.
+    private UpOrderResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private UpOrderResponse() {
+      result_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private UpOrderResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              result_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.UpOrderResponse.class, com.example.farmshop.farmshop.UpOrderResponse.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    public int getResult() {
+      return result_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != 0) {
+        output.writeInt32(1, result_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, result_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.UpOrderResponse)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.UpOrderResponse other = (com.example.farmshop.farmshop.UpOrderResponse) obj;
+
+      boolean result = true;
+      result = result && (getResult()
+          == other.getResult());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.UpOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.UpOrderResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.UpOrderResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.UpOrderResponse)
+        com.example.farmshop.farmshop.UpOrderResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.UpOrderResponse.class, com.example.farmshop.farmshop.UpOrderResponse.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.UpOrderResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_UpOrderResponse_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.UpOrderResponse getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.UpOrderResponse.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.UpOrderResponse build() {
+        com.example.farmshop.farmshop.UpOrderResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.UpOrderResponse buildPartial() {
+        com.example.farmshop.farmshop.UpOrderResponse result = new com.example.farmshop.farmshop.UpOrderResponse(this);
+        result.result_ = result_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.UpOrderResponse) {
+          return mergeFrom((com.example.farmshop.farmshop.UpOrderResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.UpOrderResponse other) {
+        if (other == com.example.farmshop.farmshop.UpOrderResponse.getDefaultInstance()) return this;
+        if (other.getResult() != 0) {
+          setResult(other.getResult());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.UpOrderResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.UpOrderResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int result_ ;
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public int getResult() {
+        return result_;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder setResult(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.UpOrderResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.UpOrderResponse)
+    private static final com.example.farmshop.farmshop.UpOrderResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.UpOrderResponse();
+    }
+
+    public static com.example.farmshop.farmshop.UpOrderResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<UpOrderResponse>
+        PARSER = new com.google.protobuf.AbstractParser<UpOrderResponse>() {
+      public UpOrderResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new UpOrderResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<UpOrderResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<UpOrderResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.UpOrderResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface QueryOrderRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.QueryOrderRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *默认全部
+     * </pre>
+     *
+     * <code>optional int64 lastTime = 1;</code>
+     */
+    long getLastTime();
+  }
+  /**
+   * <pre>
+   *QUERYORDER_REQ
+   * </pre>
+   *
+   * Protobuf type {@code farmshop.QueryOrderRequest}
+   */
+  public  static final class QueryOrderRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.QueryOrderRequest)
+      QueryOrderRequestOrBuilder {
+    // Use QueryOrderRequest.newBuilder() to construct.
+    private QueryOrderRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private QueryOrderRequest() {
+      lastTime_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private QueryOrderRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              lastTime_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.QueryOrderRequest.class, com.example.farmshop.farmshop.QueryOrderRequest.Builder.class);
+    }
+
+    public static final int LASTTIME_FIELD_NUMBER = 1;
+    private long lastTime_;
+    /**
+     * <pre>
+     *默认全部
+     * </pre>
+     *
+     * <code>optional int64 lastTime = 1;</code>
+     */
+    public long getLastTime() {
+      return lastTime_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (lastTime_ != 0L) {
+        output.writeInt64(1, lastTime_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (lastTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, lastTime_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.QueryOrderRequest)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.QueryOrderRequest other = (com.example.farmshop.farmshop.QueryOrderRequest) obj;
+
+      boolean result = true;
+      result = result && (getLastTime()
+          == other.getLastTime());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + LASTTIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getLastTime());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.QueryOrderRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *QUERYORDER_REQ
+     * </pre>
+     *
+     * Protobuf type {@code farmshop.QueryOrderRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.QueryOrderRequest)
+        com.example.farmshop.farmshop.QueryOrderRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.QueryOrderRequest.class, com.example.farmshop.farmshop.QueryOrderRequest.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.QueryOrderRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        lastTime_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderRequest_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderRequest getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.QueryOrderRequest.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderRequest build() {
+        com.example.farmshop.farmshop.QueryOrderRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderRequest buildPartial() {
+        com.example.farmshop.farmshop.QueryOrderRequest result = new com.example.farmshop.farmshop.QueryOrderRequest(this);
+        result.lastTime_ = lastTime_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.QueryOrderRequest) {
+          return mergeFrom((com.example.farmshop.farmshop.QueryOrderRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.QueryOrderRequest other) {
+        if (other == com.example.farmshop.farmshop.QueryOrderRequest.getDefaultInstance()) return this;
+        if (other.getLastTime() != 0L) {
+          setLastTime(other.getLastTime());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.QueryOrderRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.QueryOrderRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long lastTime_ ;
+      /**
+       * <pre>
+       *默认全部
+       * </pre>
+       *
+       * <code>optional int64 lastTime = 1;</code>
+       */
+      public long getLastTime() {
+        return lastTime_;
+      }
+      /**
+       * <pre>
+       *默认全部
+       * </pre>
+       *
+       * <code>optional int64 lastTime = 1;</code>
+       */
+      public Builder setLastTime(long value) {
+        
+        lastTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *默认全部
+       * </pre>
+       *
+       * <code>optional int64 lastTime = 1;</code>
+       */
+      public Builder clearLastTime() {
+        
+        lastTime_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.QueryOrderRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.QueryOrderRequest)
+    private static final com.example.farmshop.farmshop.QueryOrderRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.QueryOrderRequest();
+    }
+
+    public static com.example.farmshop.farmshop.QueryOrderRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<QueryOrderRequest>
+        PARSER = new com.google.protobuf.AbstractParser<QueryOrderRequest>() {
+      public QueryOrderRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new QueryOrderRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<QueryOrderRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<QueryOrderRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.QueryOrderRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface QueryOrderResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.QueryOrderResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    int getResult();
+
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    java.util.List<com.example.farmshop.farmshop.Order> 
+        getOrdersList();
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    com.example.farmshop.farmshop.Order getOrders(int index);
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    int getOrdersCount();
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    java.util.List<? extends com.example.farmshop.farmshop.OrderOrBuilder> 
+        getOrdersOrBuilderList();
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    com.example.farmshop.farmshop.OrderOrBuilder getOrdersOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code farmshop.QueryOrderResponse}
+   */
+  public  static final class QueryOrderResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.QueryOrderResponse)
+      QueryOrderResponseOrBuilder {
+    // Use QueryOrderResponse.newBuilder() to construct.
+    private QueryOrderResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private QueryOrderResponse() {
+      result_ = 0;
+      orders_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private QueryOrderResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              result_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                orders_ = new java.util.ArrayList<com.example.farmshop.farmshop.Order>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              orders_.add(
+                  input.readMessage(com.example.farmshop.farmshop.Order.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          orders_ = java.util.Collections.unmodifiableList(orders_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.QueryOrderResponse.class, com.example.farmshop.farmshop.QueryOrderResponse.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    public int getResult() {
+      return result_;
+    }
+
+    public static final int ORDERS_FIELD_NUMBER = 2;
+    private java.util.List<com.example.farmshop.farmshop.Order> orders_;
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    public java.util.List<com.example.farmshop.farmshop.Order> getOrdersList() {
+      return orders_;
+    }
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    public java.util.List<? extends com.example.farmshop.farmshop.OrderOrBuilder> 
+        getOrdersOrBuilderList() {
+      return orders_;
+    }
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    public int getOrdersCount() {
+      return orders_.size();
+    }
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    public com.example.farmshop.farmshop.Order getOrders(int index) {
+      return orders_.get(index);
+    }
+    /**
+     * <pre>
+     *所有订单
+     * </pre>
+     *
+     * <code>repeated .farmshop.Order orders = 2;</code>
+     */
+    public com.example.farmshop.farmshop.OrderOrBuilder getOrdersOrBuilder(
+        int index) {
+      return orders_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != 0) {
+        output.writeInt32(1, result_);
+      }
+      for (int i = 0; i < orders_.size(); i++) {
+        output.writeMessage(2, orders_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, result_);
+      }
+      for (int i = 0; i < orders_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, orders_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.QueryOrderResponse)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.QueryOrderResponse other = (com.example.farmshop.farmshop.QueryOrderResponse) obj;
+
+      boolean result = true;
+      result = result && (getResult()
+          == other.getResult());
+      result = result && getOrdersList()
+          .equals(other.getOrdersList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult();
+      if (getOrdersCount() > 0) {
+        hash = (37 * hash) + ORDERS_FIELD_NUMBER;
+        hash = (53 * hash) + getOrdersList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.QueryOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.QueryOrderResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.QueryOrderResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.QueryOrderResponse)
+        com.example.farmshop.farmshop.QueryOrderResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.QueryOrderResponse.class, com.example.farmshop.farmshop.QueryOrderResponse.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.QueryOrderResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getOrdersFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = 0;
+
+        if (ordersBuilder_ == null) {
+          orders_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          ordersBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_QueryOrderResponse_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderResponse getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.QueryOrderResponse.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderResponse build() {
+        com.example.farmshop.farmshop.QueryOrderResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.QueryOrderResponse buildPartial() {
+        com.example.farmshop.farmshop.QueryOrderResponse result = new com.example.farmshop.farmshop.QueryOrderResponse(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.result_ = result_;
+        if (ordersBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            orders_ = java.util.Collections.unmodifiableList(orders_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.orders_ = orders_;
+        } else {
+          result.orders_ = ordersBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.QueryOrderResponse) {
+          return mergeFrom((com.example.farmshop.farmshop.QueryOrderResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.QueryOrderResponse other) {
+        if (other == com.example.farmshop.farmshop.QueryOrderResponse.getDefaultInstance()) return this;
+        if (other.getResult() != 0) {
+          setResult(other.getResult());
+        }
+        if (ordersBuilder_ == null) {
+          if (!other.orders_.isEmpty()) {
+            if (orders_.isEmpty()) {
+              orders_ = other.orders_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureOrdersIsMutable();
+              orders_.addAll(other.orders_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.orders_.isEmpty()) {
+            if (ordersBuilder_.isEmpty()) {
+              ordersBuilder_.dispose();
+              ordersBuilder_ = null;
+              orders_ = other.orders_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              ordersBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getOrdersFieldBuilder() : null;
+            } else {
+              ordersBuilder_.addAllMessages(other.orders_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.QueryOrderResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.QueryOrderResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int result_ ;
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public int getResult() {
+        return result_;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder setResult(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.example.farmshop.farmshop.Order> orders_ =
+        java.util.Collections.emptyList();
+      private void ensureOrdersIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          orders_ = new java.util.ArrayList<com.example.farmshop.farmshop.Order>(orders_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.Order, com.example.farmshop.farmshop.Order.Builder, com.example.farmshop.farmshop.OrderOrBuilder> ordersBuilder_;
+
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.Order> getOrdersList() {
+        if (ordersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(orders_);
+        } else {
+          return ordersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public int getOrdersCount() {
+        if (ordersBuilder_ == null) {
+          return orders_.size();
+        } else {
+          return ordersBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public com.example.farmshop.farmshop.Order getOrders(int index) {
+        if (ordersBuilder_ == null) {
+          return orders_.get(index);
+        } else {
+          return ordersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder setOrders(
+          int index, com.example.farmshop.farmshop.Order value) {
+        if (ordersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOrdersIsMutable();
+          orders_.set(index, value);
+          onChanged();
+        } else {
+          ordersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder setOrders(
+          int index, com.example.farmshop.farmshop.Order.Builder builderForValue) {
+        if (ordersBuilder_ == null) {
+          ensureOrdersIsMutable();
+          orders_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          ordersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder addOrders(com.example.farmshop.farmshop.Order value) {
+        if (ordersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOrdersIsMutable();
+          orders_.add(value);
+          onChanged();
+        } else {
+          ordersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder addOrders(
+          int index, com.example.farmshop.farmshop.Order value) {
+        if (ordersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOrdersIsMutable();
+          orders_.add(index, value);
+          onChanged();
+        } else {
+          ordersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder addOrders(
+          com.example.farmshop.farmshop.Order.Builder builderForValue) {
+        if (ordersBuilder_ == null) {
+          ensureOrdersIsMutable();
+          orders_.add(builderForValue.build());
+          onChanged();
+        } else {
+          ordersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder addOrders(
+          int index, com.example.farmshop.farmshop.Order.Builder builderForValue) {
+        if (ordersBuilder_ == null) {
+          ensureOrdersIsMutable();
+          orders_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          ordersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder addAllOrders(
+          java.lang.Iterable<? extends com.example.farmshop.farmshop.Order> values) {
+        if (ordersBuilder_ == null) {
+          ensureOrdersIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, orders_);
+          onChanged();
+        } else {
+          ordersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder clearOrders() {
+        if (ordersBuilder_ == null) {
+          orders_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          ordersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public Builder removeOrders(int index) {
+        if (ordersBuilder_ == null) {
+          ensureOrdersIsMutable();
+          orders_.remove(index);
+          onChanged();
+        } else {
+          ordersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public com.example.farmshop.farmshop.Order.Builder getOrdersBuilder(
+          int index) {
+        return getOrdersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public com.example.farmshop.farmshop.OrderOrBuilder getOrdersOrBuilder(
+          int index) {
+        if (ordersBuilder_ == null) {
+          return orders_.get(index);  } else {
+          return ordersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public java.util.List<? extends com.example.farmshop.farmshop.OrderOrBuilder> 
+           getOrdersOrBuilderList() {
+        if (ordersBuilder_ != null) {
+          return ordersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(orders_);
+        }
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public com.example.farmshop.farmshop.Order.Builder addOrdersBuilder() {
+        return getOrdersFieldBuilder().addBuilder(
+            com.example.farmshop.farmshop.Order.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public com.example.farmshop.farmshop.Order.Builder addOrdersBuilder(
+          int index) {
+        return getOrdersFieldBuilder().addBuilder(
+            index, com.example.farmshop.farmshop.Order.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *所有订单
+       * </pre>
+       *
+       * <code>repeated .farmshop.Order orders = 2;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.Order.Builder> 
+           getOrdersBuilderList() {
+        return getOrdersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.Order, com.example.farmshop.farmshop.Order.Builder, com.example.farmshop.farmshop.OrderOrBuilder> 
+          getOrdersFieldBuilder() {
+        if (ordersBuilder_ == null) {
+          ordersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.farmshop.farmshop.Order, com.example.farmshop.farmshop.Order.Builder, com.example.farmshop.farmshop.OrderOrBuilder>(
+                  orders_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          orders_ = null;
+        }
+        return ordersBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.QueryOrderResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.QueryOrderResponse)
+    private static final com.example.farmshop.farmshop.QueryOrderResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.QueryOrderResponse();
+    }
+
+    public static com.example.farmshop.farmshop.QueryOrderResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<QueryOrderResponse>
+        PARSER = new com.google.protobuf.AbstractParser<QueryOrderResponse>() {
+      public QueryOrderResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new QueryOrderResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<QueryOrderResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<QueryOrderResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.QueryOrderResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface OrderOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.Order)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *订单号
+     * </pre>
+     *
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+
+    /**
+     * <pre>
+     *订单类型
+     * </pre>
+     *
+     * <code>optional int32 type = 2;</code>
+     */
+    int getType();
+
+    /**
+     * <pre>
+     *时间
+     * </pre>
+     *
+     * <code>optional int64 time = 3;</code>
+     */
+    long getTime();
+
+    /**
+     * <pre>
+     *总价
+     * </pre>
+     *
+     * <code>optional int32 amount = 4;</code>
+     */
+    int getAmount();
+
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    java.lang.String getMessage();
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getMessageBytes();
+
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    java.util.List<com.example.farmshop.farmshop.BuyOneInfo> 
+        getListList();
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    com.example.farmshop.farmshop.BuyOneInfo getList(int index);
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    int getListCount();
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+        getListOrBuilderList();
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    com.example.farmshop.farmshop.BuyOneInfoOrBuilder getListOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     *订单状态
+     * </pre>
+     *
+     * <code>optional int32 state = 7;</code>
+     */
+    int getState();
+  }
+  /**
+   * Protobuf type {@code farmshop.Order}
+   */
+  public  static final class Order extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.Order)
+      OrderOrBuilder {
+    // Use Order.newBuilder() to construct.
+    private Order(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Order() {
+      id_ = 0;
+      type_ = 0;
+      time_ = 0L;
+      amount_ = 0;
+      message_ = "";
+      list_ = java.util.Collections.emptyList();
+      state_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Order(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              id_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              type_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            case 32: {
+
+              amount_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              message_ = s;
+              break;
+            }
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                list_ = new java.util.ArrayList<com.example.farmshop.farmshop.BuyOneInfo>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              list_.add(
+                  input.readMessage(com.example.farmshop.farmshop.BuyOneInfo.parser(), extensionRegistry));
+              break;
+            }
+            case 56: {
+
+              state_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          list_ = java.util.Collections.unmodifiableList(list_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_Order_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_Order_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.Order.class, com.example.farmshop.farmshop.Order.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <pre>
+     *订单号
+     * </pre>
+     *
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
+    /**
+     * <pre>
+     *订单类型
+     * </pre>
+     *
+     * <code>optional int32 type = 2;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
+    public static final int TIME_FIELD_NUMBER = 3;
+    private long time_;
+    /**
+     * <pre>
+     *时间
+     * </pre>
+     *
+     * <code>optional int64 time = 3;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    public static final int AMOUNT_FIELD_NUMBER = 4;
+    private int amount_;
+    /**
+     * <pre>
+     *总价
+     * </pre>
+     *
+     * <code>optional int32 amount = 4;</code>
+     */
+    public int getAmount() {
+      return amount_;
+    }
+
+    public static final int MESSAGE_FIELD_NUMBER = 5;
+    private volatile java.lang.Object message_;
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        message_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *留言
+     * </pre>
+     *
+     * <code>optional string message = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMessageBytes() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        message_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LIST_FIELD_NUMBER = 6;
+    private java.util.List<com.example.farmshop.farmshop.BuyOneInfo> list_;
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    public java.util.List<com.example.farmshop.farmshop.BuyOneInfo> getListList() {
+      return list_;
+    }
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    public java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+        getListOrBuilderList() {
+      return list_;
+    }
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    public int getListCount() {
+      return list_.size();
+    }
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    public com.example.farmshop.farmshop.BuyOneInfo getList(int index) {
+      return list_.get(index);
+    }
+    /**
+     * <pre>
+     *列表
+     * </pre>
+     *
+     * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+     */
+    public com.example.farmshop.farmshop.BuyOneInfoOrBuilder getListOrBuilder(
+        int index) {
+      return list_.get(index);
+    }
+
+    public static final int STATE_FIELD_NUMBER = 7;
+    private int state_;
+    /**
+     * <pre>
+     *订单状态
+     * </pre>
+     *
+     * <code>optional int32 state = 7;</code>
+     */
+    public int getState() {
+      return state_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (type_ != 0) {
+        output.writeInt32(2, type_);
+      }
+      if (time_ != 0L) {
+        output.writeInt64(3, time_);
+      }
+      if (amount_ != 0) {
+        output.writeInt32(4, amount_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, message_);
+      }
+      for (int i = 0; i < list_.size(); i++) {
+        output.writeMessage(6, list_.get(i));
+      }
+      if (state_ != 0) {
+        output.writeInt32(7, state_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, type_);
+      }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, time_);
+      }
+      if (amount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, amount_);
+      }
+      if (!getMessageBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, message_);
+      }
+      for (int i = 0; i < list_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, list_.get(i));
+      }
+      if (state_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, state_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.Order)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.Order other = (com.example.farmshop.farmshop.Order) obj;
+
+      boolean result = true;
+      result = result && (getId()
+          == other.getId());
+      result = result && (getType()
+          == other.getType());
+      result = result && (getTime()
+          == other.getTime());
+      result = result && (getAmount()
+          == other.getAmount());
+      result = result && getMessage()
+          .equals(other.getMessage());
+      result = result && getListList()
+          .equals(other.getListList());
+      result = result && (getState()
+          == other.getState());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
+      hash = (37 * hash) + AMOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getAmount();
+      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getMessage().hashCode();
+      if (getListCount() > 0) {
+        hash = (37 * hash) + LIST_FIELD_NUMBER;
+        hash = (53 * hash) + getListList().hashCode();
+      }
+      hash = (37 * hash) + STATE_FIELD_NUMBER;
+      hash = (53 * hash) + getState();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.Order parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.Order parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.Order parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.Order prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.Order}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.Order)
+        com.example.farmshop.farmshop.OrderOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_Order_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_Order_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.Order.class, com.example.farmshop.farmshop.Order.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.Order.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getListFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+
+        type_ = 0;
+
+        time_ = 0L;
+
+        amount_ = 0;
+
+        message_ = "";
+
+        if (listBuilder_ == null) {
+          list_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          listBuilder_.clear();
+        }
+        state_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_Order_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.Order getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.Order.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.Order build() {
+        com.example.farmshop.farmshop.Order result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.Order buildPartial() {
+        com.example.farmshop.farmshop.Order result = new com.example.farmshop.farmshop.Order(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.id_ = id_;
+        result.type_ = type_;
+        result.time_ = time_;
+        result.amount_ = amount_;
+        result.message_ = message_;
+        if (listBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            list_ = java.util.Collections.unmodifiableList(list_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.list_ = list_;
+        } else {
+          result.list_ = listBuilder_.build();
+        }
+        result.state_ = state_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.Order) {
+          return mergeFrom((com.example.farmshop.farmshop.Order)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.Order other) {
+        if (other == com.example.farmshop.farmshop.Order.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
+        if (other.getAmount() != 0) {
+          setAmount(other.getAmount());
+        }
+        if (!other.getMessage().isEmpty()) {
+          message_ = other.message_;
+          onChanged();
+        }
+        if (listBuilder_ == null) {
+          if (!other.list_.isEmpty()) {
+            if (list_.isEmpty()) {
+              list_ = other.list_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureListIsMutable();
+              list_.addAll(other.list_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.list_.isEmpty()) {
+            if (listBuilder_.isEmpty()) {
+              listBuilder_.dispose();
+              listBuilder_ = null;
+              list_ = other.list_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              listBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getListFieldBuilder() : null;
+            } else {
+              listBuilder_.addAllMessages(other.list_);
+            }
+          }
+        }
+        if (other.getState() != 0) {
+          setState(other.getState());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.Order parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.Order) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <pre>
+       *订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 2;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       *订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 2;</code>
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *订单类型
+       * </pre>
+       *
+       * <code>optional int32 type = 2;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <pre>
+       *时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <pre>
+       *时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *时间
+       * </pre>
+       *
+       * <code>optional int64 time = 3;</code>
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int amount_ ;
+      /**
+       * <pre>
+       *总价
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public int getAmount() {
+        return amount_;
+      }
+      /**
+       * <pre>
+       *总价
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public Builder setAmount(int value) {
+        
+        amount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *总价
+       * </pre>
+       *
+       * <code>optional int32 amount = 4;</code>
+       */
+      public Builder clearAmount() {
+        
+        amount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object message_ = "";
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          message_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMessageBytes() {
+        java.lang.Object ref = message_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          message_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder setMessage(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        message_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder clearMessage() {
+        
+        message_ = getDefaultInstance().getMessage();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *留言
+       * </pre>
+       *
+       * <code>optional string message = 5;</code>
+       */
+      public Builder setMessageBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        message_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.example.farmshop.farmshop.BuyOneInfo> list_ =
+        java.util.Collections.emptyList();
+      private void ensureListIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          list_ = new java.util.ArrayList<com.example.farmshop.farmshop.BuyOneInfo>(list_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder> listBuilder_;
+
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.BuyOneInfo> getListList() {
+        if (listBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(list_);
+        } else {
+          return listBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public int getListCount() {
+        if (listBuilder_ == null) {
+          return list_.size();
+        } else {
+          return listBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo getList(int index) {
+        if (listBuilder_ == null) {
+          return list_.get(index);
+        } else {
+          return listBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder setList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (listBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureListIsMutable();
+          list_.set(index, value);
+          onChanged();
+        } else {
+          listBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder setList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (listBuilder_ == null) {
+          ensureListIsMutable();
+          list_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          listBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder addList(com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (listBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureListIsMutable();
+          list_.add(value);
+          onChanged();
+        } else {
+          listBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder addList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo value) {
+        if (listBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureListIsMutable();
+          list_.add(index, value);
+          onChanged();
+        } else {
+          listBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder addList(
+          com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (listBuilder_ == null) {
+          ensureListIsMutable();
+          list_.add(builderForValue.build());
+          onChanged();
+        } else {
+          listBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder addList(
+          int index, com.example.farmshop.farmshop.BuyOneInfo.Builder builderForValue) {
+        if (listBuilder_ == null) {
+          ensureListIsMutable();
+          list_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          listBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder addAllList(
+          java.lang.Iterable<? extends com.example.farmshop.farmshop.BuyOneInfo> values) {
+        if (listBuilder_ == null) {
+          ensureListIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, list_);
+          onChanged();
+        } else {
+          listBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder clearList() {
+        if (listBuilder_ == null) {
+          list_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          listBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public Builder removeList(int index) {
+        if (listBuilder_ == null) {
+          ensureListIsMutable();
+          list_.remove(index);
+          onChanged();
+        } else {
+          listBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder getListBuilder(
+          int index) {
+        return getListFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfoOrBuilder getListOrBuilder(
+          int index) {
+        if (listBuilder_ == null) {
+          return list_.get(index);  } else {
+          return listBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public java.util.List<? extends com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+           getListOrBuilderList() {
+        if (listBuilder_ != null) {
+          return listBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(list_);
+        }
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder addListBuilder() {
+        return getListFieldBuilder().addBuilder(
+            com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public com.example.farmshop.farmshop.BuyOneInfo.Builder addListBuilder(
+          int index) {
+        return getListFieldBuilder().addBuilder(
+            index, com.example.farmshop.farmshop.BuyOneInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *列表
+       * </pre>
+       *
+       * <code>repeated .farmshop.BuyOneInfo list = 6;</code>
+       */
+      public java.util.List<com.example.farmshop.farmshop.BuyOneInfo.Builder> 
+           getListBuilderList() {
+        return getListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder> 
+          getListFieldBuilder() {
+        if (listBuilder_ == null) {
+          listBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.farmshop.farmshop.BuyOneInfo, com.example.farmshop.farmshop.BuyOneInfo.Builder, com.example.farmshop.farmshop.BuyOneInfoOrBuilder>(
+                  list_,
+                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  getParentForChildren(),
+                  isClean());
+          list_ = null;
+        }
+        return listBuilder_;
+      }
+
+      private int state_ ;
+      /**
+       * <pre>
+       *订单状态
+       * </pre>
+       *
+       * <code>optional int32 state = 7;</code>
+       */
+      public int getState() {
+        return state_;
+      }
+      /**
+       * <pre>
+       *订单状态
+       * </pre>
+       *
+       * <code>optional int32 state = 7;</code>
+       */
+      public Builder setState(int value) {
+        
+        state_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *订单状态
+       * </pre>
+       *
+       * <code>optional int32 state = 7;</code>
+       */
+      public Builder clearState() {
+        
+        state_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.Order)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.Order)
+    private static final com.example.farmshop.farmshop.Order DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.Order();
+    }
+
+    public static com.example.farmshop.farmshop.Order getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Order>
+        PARSER = new com.google.protobuf.AbstractParser<Order>() {
+      public Order parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Order(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Order> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Order> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.Order getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_farmshop_ClientSession_descriptor;
   private static final 
@@ -5805,6 +12446,46 @@ public final class farmshop {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_farmshop_EditUserInfoResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_SendMessageRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_SendMessageRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_SendMessageResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_SendMessageResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_UpOrderRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_UpOrderRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_BuyOneInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_BuyOneInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_UpOrderResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_UpOrderResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_QueryOrderRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_QueryOrderRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_QueryOrderResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_QueryOrderResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_Order_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_Order_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -5829,12 +12510,31 @@ public final class farmshop {
       "me\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age\030\005 \001(\005\022\023\n\013ph" +
       "oneNumber\030\006 \001(\t\022\020\n\010location\030\007 \001(\t\022\021\n\tisM" +
       "anager\030\010 \001(\010\022\017\n\007petName\030\t \001(\t\"&\n\024EditUse" +
-      "rInfoResponse\022\016\n\006result\030\001 \001(\005*\223\001\n\005MsgId\022" +
-      "\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREG" +
-      "IST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004" +
-      "\022\r\n\tLOGIN_RES\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n" +
-      "\020EditUserInfo_RES\020\007B \n\024com.example.farms",
-      "hopB\010farmshopb\006proto3"
+      "rInfoResponse\022\016\n\006result\030\001 \001(\005\"#\n\022SendMes" +
+      "sageRequest\022\r\n\005words\030\001 \001(\t\"4\n\023SendMessag" +
+      "eResponse\022\016\n\006result\030\001 \001(\005\022\r\n\005words\030\002 \001(\t" +
+      "\"t\n\016UpOrderRequest\022\014\n\004type\030\001 \001(\005\022%\n\007buyL" +
+      "ist\030\002 \003(\0132\024.farmshop.BuyOneInfo\022\014\n\004time\030",
+      "\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\"9" +
+      "\n\nBuyOneInfo\022\014\n\004name\030\001 \001(\t\022\016\n\006weight\030\002 \001" +
+      "(\005\022\r\n\005price\030\003 \001(\005\"!\n\017UpOrderResponse\022\016\n\006" +
+      "result\030\001 \001(\005\"%\n\021QueryOrderRequest\022\020\n\010las" +
+      "tTime\030\001 \001(\003\"E\n\022QueryOrderResponse\022\016\n\006res" +
+      "ult\030\001 \001(\005\022\037\n\006orders\030\002 \003(\0132\017.farmshop.Ord" +
+      "er\"\203\001\n\005Order\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\014" +
+      "\n\004time\030\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030" +
+      "\005 \001(\t\022\"\n\004list\030\006 \003(\0132\024.farmshop.BuyOneInf" +
+      "o\022\r\n\005state\030\007 \001(\005*\211\002\n\005MsgId\022\017\n\013CONNECT_RE",
+      "Q\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\n" +
+      "REGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES" +
+      "\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020EditUserInfo" +
+      "_RES\020\007\022\024\n\020SEND_MESSAGE_REQ\020\010\022\024\n\020SEND_MES" +
+      "SAGE_RES\020\t\022\017\n\013UPORDER_REQ\020\n\022\017\n\013UPORDER_R" +
+      "ES\020\013\022\022\n\016QUERYORDER_REQ\020\014\022\022\n\016QUERYORDER_R" +
+      "ES\020\r*l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000" +
+      "\022\020\n\014ORDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n" +
+      "\rORDER_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024co" +
+      "m.example.farmshopB\010farmshopb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5897,6 +12597,54 @@ public final class farmshop {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_farmshop_EditUserInfoResponse_descriptor,
         new java.lang.String[] { "Result", });
+    internal_static_farmshop_SendMessageRequest_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_farmshop_SendMessageRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_SendMessageRequest_descriptor,
+        new java.lang.String[] { "Words", });
+    internal_static_farmshop_SendMessageResponse_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_farmshop_SendMessageResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_SendMessageResponse_descriptor,
+        new java.lang.String[] { "Result", "Words", });
+    internal_static_farmshop_UpOrderRequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_farmshop_UpOrderRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_UpOrderRequest_descriptor,
+        new java.lang.String[] { "Type", "BuyList", "Time", "Amount", "Message", });
+    internal_static_farmshop_BuyOneInfo_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_farmshop_BuyOneInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_BuyOneInfo_descriptor,
+        new java.lang.String[] { "Name", "Weight", "Price", });
+    internal_static_farmshop_UpOrderResponse_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_farmshop_UpOrderResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_UpOrderResponse_descriptor,
+        new java.lang.String[] { "Result", });
+    internal_static_farmshop_QueryOrderRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_farmshop_QueryOrderRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_QueryOrderRequest_descriptor,
+        new java.lang.String[] { "LastTime", });
+    internal_static_farmshop_QueryOrderResponse_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_farmshop_QueryOrderResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_QueryOrderResponse_descriptor,
+        new java.lang.String[] { "Result", "Orders", });
+    internal_static_farmshop_Order_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_farmshop_Order_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_Order_descriptor,
+        new java.lang.String[] { "Id", "Type", "Time", "Amount", "Message", "List", "State", });
     com.google.protobuf.AnyProto.getDescriptor();
   }
 

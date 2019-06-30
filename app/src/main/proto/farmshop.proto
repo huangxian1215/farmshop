@@ -11,7 +11,7 @@ import "google/protobuf/any.proto";
 message ClientSession{
     int32 sessionId = 1;
 }
-
+//由于double 在值为1.0时 C++解析出数据有问题，统一只用int32转换
 enum MsgId{
     CONNECT_REQ = 0;
     CONNECT_RES = 1;
@@ -21,6 +21,12 @@ enum MsgId{
     LOGIN_RES = 5;
     EditUserInfo_REQ = 6;
     EditUserInfo_RES = 7;
+    SEND_MESSAGE_REQ = 8;
+    SEND_MESSAGE_RES = 9;
+    UPORDER_REQ = 10;
+    UPORDER_RES = 11;
+    QUERYORDER_REQ = 12;
+    QUERYORDER_RES = 13;
  }
 
 message baseType{
@@ -28,7 +34,7 @@ message baseType{
     string sessionId = 2;
 	repeated google.protobuf.Any object = 3;
 }
-
+//REGIST_REQ
 message RegistRequest{
 	string name = 1;
 	string password = 2;
@@ -37,6 +43,7 @@ message RegistRequest{
 message RegistResponse{
 	int32 result = 1;
 }
+//LOGIN_REQ
 message LoginRequest{
 	string name = 1;
 	string password = 2;
@@ -47,19 +54,71 @@ message LoginResponse{
     string name = 2;
     EditUserInfoRequest userinfo = 3;
 }
-
+//EditUserInfo_REQ
 message EditUserInfoRequest{
     int32 uid = 1;
-    string headimg = 2;
+    string headimg = 2; //头像路径
     string realName = 3;
     bool sex = 4;
     int32 age = 5;
     string phoneNumber = 6;
     string location = 7;
-    bool isManager = 8;
-    string petName = 9;
+    bool isManager = 8; //是否管理员
+    string petName = 9; //昵称
 }
 
 message EditUserInfoResponse{
     int32 result = 1;
+}
+//SEND_MESSAGE_REQ
+message SendMessageRequest{
+    string words = 1;
+}
+
+message SendMessageResponse{
+    int32 result = 1;
+    string words = 2;
+}
+//UPORDER_REQ
+message UpOrderRequest{
+    int32 type = 1; //备用，订单类型
+    repeated BuyOneInfo buyList = 2;    //购买清单
+    int64 time = 3;     //购买时间
+    int32 amount = 4; //分
+    string message = 5; //留言
+}
+
+message BuyOneInfo {
+    string name = 1;    //菜名
+    int32 weight = 2; //两
+    int32 price = 3; //分
+}
+
+enum OrderState{
+    ORDER_NOTRECIEVE = 0;   //未接收
+    ORDER_CANCEL = 1;       //用户取消
+    ORDER_RECIEVE = 2;      //买家接收
+    ORDER_NOSTOCK = 3;      //没有库存
+    ORDER_FINISH = 4;       //完结
+}
+
+message UpOrderResponse{
+    int32 result = 1;
+}
+//QUERYORDER_REQ
+message QueryOrderRequest{
+    int64 lastTime = 1; //默认全部
+}
+message QueryOrderResponse{
+    int32 result = 1;
+    repeated Order orders = 2;  //所有订单
+}
+message Order{
+    int32 id = 1;       //订单号
+    int32 type = 2;     //订单类型
+    int64 time = 3;     //时间
+    int32 amount = 4;   //总价
+    string message = 5; //留言
+    repeated BuyOneInfo list = 6; //列表
+    int32 state = 7;    //订单状态
 }
