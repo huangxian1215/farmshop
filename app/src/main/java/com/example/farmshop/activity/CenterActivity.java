@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.adapter.PublicTabViewPagerAdapter;
+import com.example.farmshop.farmshop;
 import com.example.farmshop.fragment.CommunityFragment;
 import com.example.farmshop.fragment.MyselfFragment;
 import com.example.farmshop.fragment.TodaySellFragment;
@@ -86,7 +87,7 @@ public class CenterActivity extends AppCompatActivity implements onGetFileListen
     }
 
     @Override
-    public void onGetNetData(Object info){
+    public void onGetNetData(Object info, farmshop.MsgId msgid){
 
     }
 

@@ -27,6 +27,8 @@ enum MsgId{
     UPORDER_RES = 11;
     QUERYORDER_REQ = 12;
     QUERYORDER_RES = 13;
+    DELETEORDER_REQ = 14;
+    DELETEORDER_RES = 15;
  }
 
 message baseType{
@@ -121,4 +123,12 @@ message Order{
     string message = 5; //留言
     repeated BuyOneInfo list = 6; //列表
     int32 state = 7;    //订单状态
+}
+
+message DeleteOrderRequest{
+    int32 id = 1;   //订单号
+}
+
+message DeleteOrderResponse{
+    int32 result = 1;
 }

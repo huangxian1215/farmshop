@@ -7,7 +7,7 @@ public class EachOneInfo {
 
     public EachOneInfo(String tname, int tweight, int tprice){
         name = tname;
-        weight = tweight/10;
-        price = tprice/100;
+        weight = (double)tweight/10;
+        price = (double)tprice/100;
     }
 }

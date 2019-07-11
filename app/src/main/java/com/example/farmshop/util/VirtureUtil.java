@@ -6,10 +6,12 @@ package com.example.farmshop.util;
 
 import android.view.View;
 
+import com.example.farmshop.farmshop;
+
 public class VirtureUtil {
     //网络监听用，与服务器
     public static interface onGetNetDataListener {
-        public abstract void onGetNetData(Object info);
+        public abstract void onGetNetData(Object info, farmshop.MsgId msgid);
     }
     public interface updateProgressListener{
         public abstract void updateProgress(int progress);

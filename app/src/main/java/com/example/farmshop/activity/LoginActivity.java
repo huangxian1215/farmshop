@@ -77,21 +77,21 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         myLocation = new MyLocation(this);
         myLocation.setMyLocationListener(this);
         et_ip = (EditText) findViewById(R.id.et_ip);
-        et_port = (EditText) findViewById(R.id.et_port);
+//        et_port = (EditText) findViewById(R.id.et_port);
         s_et_name = (EditText) findViewById(R.id.et_name);
         s_et_pwd = (EditText) findViewById(R.id.et_pwd);
 //        tv_location = (TextView) findViewById(R.id.tv_location);
         ev_location = (TextView) findViewById(R.id.ev_location);
         findViewById(R.id.btn_regist).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
-        findViewById(R.id.btn_iflay).setOnClickListener(this);
+//        findViewById(R.id.btn_iflay).setOnClickListener(this);
         app = MainApplication.getInstance();
         mContext = this;
 
         getPermissions();
         fillLocalStoreInfo();
         //test
-        findViewById(R.id.btn_test).setOnClickListener(this);
+//        findViewById(R.id.btn_test).setOnClickListener(this);
         //test map SDK
         //test Dialog
 //        showDialog();
@@ -162,31 +162,15 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             connetcServer();
             //保存输入
             app.setLocalStore("login_ip", et_ip.getText().toString());
-            app.setLocalStore("login_port", et_port.getText().toString());
+//            app.setLocalStore("login_port", et_port.getText().toString());
             app.setLocalStore("login_name", s_et_name.getText().toString());
             app.setLocalStore("login_pwd", s_et_pwd.getText().toString());
         }
         //讯飞语音setOnNetListener
-        if(v.getId() == R.id.btn_iflay){
+//        if(v.getId() == R.id.btn_iflay){
 //            Intent intent = new Intent(this, IflayMainActivity.class);
 //            startActivity(intent);
-            }
-        //测试
-        if(v.getId() == R.id.btn_test){
-            //通知消息
-//            Intent intent = new Intent(this, NotificationActivity.class);
-            //简单网页
-//            Intent intent = new Intent(this, WebBrowserActivity.class);
-//            startActivity(intent);
-            mSpk = new MySpeakOut(this);
-            mSpk.initParam();
-            mSpk.setPlayVoiceListener(this);
-            mSpeakList.add("开始为你播报");
-            if(mSpeakList.size() != 0){
-                mSpk.startSpeakOut(mSpeakList.get(0));
-            }
-            strhd.postDelayed(strRb, 500);
-        }
+//            }
     }
 
     @Override
@@ -213,7 +197,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     private void fillLocalStoreInfo(){
         if(!app.getLocalStore("login_ip").equals("")){
             et_ip.setText(app.getLocalStore("login_ip"));
-            et_port.setText(app.getLocalStore("login_port"));
+//            et_port.setText(app.getLocalStore("login_port"));
             s_et_name.setText(app.getLocalStore("login_name"));
             s_et_pwd.setText(app.getLocalStore("login_pwd"));
         }
@@ -222,10 +206,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     private void connetcServer(){
         if(!isConnect){
             String ipstr = et_ip.getText().toString();
-            String strport = et_port.getText().toString();
-            int port = Integer.parseInt(strport);
+//            String strport = et_port.getText().toString();
+//            int port = Integer.parseInt(strport);
             app.httpUrl = "http://"+ ipstr + ":8080/";
-            app.mTransmit.setIpPort(ipstr, port);
+            app.mTransmit.setIpPort(ipstr, 8010);
             app.mTransmit.addOnNetListener("LoginActivity", this);
             new Thread(  app.mTransmit).start();
         }else {
@@ -241,7 +225,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     }
 
     @Override
-    public void onGetNetData(Object info){
+    public void onGetNetData(Object info, farmshop.MsgId msgid){
         if(isConnect){
             farmshop.baseType data = (farmshop.baseType)info;
             try{

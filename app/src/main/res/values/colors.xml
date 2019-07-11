@@ -8,17 +8,11 @@
     <color name="color_333333">#333333</color>
     <color name="color_212121">#212121</color>
     <color name="color_757575">#757575</color>
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
-    <color name="grey">#eeeeee</color>
     <color name="dark_grey">#888888</color>
-    <color name="blue">#2222ff</color>
     <color name="gold">#ffffd700</color>
-    <color name="orange">#ff8800</color>
     <color name="transparent">#00000000</color>
     <color name="translucent">#50000000</color>
-    <color name="blue_light">#aaaaff</color>
-    <color name="green">#229955</color>
+    <color name="blue_light">#2dceff</color>
     <!-- 画面背景色 -->
     <drawable name="layout_backgroud">#000000</drawable>
     <!-- 分割线背景色 -->
@@ -27,4 +21,18 @@
     <color name="list_backgroud_color">#2fb3cb</color>
     <color name="title_color">#0f8ec5</color>
     <color name="content_color">#737373</color>
+    <color name="white">#ffffff</color>
+    <color name="lightYellow">#ffffea</color>
+    <color name="lightGreen">#44eeffee</color>
+    <color name="darkGreen">#0a780a</color>
+    <color name="lightBlue">#33aaffff</color>
+    <color name="black">#000000</color>
+    <color name="grey">#cccccc</color>
+    <color name="red">#ff0000</color>
+    <color name="orange">#ffa500</color>
+    <color name="yellow">#ffff00</color>
+    <color name="green">#00ff00</color>
+    <color name="indigo">#00ffff</color>
+    <color name="blue">#0000ff</color>
+    <color name="purple">#dd00dd</color>;
 </resources>

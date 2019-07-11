@@ -69,6 +69,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Order_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Order_reflection_ = NULL;
+const ::google::protobuf::Descriptor* DeleteOrderRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  DeleteOrderRequest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* DeleteOrderResponse_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  DeleteOrderResponse_reflection_ = NULL;
 const ::google::protobuf::EnumDescriptor* MsgId_descriptor_ = NULL;
 const ::google::protobuf::EnumDescriptor* OrderState_descriptor_ = NULL;
 
@@ -334,6 +340,34 @@ void protobuf_AssignDesc_farmshop_2eproto() {
       -1,
       sizeof(Order),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Order, _internal_metadata_));
+  DeleteOrderRequest_descriptor_ = file->message_type(16);
+  static const int DeleteOrderRequest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeleteOrderRequest, id_),
+  };
+  DeleteOrderRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      DeleteOrderRequest_descriptor_,
+      DeleteOrderRequest::internal_default_instance(),
+      DeleteOrderRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(DeleteOrderRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeleteOrderRequest, _internal_metadata_));
+  DeleteOrderResponse_descriptor_ = file->message_type(17);
+  static const int DeleteOrderResponse_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeleteOrderResponse, result_),
+  };
+  DeleteOrderResponse_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      DeleteOrderResponse_descriptor_,
+      DeleteOrderResponse::internal_default_instance(),
+      DeleteOrderResponse_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(DeleteOrderResponse),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeleteOrderResponse, _internal_metadata_));
   MsgId_descriptor_ = file->enum_type(0);
   OrderState_descriptor_ = file->enum_type(1);
 }
@@ -381,6 +415,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
       QueryOrderResponse_descriptor_, QueryOrderResponse::internal_default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Order_descriptor_, Order::internal_default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      DeleteOrderRequest_descriptor_, DeleteOrderRequest::internal_default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      DeleteOrderResponse_descriptor_, DeleteOrderResponse::internal_default_instance());
 }
 
 }  // namespace
@@ -418,6 +456,10 @@ void protobuf_ShutdownFile_farmshop_2eproto() {
   delete QueryOrderResponse_reflection_;
   Order_default_instance_.Shutdown();
   delete Order_reflection_;
+  DeleteOrderRequest_default_instance_.Shutdown();
+  delete DeleteOrderRequest_reflection_;
+  DeleteOrderResponse_default_instance_.Shutdown();
+  delete DeleteOrderResponse_reflection_;
 }
 
 void protobuf_InitDefaults_farmshop_2eproto_impl() {
@@ -450,6 +492,8 @@ void protobuf_InitDefaults_farmshop_2eproto_impl() {
   QueryOrderResponse_default_instance_.DefaultConstruct();
   ::google::protobuf::internal::GetEmptyString();
   Order_default_instance_.DefaultConstruct();
+  DeleteOrderRequest_default_instance_.DefaultConstruct();
+  DeleteOrderResponse_default_instance_.DefaultConstruct();
   ClientSession_default_instance_.get_mutable()->InitAsDefaultInstance();
   baseType_default_instance_.get_mutable()->InitAsDefaultInstance();
   RegistRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
@@ -466,6 +510,8 @@ void protobuf_InitDefaults_farmshop_2eproto_impl() {
   QueryOrderRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
   QueryOrderResponse_default_instance_.get_mutable()->InitAsDefaultInstance();
   Order_default_instance_.get_mutable()->InitAsDefaultInstance();
+  DeleteOrderRequest_default_instance_.get_mutable()->InitAsDefaultInstance();
+  DeleteOrderResponse_default_instance_.get_mutable()->InitAsDefaultInstance();
 }
 
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_InitDefaults_farmshop_2eproto_once_);
@@ -507,17 +553,20 @@ void protobuf_AddDesc_farmshop_2eproto_impl() {
     "er\"\203\001\n\005Order\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\014"
     "\n\004time\030\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030"
     "\005 \001(\t\022\"\n\004list\030\006 \003(\0132\024.farmshop.BuyOneInf"
-    "o\022\r\n\005state\030\007 \001(\005*\211\002\n\005MsgId\022\017\n\013CONNECT_RE"
-    "Q\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\n"
-    "REGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES"
-    "\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020EditUserInfo"
-    "_RES\020\007\022\024\n\020SEND_MESSAGE_REQ\020\010\022\024\n\020SEND_MES"
-    "SAGE_RES\020\t\022\017\n\013UPORDER_REQ\020\n\022\017\n\013UPORDER_R"
-    "ES\020\013\022\022\n\016QUERYORDER_REQ\020\014\022\022\n\016QUERYORDER_R"
-    "ES\020\r*l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000"
-    "\022\020\n\014ORDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n"
-    "\rORDER_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024co"
-    "m.example.farmshopB\010farmshopb\006proto3", 1596);
+    "o\022\r\n\005state\030\007 \001(\005\" \n\022DeleteOrderRequest\022\n"
+    "\n\002id\030\001 \001(\005\"%\n\023DeleteOrderResponse\022\016\n\006res"
+    "ult\030\001 \001(\005*\263\002\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022\017\n\013"
+    "CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGIST_"
+    "RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024\n\020E"
+    "ditUserInfo_REQ\020\006\022\024\n\020EditUserInfo_RES\020\007\022"
+    "\024\n\020SEND_MESSAGE_REQ\020\010\022\024\n\020SEND_MESSAGE_RE"
+    "S\020\t\022\017\n\013UPORDER_REQ\020\n\022\017\n\013UPORDER_RES\020\013\022\022\n"
+    "\016QUERYORDER_REQ\020\014\022\022\n\016QUERYORDER_RES\020\r\022\023\n"
+    "\017DELETEORDER_REQ\020\016\022\023\n\017DELETEORDER_RES\020\017*"
+    "l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000\022\020\n\014O"
+    "RDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n\rORDE"
+    "R_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024com.exa"
+    "mple.farmshopB\010farmshopb\006proto3", 1711);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "farmshop.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fany_2eproto();
@@ -555,6 +604,8 @@ bool MsgId_IsValid(int value) {
     case 11:
     case 12:
     case 13:
+    case 14:
+    case 15:
       return true;
     default:
       return false;
@@ -6876,6 +6927,494 @@ void Order::set_state(::google::protobuf::int32 value) {
 
 inline const Order* Order::internal_default_instance() {
   return &Order_default_instance_.get();
+}
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DeleteOrderRequest::kIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DeleteOrderRequest::DeleteOrderRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:farmshop.DeleteOrderRequest)
+}
+
+void DeleteOrderRequest::InitAsDefaultInstance() {
+}
+
+DeleteOrderRequest::DeleteOrderRequest(const DeleteOrderRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  UnsafeMergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:farmshop.DeleteOrderRequest)
+}
+
+void DeleteOrderRequest::SharedCtor() {
+  id_ = 0;
+  _cached_size_ = 0;
+}
+
+DeleteOrderRequest::~DeleteOrderRequest() {
+  // @@protoc_insertion_point(destructor:farmshop.DeleteOrderRequest)
+  SharedDtor();
+}
+
+void DeleteOrderRequest::SharedDtor() {
+}
+
+void DeleteOrderRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DeleteOrderRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return DeleteOrderRequest_descriptor_;
+}
+
+const DeleteOrderRequest& DeleteOrderRequest::default_instance() {
+  protobuf_InitDefaults_farmshop_2eproto();
+  return *internal_default_instance();
+}
+
+::google::protobuf::internal::ExplicitlyConstructed<DeleteOrderRequest> DeleteOrderRequest_default_instance_;
+
+DeleteOrderRequest* DeleteOrderRequest::New(::google::protobuf::Arena* arena) const {
+  DeleteOrderRequest* n = new DeleteOrderRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DeleteOrderRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:farmshop.DeleteOrderRequest)
+  id_ = 0;
+}
+
+bool DeleteOrderRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:farmshop.DeleteOrderRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 id = 1;
+      case 1: {
+        if (tag == 8) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:farmshop.DeleteOrderRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:farmshop.DeleteOrderRequest)
+  return false;
+#undef DO_
+}
+
+void DeleteOrderRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:farmshop.DeleteOrderRequest)
+  // optional int32 id = 1;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:farmshop.DeleteOrderRequest)
+}
+
+::google::protobuf::uint8* DeleteOrderRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:farmshop.DeleteOrderRequest)
+  // optional int32 id = 1;
+  if (this->id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:farmshop.DeleteOrderRequest)
+  return target;
+}
+
+size_t DeleteOrderRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:farmshop.DeleteOrderRequest)
+  size_t total_size = 0;
+
+  // optional int32 id = 1;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->id());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DeleteOrderRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:farmshop.DeleteOrderRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const DeleteOrderRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DeleteOrderRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.DeleteOrderRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.DeleteOrderRequest)
+    UnsafeMergeFrom(*source);
+  }
+}
+
+void DeleteOrderRequest::MergeFrom(const DeleteOrderRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.DeleteOrderRequest)
+  if (GOOGLE_PREDICT_TRUE(&from != this)) {
+    UnsafeMergeFrom(from);
+  } else {
+    MergeFromFail(__LINE__);
+  }
+}
+
+void DeleteOrderRequest::UnsafeMergeFrom(const DeleteOrderRequest& from) {
+  GOOGLE_DCHECK(&from != this);
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+}
+
+void DeleteOrderRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:farmshop.DeleteOrderRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DeleteOrderRequest::CopyFrom(const DeleteOrderRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.DeleteOrderRequest)
+  if (&from == this) return;
+  Clear();
+  UnsafeMergeFrom(from);
+}
+
+bool DeleteOrderRequest::IsInitialized() const {
+
+  return true;
+}
+
+void DeleteOrderRequest::Swap(DeleteOrderRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DeleteOrderRequest::InternalSwap(DeleteOrderRequest* other) {
+  std::swap(id_, other->id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DeleteOrderRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = DeleteOrderRequest_descriptor_;
+  metadata.reflection = DeleteOrderRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DeleteOrderRequest
+
+// optional int32 id = 1;
+void DeleteOrderRequest::clear_id() {
+  id_ = 0;
+}
+::google::protobuf::int32 DeleteOrderRequest::id() const {
+  // @@protoc_insertion_point(field_get:farmshop.DeleteOrderRequest.id)
+  return id_;
+}
+void DeleteOrderRequest::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.DeleteOrderRequest.id)
+}
+
+inline const DeleteOrderRequest* DeleteOrderRequest::internal_default_instance() {
+  return &DeleteOrderRequest_default_instance_.get();
+}
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int DeleteOrderResponse::kResultFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+DeleteOrderResponse::DeleteOrderResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (this != internal_default_instance()) protobuf_InitDefaults_farmshop_2eproto();
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:farmshop.DeleteOrderResponse)
+}
+
+void DeleteOrderResponse::InitAsDefaultInstance() {
+}
+
+DeleteOrderResponse::DeleteOrderResponse(const DeleteOrderResponse& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  UnsafeMergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:farmshop.DeleteOrderResponse)
+}
+
+void DeleteOrderResponse::SharedCtor() {
+  result_ = 0;
+  _cached_size_ = 0;
+}
+
+DeleteOrderResponse::~DeleteOrderResponse() {
+  // @@protoc_insertion_point(destructor:farmshop.DeleteOrderResponse)
+  SharedDtor();
+}
+
+void DeleteOrderResponse::SharedDtor() {
+}
+
+void DeleteOrderResponse::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* DeleteOrderResponse::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return DeleteOrderResponse_descriptor_;
+}
+
+const DeleteOrderResponse& DeleteOrderResponse::default_instance() {
+  protobuf_InitDefaults_farmshop_2eproto();
+  return *internal_default_instance();
+}
+
+::google::protobuf::internal::ExplicitlyConstructed<DeleteOrderResponse> DeleteOrderResponse_default_instance_;
+
+DeleteOrderResponse* DeleteOrderResponse::New(::google::protobuf::Arena* arena) const {
+  DeleteOrderResponse* n = new DeleteOrderResponse;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void DeleteOrderResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:farmshop.DeleteOrderResponse)
+  result_ = 0;
+}
+
+bool DeleteOrderResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:farmshop.DeleteOrderResponse)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 result = 1;
+      case 1: {
+        if (tag == 8) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &result_)));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:farmshop.DeleteOrderResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:farmshop.DeleteOrderResponse)
+  return false;
+#undef DO_
+}
+
+void DeleteOrderResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:farmshop.DeleteOrderResponse)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:farmshop.DeleteOrderResponse)
+}
+
+::google::protobuf::uint8* DeleteOrderResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:farmshop.DeleteOrderResponse)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:farmshop.DeleteOrderResponse)
+  return target;
+}
+
+size_t DeleteOrderResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:farmshop.DeleteOrderResponse)
+  size_t total_size = 0;
+
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->result());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void DeleteOrderResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:farmshop.DeleteOrderResponse)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const DeleteOrderResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const DeleteOrderResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:farmshop.DeleteOrderResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:farmshop.DeleteOrderResponse)
+    UnsafeMergeFrom(*source);
+  }
+}
+
+void DeleteOrderResponse::MergeFrom(const DeleteOrderResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:farmshop.DeleteOrderResponse)
+  if (GOOGLE_PREDICT_TRUE(&from != this)) {
+    UnsafeMergeFrom(from);
+  } else {
+    MergeFromFail(__LINE__);
+  }
+}
+
+void DeleteOrderResponse::UnsafeMergeFrom(const DeleteOrderResponse& from) {
+  GOOGLE_DCHECK(&from != this);
+  if (from.result() != 0) {
+    set_result(from.result());
+  }
+}
+
+void DeleteOrderResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:farmshop.DeleteOrderResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DeleteOrderResponse::CopyFrom(const DeleteOrderResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:farmshop.DeleteOrderResponse)
+  if (&from == this) return;
+  Clear();
+  UnsafeMergeFrom(from);
+}
+
+bool DeleteOrderResponse::IsInitialized() const {
+
+  return true;
+}
+
+void DeleteOrderResponse::Swap(DeleteOrderResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void DeleteOrderResponse::InternalSwap(DeleteOrderResponse* other) {
+  std::swap(result_, other->result_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata DeleteOrderResponse::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = DeleteOrderResponse_descriptor_;
+  metadata.reflection = DeleteOrderResponse_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// DeleteOrderResponse
+
+// optional int32 result = 1;
+void DeleteOrderResponse::clear_result() {
+  result_ = 0;
+}
+::google::protobuf::int32 DeleteOrderResponse::result() const {
+  // @@protoc_insertion_point(field_get:farmshop.DeleteOrderResponse.result)
+  return result_;
+}
+void DeleteOrderResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.DeleteOrderResponse.result)
+}
+
+inline const DeleteOrderResponse* DeleteOrderResponse::internal_default_instance() {
+  return &DeleteOrderResponse_default_instance_.get();
 }
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 

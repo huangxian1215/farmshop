@@ -83,6 +83,13 @@ public class UpFileMainActivity extends AppCompatActivity implements updateProgr
                 }
             }
         });
+        init();
+    }
+
+    private void init(){
+        if(!MainApplication.getInstance().getLocalStore("login_ip").equals("")) {
+            et_ip.setText(MainApplication.getInstance().getLocalStore("login_ip"));
+        }
     }
 
     public void refreshWidget(){

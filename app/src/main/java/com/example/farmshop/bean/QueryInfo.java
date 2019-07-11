@@ -16,7 +16,7 @@ public class QueryInfo {
         id = tid;
         state = tstate;
         type = ttype;
-        amount = tamount/100;
+        amount = (double)tamount/100;
         message = tmessage;
         list = tlist;
     }

@@ -138,7 +138,7 @@ public class UserDetailEditActivity extends AppCompatActivity implements onGetNe
     }
 
     @Override
-    public void onGetNetData(Object info){
+    public void onGetNetData(Object info, farmshop.MsgId msgid){
         farmshop.baseType data = (farmshop.baseType) info;
         try{
             Any any = data.getObject(0);

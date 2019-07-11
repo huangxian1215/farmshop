@@ -116,7 +116,7 @@ public class BasketActivity extends AppCompatActivity implements OnClickListener
 
     }
     @Override
-    public void onGetNetData(Object info){
+    public void onGetNetData(Object info, farmshop.MsgId msgid){
         farmshop.baseType data = (farmshop.baseType) info;
         try{
             Any any = data.getObject(0);

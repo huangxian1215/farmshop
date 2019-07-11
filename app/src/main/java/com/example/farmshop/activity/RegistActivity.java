@@ -27,6 +27,7 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
 
     private EditText et_name;
     private EditText et_pwd;
+    private EditText et_pwd_again;
     public MessageTransmit mTransmit;
     private MainApplication app;
     private Boolean registSuccess = false;
@@ -37,6 +38,7 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
         setContentView(R.layout.activity_regist);
         et_name = (EditText) findViewById(R.id.et_rgname);
         et_pwd = (EditText) findViewById(R.id.et_rgpwd);
+        et_pwd_again = (EditText) findViewById(R.id.et_rgpwd_again);
         findViewById(R.id.btn_regist).setOnClickListener(this);
 
         app = MainApplication.getInstance();
@@ -45,16 +47,20 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_regist) {
-            farmshop.baseType.Builder regist = farmshop.baseType.newBuilder().setType(farmshop.MsgId.REGIST_REQ).setSessionId(app.mSessionId);
-            farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(et_name.getText().toString()).setPassword(et_pwd.getText().toString()).build();
-            regist.addObject(Any.pack(req));
-            PackProtoUtil.packSend(regist);
+        if(et_pwd.getText().toString().equals(et_pwd_again.getText().toString())){
+            if (v.getId() == R.id.btn_regist) {
+                farmshop.baseType.Builder regist = farmshop.baseType.newBuilder().setType(farmshop.MsgId.REGIST_REQ).setSessionId(app.mSessionId);
+                farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(et_name.getText().toString()).setPassword(et_pwd.getText().toString()).build();
+                regist.addObject(Any.pack(req));
+                PackProtoUtil.packSend(regist);
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public void onGetNetData(Object info){
+    public void onGetNetData(Object info, farmshop.MsgId msgid){
         farmshop.baseType data = (farmshop.baseType) info;
         try{
             Any any = data.getObject(0);

@@ -2,31 +2,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/sky"
     android:padding="5dp" >
+
     <EditText
         android:id="@+id/et_rgname"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
-        android:text="天马流星"
+        android:hint="账号"
+        android:text=""
         android:textSize="17sp" />
+
     <EditText
         android:id="@+id/et_rgpwd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
-        android:text="%%..134/"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:text=""
+        android:textSize="17sp" />
+
+    <EditText
+        android:id="@+id/et_rgpwd_again"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center"
+        android:hint="再次输入密码"
+        android:inputType="textPassword"
+        android:text=""
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="17sp" />
     <Button
         android:id="@+id/btn_regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="确定"
-        android:textSize="17sp" />
-    <TextView
-        android:id="@+id/tv_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:text="注册"
         android:textSize="17sp" />
 
 </LinearLayout>

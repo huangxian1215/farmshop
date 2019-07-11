@@ -15,7 +15,7 @@
             android:layout_weight="1"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:text="时间"/>
         <TextView
             android:id="@+id/tv_ordernum"
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="17sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="left|center"
             android:text="订单号:"/>
         <TextView
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:textSize="17sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="left|center"
             android:text="状态:"/>
     </LinearLayout>
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:textSize="17sp"
             android:gravity="left|center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:text="类别"/>
         <TextView
             android:id="@+id/tv_amount"
@@ -55,25 +55,38 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="17sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:gravity="left|center"
             android:text="金额:"/>
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:textColor="@color/colorAccent"
+            android:gravity="left|center"
+            android:text="取消订单"/>
     </LinearLayout>
     <TextView
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textSize="17sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="left|center"
         android:text="留言:"/>
     <ListView
         android:id="@+id/lv_eachone"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="30dp"
         android:divider="@null"
         android:listSelector="@color/transparent"
-        android:scrollbars="none"
-        android:layout_weight="1"/>
+        android:scrollbars="none"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" />
 
 </LinearLayout>

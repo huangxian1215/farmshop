@@ -66,7 +66,7 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
     private Runnable strRb = new Runnable() {
         @Override
         public void run() {
-            if(messageList.size() > 0){
+            if(messageList.size() > 0 && isPlay){
                 mSpk.startSpeakOut(messageList.get(0));
             }else{
                 strhd.postDelayed(strRb, 5000);
@@ -84,8 +84,12 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
     public void onClick(View v){
         if(v.getId() == R.id.tv_play){
             if(isPlay){
+                tv_play.setText("播放");
                 mSpk.pauseSpeak();
+                isPlay = !isPlay;
             }else{
+                isPlay = !isPlay;
+                tv_play.setText("停止");
                 if(messageList.size() != 0){
                     mSpk.startSpeakOut(messageList.get(0));
                 }
@@ -102,7 +106,7 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
     }
 
     @Override
-    public void onGetNetData(Object message) {
+    public void onGetNetData(Object message, farmshop.MsgId msgid) {
             farmshop.baseType data = (farmshop.baseType) message;
             try {
                 Any any = data.getObject(0);
@@ -133,7 +137,12 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
         mSpk = new MySpeakOut(getActivity());
         mSpk.initParam();
         mSpk.setPlayVoiceListener(this);
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        tv_chat.setText(newMessage);
     }
 
 }

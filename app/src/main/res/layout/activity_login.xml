@@ -2,7 +2,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/sky"
     android:padding="5dp" >
+    <TextView
+        android:id="@+id/ev_empt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
     <EditText
         android:id="@+id/et_ip"
         android:layout_width="match_parent"
@@ -10,71 +15,76 @@
         android:gravity="left|center"
         android:text="192.168.6.74"
         android:textSize="17sp" />
-    <EditText
-        android:id="@+id/et_port"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="left|center"
-        android:text="8010"
-        android:textSize="17sp" />
 
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
+        android:hint="账号"
         android:text="hx"
         android:textSize="17sp" />
+
     <EditText
         android:id="@+id/et_pwd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="left|center"
+        android:hint="密码"
+        android:inputType="textPassword"
         android:text="123654"
         android:textSize="17sp" />
-    <Button
-        android:id="@+id/btn_regist"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="注册"
-        android:textSize="17sp" />
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登陆"
-        android:textSize="17sp" />
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        android:textSize="17sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_regist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/blue_light"
+            android:text="注册"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/list_backgroud_color"
+            android:text="登陆"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_test"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="测试"-->
+        <!--android:textSize="17sp" />-->
     <ScrollView
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
-        <!--<TextView-->
-            <!--android:id="@+id/tv_location"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="坐标:"-->
-            <!--android:textSize="17sp" />-->
-        <EditText
+        <TextView
             android:id="@+id/ev_location"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="left|center"
-            android:text="hx"
+            android:text=""
             android:textSize="17sp" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_iflay"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="讯飞语音"
-        android:textSize="17sp"
-        android:textColor="@android:color/white"/>
+    <!--<Button-->
+        <!--android:id="@+id/btn_iflay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:background="@android:color/holo_blue_light"-->
+        <!--android:text="讯飞语音"-->
+        <!--android:textSize="17sp"-->
+        <!--android:textColor="@android:color/white"/>-->
 
 </LinearLayout>

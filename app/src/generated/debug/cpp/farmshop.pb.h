@@ -41,6 +41,8 @@ void protobuf_ShutdownFile_farmshop_2eproto();
 
 class BuyOneInfo;
 class ClientSession;
+class DeleteOrderRequest;
+class DeleteOrderResponse;
 class EditUserInfoRequest;
 class EditUserInfoResponse;
 class LoginRequest;
@@ -71,12 +73,14 @@ enum MsgId {
   UPORDER_RES = 11,
   QUERYORDER_REQ = 12,
   QUERYORDER_RES = 13,
+  DELETEORDER_REQ = 14,
+  DELETEORDER_RES = 15,
   MsgId_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   MsgId_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool MsgId_IsValid(int value);
 const MsgId MsgId_MIN = CONNECT_REQ;
-const MsgId MsgId_MAX = QUERYORDER_RES;
+const MsgId MsgId_MAX = DELETEORDER_RES;
 const int MsgId_ARRAYSIZE = MsgId_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* MsgId_descriptor();
@@ -1792,6 +1796,178 @@ class Order : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<Order> Order_default_instance_;
 
+// -------------------------------------------------------------------
+
+class DeleteOrderRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.DeleteOrderRequest) */ {
+ public:
+  DeleteOrderRequest();
+  virtual ~DeleteOrderRequest();
+
+  DeleteOrderRequest(const DeleteOrderRequest& from);
+
+  inline DeleteOrderRequest& operator=(const DeleteOrderRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DeleteOrderRequest& default_instance();
+
+  static const DeleteOrderRequest* internal_default_instance();
+
+  void Swap(DeleteOrderRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteOrderRequest* New() const { return New(NULL); }
+
+  DeleteOrderRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DeleteOrderRequest& from);
+  void MergeFrom(const DeleteOrderRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(DeleteOrderRequest* other);
+  void UnsafeMergeFrom(const DeleteOrderRequest& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 id = 1;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::int32 id() const;
+  void set_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.DeleteOrderRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 id_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<DeleteOrderRequest> DeleteOrderRequest_default_instance_;
+
+// -------------------------------------------------------------------
+
+class DeleteOrderResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:farmshop.DeleteOrderResponse) */ {
+ public:
+  DeleteOrderResponse();
+  virtual ~DeleteOrderResponse();
+
+  DeleteOrderResponse(const DeleteOrderResponse& from);
+
+  inline DeleteOrderResponse& operator=(const DeleteOrderResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DeleteOrderResponse& default_instance();
+
+  static const DeleteOrderResponse* internal_default_instance();
+
+  void Swap(DeleteOrderResponse* other);
+
+  // implements Message ----------------------------------------------
+
+  inline DeleteOrderResponse* New() const { return New(NULL); }
+
+  DeleteOrderResponse* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DeleteOrderResponse& from);
+  void MergeFrom(const DeleteOrderResponse& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(DeleteOrderResponse* other);
+  void UnsafeMergeFrom(const DeleteOrderResponse& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:farmshop.DeleteOrderResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
+  friend void  protobuf_AddDesc_farmshop_2eproto_impl();
+  friend void protobuf_AssignDesc_farmshop_2eproto();
+  friend void protobuf_ShutdownFile_farmshop_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<DeleteOrderResponse> DeleteOrderResponse_default_instance_;
+
 // ===================================================================
 
 
@@ -3093,7 +3269,53 @@ inline void Order::set_state(::google::protobuf::int32 value) {
 inline const Order* Order::internal_default_instance() {
   return &Order_default_instance_.get();
 }
+// -------------------------------------------------------------------
+
+// DeleteOrderRequest
+
+// optional int32 id = 1;
+inline void DeleteOrderRequest::clear_id() {
+  id_ = 0;
+}
+inline ::google::protobuf::int32 DeleteOrderRequest::id() const {
+  // @@protoc_insertion_point(field_get:farmshop.DeleteOrderRequest.id)
+  return id_;
+}
+inline void DeleteOrderRequest::set_id(::google::protobuf::int32 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.DeleteOrderRequest.id)
+}
+
+inline const DeleteOrderRequest* DeleteOrderRequest::internal_default_instance() {
+  return &DeleteOrderRequest_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// DeleteOrderResponse
+
+// optional int32 result = 1;
+inline void DeleteOrderResponse::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 DeleteOrderResponse::result() const {
+  // @@protoc_insertion_point(field_get:farmshop.DeleteOrderResponse.result)
+  return result_;
+}
+inline void DeleteOrderResponse::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.DeleteOrderResponse.result)
+}
+
+inline const DeleteOrderResponse* DeleteOrderResponse::internal_default_instance() {
+  return &DeleteOrderResponse_default_instance_.get();
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

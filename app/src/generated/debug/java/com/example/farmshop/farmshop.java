@@ -79,6 +79,14 @@ public final class farmshop {
      * <code>QUERYORDER_RES = 13;</code>
      */
     QUERYORDER_RES(13),
+    /**
+     * <code>DELETEORDER_REQ = 14;</code>
+     */
+    DELETEORDER_REQ(14),
+    /**
+     * <code>DELETEORDER_RES = 15;</code>
+     */
+    DELETEORDER_RES(15),
     UNRECOGNIZED(-1),
     ;
 
@@ -138,6 +146,14 @@ public final class farmshop {
      * <code>QUERYORDER_RES = 13;</code>
      */
     public static final int QUERYORDER_RES_VALUE = 13;
+    /**
+     * <code>DELETEORDER_REQ = 14;</code>
+     */
+    public static final int DELETEORDER_REQ_VALUE = 14;
+    /**
+     * <code>DELETEORDER_RES = 15;</code>
+     */
+    public static final int DELETEORDER_RES_VALUE = 15;
 
 
     public final int getNumber() {
@@ -172,6 +188,8 @@ public final class farmshop {
         case 11: return UPORDER_RES;
         case 12: return QUERYORDER_REQ;
         case 13: return QUERYORDER_RES;
+        case 14: return DELETEORDER_REQ;
+        case 15: return DELETEORDER_RES;
         default: return null;
       }
     }
@@ -12406,6 +12424,884 @@ public final class farmshop {
 
   }
 
+  public interface DeleteOrderRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.DeleteOrderRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *订单号
+     * </pre>
+     *
+     * <code>optional int32 id = 1;</code>
+     */
+    int getId();
+  }
+  /**
+   * Protobuf type {@code farmshop.DeleteOrderRequest}
+   */
+  public  static final class DeleteOrderRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.DeleteOrderRequest)
+      DeleteOrderRequestOrBuilder {
+    // Use DeleteOrderRequest.newBuilder() to construct.
+    private DeleteOrderRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteOrderRequest() {
+      id_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private DeleteOrderRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              id_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.DeleteOrderRequest.class, com.example.farmshop.farmshop.DeleteOrderRequest.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_;
+    /**
+     * <pre>
+     *订单号
+     * </pre>
+     *
+     * <code>optional int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.DeleteOrderRequest)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.DeleteOrderRequest other = (com.example.farmshop.farmshop.DeleteOrderRequest) obj;
+
+      boolean result = true;
+      result = result && (getId()
+          == other.getId());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.DeleteOrderRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.DeleteOrderRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.DeleteOrderRequest)
+        com.example.farmshop.farmshop.DeleteOrderRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.DeleteOrderRequest.class, com.example.farmshop.farmshop.DeleteOrderRequest.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.DeleteOrderRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        id_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderRequest_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderRequest getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.DeleteOrderRequest.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderRequest build() {
+        com.example.farmshop.farmshop.DeleteOrderRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderRequest buildPartial() {
+        com.example.farmshop.farmshop.DeleteOrderRequest result = new com.example.farmshop.farmshop.DeleteOrderRequest(this);
+        result.id_ = id_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.DeleteOrderRequest) {
+          return mergeFrom((com.example.farmshop.farmshop.DeleteOrderRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.DeleteOrderRequest other) {
+        if (other == com.example.farmshop.farmshop.DeleteOrderRequest.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.DeleteOrderRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.DeleteOrderRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int id_ ;
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder setId(int value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *订单号
+       * </pre>
+       *
+       * <code>optional int32 id = 1;</code>
+       */
+      public Builder clearId() {
+        
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.DeleteOrderRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.DeleteOrderRequest)
+    private static final com.example.farmshop.farmshop.DeleteOrderRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.DeleteOrderRequest();
+    }
+
+    public static com.example.farmshop.farmshop.DeleteOrderRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteOrderRequest>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteOrderRequest>() {
+      public DeleteOrderRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new DeleteOrderRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteOrderRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteOrderRequest> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.DeleteOrderRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DeleteOrderResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:farmshop.DeleteOrderResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    int getResult();
+  }
+  /**
+   * Protobuf type {@code farmshop.DeleteOrderResponse}
+   */
+  public  static final class DeleteOrderResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:farmshop.DeleteOrderResponse)
+      DeleteOrderResponseOrBuilder {
+    // Use DeleteOrderResponse.newBuilder() to construct.
+    private DeleteOrderResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeleteOrderResponse() {
+      result_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private DeleteOrderResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              result_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.example.farmshop.farmshop.DeleteOrderResponse.class, com.example.farmshop.farmshop.DeleteOrderResponse.Builder.class);
+    }
+
+    public static final int RESULT_FIELD_NUMBER = 1;
+    private int result_;
+    /**
+     * <code>optional int32 result = 1;</code>
+     */
+    public int getResult() {
+      return result_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (result_ != 0) {
+        output.writeInt32(1, result_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (result_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, result_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.example.farmshop.farmshop.DeleteOrderResponse)) {
+        return super.equals(obj);
+      }
+      com.example.farmshop.farmshop.DeleteOrderResponse other = (com.example.farmshop.farmshop.DeleteOrderResponse) obj;
+
+      boolean result = true;
+      result = result && (getResult()
+          == other.getResult());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + RESULT_FIELD_NUMBER;
+      hash = (53 * hash) + getResult();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.example.farmshop.farmshop.DeleteOrderResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.example.farmshop.farmshop.DeleteOrderResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code farmshop.DeleteOrderResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:farmshop.DeleteOrderResponse)
+        com.example.farmshop.farmshop.DeleteOrderResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.farmshop.farmshop.DeleteOrderResponse.class, com.example.farmshop.farmshop.DeleteOrderResponse.Builder.class);
+      }
+
+      // Construct using com.example.farmshop.farmshop.DeleteOrderResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        result_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.example.farmshop.farmshop.internal_static_farmshop_DeleteOrderResponse_descriptor;
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderResponse getDefaultInstanceForType() {
+        return com.example.farmshop.farmshop.DeleteOrderResponse.getDefaultInstance();
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderResponse build() {
+        com.example.farmshop.farmshop.DeleteOrderResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.example.farmshop.farmshop.DeleteOrderResponse buildPartial() {
+        com.example.farmshop.farmshop.DeleteOrderResponse result = new com.example.farmshop.farmshop.DeleteOrderResponse(this);
+        result.result_ = result_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.example.farmshop.farmshop.DeleteOrderResponse) {
+          return mergeFrom((com.example.farmshop.farmshop.DeleteOrderResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.example.farmshop.farmshop.DeleteOrderResponse other) {
+        if (other == com.example.farmshop.farmshop.DeleteOrderResponse.getDefaultInstance()) return this;
+        if (other.getResult() != 0) {
+          setResult(other.getResult());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.example.farmshop.farmshop.DeleteOrderResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.example.farmshop.farmshop.DeleteOrderResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int result_ ;
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public int getResult() {
+        return result_;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder setResult(int value) {
+        
+        result_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 result = 1;</code>
+       */
+      public Builder clearResult() {
+        
+        result_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:farmshop.DeleteOrderResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:farmshop.DeleteOrderResponse)
+    private static final com.example.farmshop.farmshop.DeleteOrderResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.example.farmshop.farmshop.DeleteOrderResponse();
+    }
+
+    public static com.example.farmshop.farmshop.DeleteOrderResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeleteOrderResponse>
+        PARSER = new com.google.protobuf.AbstractParser<DeleteOrderResponse>() {
+      public DeleteOrderResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new DeleteOrderResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeleteOrderResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeleteOrderResponse> getParserForType() {
+      return PARSER;
+    }
+
+    public com.example.farmshop.farmshop.DeleteOrderResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_farmshop_ClientSession_descriptor;
   private static final 
@@ -12486,6 +13382,16 @@ public final class farmshop {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_farmshop_Order_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_DeleteOrderRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_DeleteOrderRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_farmshop_DeleteOrderResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_farmshop_DeleteOrderResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -12524,17 +13430,20 @@ public final class farmshop {
       "er\"\203\001\n\005Order\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\014" +
       "\n\004time\030\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030" +
       "\005 \001(\t\022\"\n\004list\030\006 \003(\0132\024.farmshop.BuyOneInf" +
-      "o\022\r\n\005state\030\007 \001(\005*\211\002\n\005MsgId\022\017\n\013CONNECT_RE",
-      "Q\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\n" +
-      "REGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES" +
-      "\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020EditUserInfo" +
-      "_RES\020\007\022\024\n\020SEND_MESSAGE_REQ\020\010\022\024\n\020SEND_MES" +
-      "SAGE_RES\020\t\022\017\n\013UPORDER_REQ\020\n\022\017\n\013UPORDER_R" +
-      "ES\020\013\022\022\n\016QUERYORDER_REQ\020\014\022\022\n\016QUERYORDER_R" +
-      "ES\020\r*l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000" +
-      "\022\020\n\014ORDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n" +
-      "\rORDER_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024co" +
-      "m.example.farmshopB\010farmshopb\006proto3"
+      "o\022\r\n\005state\030\007 \001(\005\" \n\022DeleteOrderRequest\022\n",
+      "\n\002id\030\001 \001(\005\"%\n\023DeleteOrderResponse\022\016\n\006res" +
+      "ult\030\001 \001(\005*\263\002\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022\017\n\013" +
+      "CONNECT_RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGIST_" +
+      "RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024\n\020E" +
+      "ditUserInfo_REQ\020\006\022\024\n\020EditUserInfo_RES\020\007\022" +
+      "\024\n\020SEND_MESSAGE_REQ\020\010\022\024\n\020SEND_MESSAGE_RE" +
+      "S\020\t\022\017\n\013UPORDER_REQ\020\n\022\017\n\013UPORDER_RES\020\013\022\022\n" +
+      "\016QUERYORDER_REQ\020\014\022\022\n\016QUERYORDER_RES\020\r\022\023\n" +
+      "\017DELETEORDER_REQ\020\016\022\023\n\017DELETEORDER_RES\020\017*" +
+      "l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000\022\020\n\014O",
+      "RDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n\rORDE" +
+      "R_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024com.exa" +
+      "mple.farmshopB\010farmshopb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -12645,6 +13554,18 @@ public final class farmshop {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_farmshop_Order_descriptor,
         new java.lang.String[] { "Id", "Type", "Time", "Amount", "Message", "List", "State", });
+    internal_static_farmshop_DeleteOrderRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_farmshop_DeleteOrderRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_DeleteOrderRequest_descriptor,
+        new java.lang.String[] { "Id", });
+    internal_static_farmshop_DeleteOrderResponse_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_farmshop_DeleteOrderResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_farmshop_DeleteOrderResponse_descriptor,
+        new java.lang.String[] { "Result", });
     com.google.protobuf.AnyProto.getDescriptor();
   }
 
