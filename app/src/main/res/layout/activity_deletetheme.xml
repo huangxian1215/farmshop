@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <!-- 插入对话框线性布局对于主题字段 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/dele_linearLayout_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <!-- 主题提示 -->
+
+            <TextView
+                android:id="@+id/dele_text_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需要删除的主题名"
+                android:textSize="20dp" />
+
+            <!-- 主题输入 -->
+
+            <EditText
+                android:id="@+id/dele_edit_theme"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <!-- 确认插入按钮 -->
+            <Button
+                android:id="@+id/dele_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="确认" />
+            <!-- 取消插入按钮 -->
+            <Button
+                android:id="@+id/dele_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

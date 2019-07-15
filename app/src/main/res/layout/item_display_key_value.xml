@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_key_value_dis"
+    android:layout_width="90dp"
+    android:layout_height="45dp"
+    android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/key_name_dis"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="第一项"/>
+</LinearLayout>

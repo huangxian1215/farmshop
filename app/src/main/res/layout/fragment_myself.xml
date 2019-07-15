@@ -10,7 +10,7 @@
         <TextView
             android:id="@+id/tv_editUserinfo"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:text="个人资料"
             android:gravity="left|center"
             android:textSize="17sp"
@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_basket"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:text="我的篮子"
             android:gravity="left|center"
             android:textSize="17sp"
@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/tv_queryOrder"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:text="我的订单"
             android:gravity="left|center"
             android:textSize="17sp"
@@ -34,15 +34,23 @@
         <TextView
             android:id="@+id/tv_voiceStyleSet"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:text="语音播报设置"
+            android:gravity="left|center"
+            android:textSize="17sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_smartnote"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="smartNote"
             android:gravity="left|center"
             android:textSize="17sp"
             android:textColor="@android:color/black"/>
         <Button
             android:id="@+id/btn_upfile"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:background="@android:color/holo_green_light"
             android:text="上传文件"
             android:textSize="17sp"

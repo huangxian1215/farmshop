@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_key_value"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/key_name"
+        android:layout_width="54dp"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="标题:"/>
+    <EditText
+        android:id="@+id/key_edit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/value_name"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="值:"/>
+    <RadioGroup
+        android:id="@+id/rg_admit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="51"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="文字"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rb_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="数值"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/rb_bool"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="是/否"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+</LinearLayout>

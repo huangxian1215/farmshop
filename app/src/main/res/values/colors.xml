@@ -24,6 +24,7 @@
     <color name="white">#ffffff</color>
     <color name="lightYellow">#ffffea</color>
     <color name="lightGreen">#92fd92</color>
+    <color name="lightGreen33">#3392fd92</color>
     <color name="darkGreen">#0a780a</color>
     <color name="lightBlue">#33aaffff</color>
     <color name="black">#000000</color>

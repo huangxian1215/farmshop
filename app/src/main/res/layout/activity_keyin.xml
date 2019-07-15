@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+
+    <EditText
+        android:id="@+id/edit_keyin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btn_keyin"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/edit_keyin"
+        android:text="确认" />
+
+</RelativeLayout>

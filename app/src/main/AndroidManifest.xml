@@ -71,6 +71,22 @@
         <activity android:name=".iflytek.VoiceRecognizeActivity" />
         <activity android:name=".iflytek.VoiceComposeActivity" />
         <activity android:name=".iflytek.VoiceSettingsActivity" />
+        <!-- smartnote-->
+        <activity
+            android:name=".smartnote.dialog.DeleteTheme"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".smartnote.dialog.AddItem"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".smartnote.dialog.KeyIn"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity android:name=".smartnote.dialog.AddTheme"/>
+        <activity android:name=".smartnote.TableDetailActivity"/>
+        <activity android:name=".smartnote.SmtMainActivity"/>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

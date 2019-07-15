@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_item_key_value"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/key_name"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:textSize="18sp"
+        android:gravity="left|center"
+        android:text="标题:"/>
+    <EditText
+        android:id="@+id/key_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textNoSuggestions"/>
+    <RadioGroup
+        android:id="@+id/rg_choose"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="51"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="是"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rb_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="否"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+</LinearLayout>

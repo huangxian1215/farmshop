@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <!-- 插入对话框线性布局对于主题字段 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_item_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="主题"
+            android:textSize="20dp" />
+
+        <ListView
+            android:id="@+id/lv_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:listSelector="@color/transparent"
+            android:scrollbars="none"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <!-- 确认插入按钮 -->
+            <Button
+                android:id="@+id/insert_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="添加" />
+            <Button
+                android:id="@+id/insert_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="修改" />
+            <Button
+                android:id="@+id/insert_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="删除" />
+            <!-- 取消插入按钮 -->
+            <Button
+                android:id="@+id/insert_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

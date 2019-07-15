@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightGreen33"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/ll_num_time_out"
+        android:layout_width="82dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_num_time_in"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_weight="0"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|center"
+                android:textColor="@color/red"
+                android:textSize="17sp"
+                android:text="1"/>
+
+            <TextView
+                android:id="@+id/tv_time_hm"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                android:text="24:00"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_time_ymd"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            android:text="2018/12/30"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_data_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@color/red"
+        android:gravity="center"
+        android:text="删除该聊天"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:visibility="gone" />
+
+</LinearLayout>

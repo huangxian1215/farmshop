@@ -20,6 +20,7 @@ import com.example.farmshop.activity.UserDetailActivity;
 import com.example.farmshop.farmshop;
 import com.example.farmshop.iflytek.MyVoiceSettingActivity;
 import com.example.farmshop.iflytek.VoiceSettingsActivity;
+import com.example.farmshop.smartnote.SmtMainActivity;
 import com.example.farmshop.upfiles.activity.UpFileMainActivity;
 import com.example.farmshop.upfiles.utils.PackProtoUtil;
 import com.google.protobuf.Any;
@@ -43,6 +44,7 @@ public class MyselfFragment extends Fragment implements OnClickListener{
         tv_voiceStyleSet.setOnClickListener(this);
         tv_edtuserinfo.setOnClickListener(this);
         rootView.findViewById(R.id.tv_queryOrder).setOnClickListener(this);
+        rootView.findViewById(R.id.tv_smartnote).setOnClickListener(this);
 
         return rootView;
     }
@@ -59,25 +61,24 @@ public class MyselfFragment extends Fragment implements OnClickListener{
         switch (v.getId()){
             case R.id.tv_editUserinfo:
                 intent = new Intent(getActivity(), UserDetailActivity.class);
-                startActivity(intent);
                 break;
             case R.id.btn_upfile:
                 intent = new Intent(getActivity(), UpFileMainActivity.class);
-                startActivity(intent);
                 break;
             case R.id.tv_basket:
                 intent = new Intent(getActivity(), BasketActivity.class);
-                startActivity(intent);
                 break;
             case R.id.tv_voiceStyleSet:
                 intent = new Intent(getActivity(), MyVoiceSettingActivity.class);
-                startActivity(intent);
                 break;
             case R.id.tv_queryOrder:
                 intent = new Intent(getActivity(), QueryOrdersActivity.class);
-                startActivity(intent);
+                break;
+            case R.id.tv_smartnote:
+                intent = new Intent(getActivity(), SmtMainActivity.class);
                 break;
         }
+        startActivity(intent);
     }
 
     private void initData() {
