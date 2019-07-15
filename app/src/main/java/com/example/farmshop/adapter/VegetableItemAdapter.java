@@ -2,7 +2,7 @@ package com.example.farmshop.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.ColorRes;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +14,16 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.bean.VegetableInfo;
 import com.example.farmshop.util.VirtureUtil.onClickItemListener;
-import com.google.protobuf.StringValue;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdapter.ViewHolder> implements OnClickListener {
@@ -56,8 +61,13 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
         holder.tv_timetoeat.setText("产期:"+data.get(position).timetoeat);
 
         //封面图
-        Glide.with(mContext).load(data.get(position).pictureurl).into(holder.iv_img);
-
+        String picUrl = data.get(position).pictureurl;
+        if(new File(picUrl).exists()){
+            Glide.with(mContext).load(data.get(position).pictureurl).into(holder.iv_img);
+        }else{
+            String downUrl = MainApplication.getInstance().httpUrl + data.get(position).pictureDownUrl;
+            downLoadPic(downUrl,picUrl,holder.iv_img);
+        }
         holder.rlMain.setId(holder.tag);
         holder.rlMain.setOnClickListener(this);
     }
@@ -72,6 +82,45 @@ public class VegetableItemAdapter extends RecyclerView.Adapter<VegetableItemAdap
         if(mClickListener != null){
             mClickListener.onItemClick(v, v.getId());
         }
+    }
+
+    public void downLoadPic(String loadurl, final String disurl, final ImageView img){
+        new AsyncTask<String, Integer, String>(){
+            @Override
+            protected String doInBackground(String... params) {
+                try {
+                    URL link = new URL(params[0]);
+                    HttpURLConnection con = (HttpURLConnection) link.openConnection();
+                    int code = con.getResponseCode();
+                    if (code == 200) {
+                        //获取下载总大小
+                        int len = con.getContentLength();
+                        RandomAccessFile rf = new RandomAccessFile(params[1], "rw");
+                        rf.setLength(len);
+                        byte[] buf = new byte[1024];
+                        //当次读取的数量
+                        int num;
+                        //当前下载的量
+                        int count = 0;
+                        InputStream in = con.getInputStream();
+                        while ((num = in.read(buf)) != -1) {
+                            rf.write(buf, 0, num);
+                            count += num;
+                        }
+                        rf.close();
+                        in.close();
+                    }
+                    con.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                Glide.with(mContext).load(disurl).into(img);
+            }
+        }.execute(loadurl, disurl);
     }
 
     private onClickItemListener mClickListener;

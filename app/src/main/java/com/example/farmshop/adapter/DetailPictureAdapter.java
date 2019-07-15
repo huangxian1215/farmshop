@@ -1,6 +1,7 @@
 package com.example.farmshop.adapter;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
+import com.example.farmshop.util.MyUtil;
 
 import java.io.File;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class DetailPictureAdapter extends BaseAdapter {
@@ -59,7 +66,14 @@ public class DetailPictureAdapter extends BaseAdapter {
         if(position == 0){
             holder1.tv_desc.setText(mItemList.get(position));
         }else {
-            Glide.with(mContext).load(mItemList.get(position)).into(holder.iv_pic);
+            //封面图
+            String picUrl = MainApplication.getInstance().savePath + MyUtil.getFileName(mItemList.get(position));
+            if(new File(picUrl).exists()){
+                Glide.with(mContext).load(picUrl).into(holder.iv_pic);
+            }else{
+                String downUrl = MainApplication.getInstance().httpUrl + mItemList.get(position);
+                downLoadPic(downUrl,picUrl,holder.iv_pic);
+            }
         }
         return convertView;
     }
@@ -94,6 +108,45 @@ public class DetailPictureAdapter extends BaseAdapter {
 
     class  ViewHolder1{
         TextView tv_desc;
+    }
+
+    public void downLoadPic(String loadurl, final String disurl, final ImageView img){
+        new AsyncTask<String, Integer, String>(){
+            @Override
+            protected String doInBackground(String... params) {
+                try {
+                    URL link = new URL(params[0]);
+                    HttpURLConnection con = (HttpURLConnection) link.openConnection();
+                    int code = con.getResponseCode();
+                    if (code == 200) {
+                        //获取下载总大小
+                        int len = con.getContentLength();
+                        RandomAccessFile rf = new RandomAccessFile(params[1], "rw");
+                        rf.setLength(len);
+                        byte[] buf = new byte[1024];
+                        //当次读取的数量
+                        int num;
+                        //当前下载的量
+                        int count = 0;
+                        InputStream in = con.getInputStream();
+                        while ((num = in.read(buf)) != -1) {
+                            rf.write(buf, 0, num);
+                            count += num;
+                        }
+                        rf.close();
+                        in.close();
+                    }
+                    con.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                Glide.with(mContext).load(disurl).into(img);
+            }
+        }.execute(loadurl, disurl);
     }
 }
 

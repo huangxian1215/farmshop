@@ -88,6 +88,8 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
                 mSpk.pauseSpeak();
                 isPlay = !isPlay;
             }else{
+                mSpk.initSpeak(null);
+                mSpk.initParam();
                 isPlay = !isPlay;
                 tv_play.setText("停止");
                 if(messageList.size() != 0){
@@ -96,9 +98,11 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
             }
         }
 
-        if(v.getId() == R.id.tv_send){
+        if(v.getId() == R.id.tv_send && (!et_message.getText().toString().equals(""))){
+            String myname = MainApplication.getInstance().mUserinfo.detail.getPetName();
             farmshop.baseType.Builder sendmessage = farmshop.baseType.newBuilder().setType(farmshop.MsgId.SEND_MESSAGE_REQ).setSessionId(MainApplication.getInstance().mSessionId);
-            farmshop.SendMessageRequest req = farmshop.SendMessageRequest.newBuilder().setWords(et_message.getText().toString()).build();
+            farmshop.SendMessageRequest req = farmshop.SendMessageRequest.newBuilder().setWords(et_message.getText().toString())
+                    .setName(myname).build();
             sendmessage.addObject(Any.pack(req));
             PackProtoUtil.packSend(sendmessage);
             et_message.setText("");
@@ -112,9 +116,10 @@ public class CommunityFragment extends Fragment implements OnClickListener ,onGe
                 Any any = data.getObject(0);
                 farmshop.SendMessageResponse resp = farmshop.SendMessageResponse.parseFrom(any.getValue());
                 if (resp.getResult() == 0) {
-                    newMessage +="\n" + resp.getWords();
+                    String words = resp.getName()+ "说：" + resp.getWords();
+                    newMessage +="\n" + resp.getName()+ ":" + resp.getWords();
                     strhd.postDelayed(disRb, 100);
-                    messageList.add(resp.getWords());
+                    messageList.add(words);
                 } else {
 
                 }

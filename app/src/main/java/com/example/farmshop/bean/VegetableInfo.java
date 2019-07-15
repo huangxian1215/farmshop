@@ -1,6 +1,7 @@
 package com.example.farmshop.bean;
 
 public class VegetableInfo {
+    public String pictureDownUrl;
     public String pictureurl;
     public String name;
     public String type;
@@ -19,5 +20,6 @@ public class VegetableInfo {
         desc = "";
         type = "";
         ads = "";
+        pictureDownUrl = "";
     }
 }

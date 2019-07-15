@@ -42,7 +42,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:name=".MainApplication">
+        android:name=".MainApplication"
+        android:usesCleartextTraffic="true"><!-- Android 6.0开始引入了对Https的推荐支持 -->
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

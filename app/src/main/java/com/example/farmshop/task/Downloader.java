@@ -47,7 +47,9 @@ public class Downloader {
                 in.close();
             }
             con.disconnect();
-            onDownloadListener.onDownloadFinish(type);
+            if (null != onDownloadListener) {
+                onDownloadListener.onDownloadFinish(type);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

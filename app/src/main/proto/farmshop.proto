@@ -29,6 +29,7 @@ enum MsgId{
     QUERYORDER_RES = 13;
     DELETEORDER_REQ = 14;
     DELETEORDER_RES = 15;
+    RECEIVEORDER_EVENT = 16;
  }
 
 message baseType{
@@ -75,11 +76,13 @@ message EditUserInfoResponse{
 //SEND_MESSAGE_REQ
 message SendMessageRequest{
     string words = 1;
+    string name = 2;
 }
 
 message SendMessageResponse{
     int32 result = 1;
     string words = 2;
+    string name = 3;
 }
 //UPORDER_REQ
 message UpOrderRequest{
@@ -106,6 +109,11 @@ enum OrderState{
 
 message UpOrderResponse{
     int32 result = 1;
+}
+//RECEIVEORDER_EVENT
+message ReceiveOrderEvent{
+    int32 id = 1;   //订单号
+    OrderState state = 2;
 }
 //QUERYORDER_REQ
 message QueryOrderRequest{

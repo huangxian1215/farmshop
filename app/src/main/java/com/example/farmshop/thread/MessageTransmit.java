@@ -48,6 +48,7 @@ public class MessageTransmit implements Runnable {
         mapDealData.put(farmshop.MsgId.UPORDER_RES, "BasketActivity");
         mapDealData.put(farmshop.MsgId.QUERYORDER_RES, "QueryOrdersActivity");
         mapDealData.put(farmshop.MsgId.DELETEORDER_RES, "QueryOrdersActivity");
+        mapDealData.put(farmshop.MsgId.RECEIVEORDER_EVENT, "CenterAcitivity");
     }
     public void setIpPort(String str, int port){
         SOCKET_IP = str;

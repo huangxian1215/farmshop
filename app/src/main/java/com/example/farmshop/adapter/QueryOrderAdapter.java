@@ -16,7 +16,9 @@ import com.example.farmshop.R;
 import com.example.farmshop.bean.QueryInfo;
 import com.example.farmshop.util.VirtureUtil.onClickItemListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class QueryOrderAdapter extends BaseAdapter implements OnClickListener {
     private static final String TAG = "QueryOrderAdapter";
@@ -47,8 +49,10 @@ public class QueryOrderAdapter extends BaseAdapter implements OnClickListener {
         }else{
             holder = (ViewHolder)convertView.getTag();
         }
-
-        holder.tv_time.setText("时间:" + String.valueOf(mListQueryInfo.get(position).time));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date(mListQueryInfo.get(position).time*1000);
+        String day = simpleDateFormat.format(date);
+        holder.tv_time.setText("时间:" + day);
         holder.tv_id.setText("订单号:" + String.valueOf(mListQueryInfo.get(position).id));
         holder.tv_state.setText("状态:" + String.valueOf(mListQueryInfo.get(position).state));
         holder.tv_type.setText("类别:" + String.valueOf(mListQueryInfo.get(position).type));
@@ -63,11 +67,12 @@ public class QueryOrderAdapter extends BaseAdapter implements OnClickListener {
             holder.tv_delete.setOnClickListener(this);
             holder.tv_delete.setId(position);
         }
-        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams)  holder.lv_list.getLayoutParams(); //取控件textView当前的布局参数 linearParams.height = 20;// 控件的高强制设成20
-
-        linearParams.height = 36*mListQueryInfo.get(position).list.size();// 控件的宽强制设成30  //linearParams.height
-        holder.lv_list.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
-
+        if(holder.lv_list.getTag() == null){
+            holder.lv_list.setTag("has");
+            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams)holder.lv_list.getLayoutParams(); //取控件textView当前的布局参数 linearParams.height = 20;// 控件的高强制设成20
+            linearParams.height = linearParams.height * mListQueryInfo.get(position).list.size();// 控件的宽强制设成30  //linearParams.height
+            holder.lv_list.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+        }
         EachOneAdapter adapter = new EachOneAdapter(holder.lv_list.getContext(), mListQueryInfo.get(position).list);
 
         holder.lv_list.setAdapter(adapter);
