@@ -47,8 +47,14 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!--h5 打开app-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="huangxian" android:host="farmshop" android:pathPrefix="/myapp/open"/>
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity" />
@@ -87,6 +93,16 @@
         <activity android:name=".smartnote.dialog.AddTheme"/>
         <activity android:name=".smartnote.TableDetailActivity"/>
         <activity android:name=".smartnote.SmtMainActivity"/>
+        <!--music-->
+        <activity android:name=".music.MusicMainActivity" android:enabled="true" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".music.MusicDetailActivity" android:enabled="true" android:theme="@style/AppCompatTheme"/>
+        <activity android:name=".music.MusicListActivity" android:enabled="true" android:theme="@style/AppCompatTheme"/>
+        <activity
+            android:name="com.example.farmshop.music.dialog.Mp3DownLoadChooseDialog" android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <service android:name=".music.service.MusicService" android:enabled="true" />
+
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

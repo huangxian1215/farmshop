@@ -14,6 +14,7 @@ import com.example.farmshop.farmshop;
 import com.example.farmshop.functions.MyLocation;
 import com.example.farmshop.iflytek.IflayMainActivity;
 import com.example.farmshop.iflytek.MySpeakOut;
+import com.example.farmshop.music.MusicMainActivity;
 import com.example.farmshop.upfiles.utils.PackProtoUtil;
 import com.example.farmshop.util.VirtureUtil.onMyLocationListener;
 import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;

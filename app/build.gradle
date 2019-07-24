@@ -32,7 +32,14 @@ android {
             java {
                 srcDir 'src/main/java'
             }
+            //这里可能会导致'src/main/res/layout'路径下资源修改后不能及时刷新，需要留意
+            res.srcDirs=[
+                    'src/main/res/layout/music',
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]
         }
+
     }
 }
 //构建task
@@ -57,6 +64,7 @@ protobuf {
     //生成目录
     generatedFilesBaseDir = "$projectDir/src/generated"
 }
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'

@@ -7,5 +7,6 @@
     <string name="click_to_baike">到百度百科了解更多</string>
     <string name="click_basket">篮子(0)</string>
     <string name="click_copy_adminid">点击复制微信号</string>
+    <string name="pause_event">com.example.simplemusic.MusicService.pause</string>
 
 </resources>

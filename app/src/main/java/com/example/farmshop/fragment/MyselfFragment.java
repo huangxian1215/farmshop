@@ -20,6 +20,7 @@ import com.example.farmshop.activity.UserDetailActivity;
 import com.example.farmshop.farmshop;
 import com.example.farmshop.iflytek.MyVoiceSettingActivity;
 import com.example.farmshop.iflytek.VoiceSettingsActivity;
+import com.example.farmshop.music.MusicMainActivity;
 import com.example.farmshop.smartnote.SmtMainActivity;
 import com.example.farmshop.upfiles.activity.UpFileMainActivity;
 import com.example.farmshop.upfiles.utils.PackProtoUtil;
@@ -45,7 +46,7 @@ public class MyselfFragment extends Fragment implements OnClickListener{
         tv_edtuserinfo.setOnClickListener(this);
         rootView.findViewById(R.id.tv_queryOrder).setOnClickListener(this);
         rootView.findViewById(R.id.tv_smartnote).setOnClickListener(this);
-
+        rootView.findViewById(R.id.tv_simpleMusic).setOnClickListener(this);
         return rootView;
     }
 
@@ -76,6 +77,9 @@ public class MyselfFragment extends Fragment implements OnClickListener{
                 break;
             case R.id.tv_smartnote:
                 intent = new Intent(getActivity(), SmtMainActivity.class);
+                break;
+            case R.id.tv_simpleMusic:
+                intent = new Intent(getActivity(), MusicMainActivity.class);
                 break;
         }
         startActivity(intent);

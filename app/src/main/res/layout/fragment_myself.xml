@@ -47,6 +47,14 @@
             android:gravity="left|center"
             android:textSize="17sp"
             android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/tv_simpleMusic"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="音乐"
+            android:gravity="left|center"
+            android:textSize="17sp"
+            android:textColor="@color/black"/>
         <Button
             android:id="@+id/btn_upfile"
             android:layout_width="match_parent"

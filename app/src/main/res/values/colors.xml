@@ -28,6 +28,7 @@
     <color name="darkGreen">#0a780a</color>
     <color name="lightBlue">#33aaffff</color>
     <color name="black">#000000</color>
+    <color name="dark">#333333</color>
     <color name="grey">#cccccc</color>
     <color name="red">#ff0000</color>
     <color name="orange">#ffa500</color>

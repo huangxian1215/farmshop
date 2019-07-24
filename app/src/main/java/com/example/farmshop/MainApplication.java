@@ -6,10 +6,13 @@ package com.example.farmshop;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Environment;
 
 import com.example.farmshop.bean.BuyBuyBuyList;
 import com.example.farmshop.bean.UserInfo;
+import com.example.farmshop.music.bean.MusicInfo;
+import com.example.farmshop.music.bean.qqMusicInfo;
 import com.example.farmshop.thread.MessageTransmit;
 
 import java.util.ArrayList;
@@ -33,6 +36,18 @@ public class MainApplication extends Application {
         return mApp;
     }
 
+    //qq music
+    public MediaPlayer mMediaPlayer;
+    public String mSong;
+    public String mFilePath;
+    public String vkey;
+    public int downtype = 0;
+    public String qqsongid;
+    public ArrayList<qqMusicInfo> mqqMusicInfo;
+    public MusicInfo mMusic;
+    public int mMode = 1;
+    public String QQmusicUrl = "http://183.131.60.16/amobile.music.tc.qq.com/";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,6 +55,8 @@ public class MainApplication extends Application {
         mSessionId = "";
         mTransmit = new MessageTransmit();
         savePath = Environment.getExternalStorageDirectory()+"/farmshop/";
+
+        mMediaPlayer = new MediaPlayer();
     }
 
     //先只支持返回string
