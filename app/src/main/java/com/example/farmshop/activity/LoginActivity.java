@@ -21,6 +21,7 @@ import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.example.farmshop.util.VirtureUtil.onClickSureListener;
 import com.example.farmshop.util.VirtureUtil.onPlayVoiceListener;
 import com.google.protobuf.Any;
+import com.mob.MobSDK;
 
 import android.Manifest;
 import android.content.Context;
@@ -109,7 +110,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
 //        mDialog.showProgressDialog("正在下载", "当前进度");
 //        hd.postDelayed(rnb, 100);
 
-
     }
 
 //    Handler hd = new Handler();
@@ -143,7 +143,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.DELETE_CACHE_FILES,
                 Manifest.permission.VIBRATE,
-                Manifest.permission.RECEIVE_SMS
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.READ_CONTACTS
         }, 1);
     }
 

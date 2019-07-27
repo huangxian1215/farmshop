@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
+// 添加插件
+apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -18,7 +20,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "farmshop1.0.apk"
+            outputFileName = "farmshop1.1.apk"
         }
     }
     sourceSets {
@@ -39,8 +41,8 @@ android {
                     'src/main/res'
             ]
         }
-
     }
+
 }
 //构建task
 protobuf {
@@ -63,6 +65,15 @@ protobuf {
     }
     //生成目录
     generatedFilesBaseDir = "$projectDir/src/generated"
+}
+
+MobSDK {
+    appKey '2bd19dfb49580'
+    appSecret '0c39a6f00aa48b92355b6c01184ba7ba'
+    SMSSDK {
+
+    }
+    gui false
 }
 
 dependencies {
