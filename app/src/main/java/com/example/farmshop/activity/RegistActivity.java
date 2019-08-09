@@ -9,6 +9,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
     private EditText et_name;
     private EditText et_pwd;
     private EditText et_pwd_again;
+    private Button bt_bind;
     public MessageTransmit mTransmit;
     private MainApplication app;
     private Boolean registSuccess = false;
@@ -54,29 +56,33 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
         et_name = (EditText) findViewById(R.id.et_rgname);
         et_pwd = (EditText) findViewById(R.id.et_rgpwd);
         et_pwd_again = (EditText) findViewById(R.id.et_rgpwd_again);
+        bt_bind = (Button) findViewById(R.id.btn_bindphone);
         findViewById(R.id.btn_regist).setOnClickListener(this);
-
+        bt_bind.setOnClickListener(this);
         app = MainApplication.getInstance();
         app.mTransmit.addOnNetListener("RegistAcityty", this);
-        //mob 短信验证初始化
-        MobSDK.init(this);
-        registerSDK();
+
     }
 
     @Override
     public void onClick(View v) {
-        if(et_pwd.getText().toString().equals(et_pwd_again.getText().toString())){
-            if (v.getId() == R.id.btn_regist) {
+        if (v.getId() == R.id.btn_regist) {
+            if(et_pwd.getText().toString().equals(et_pwd_again.getText().toString())){
                 farmshop.baseType.Builder regist = farmshop.baseType.newBuilder().setType(farmshop.MsgId.REGIST_REQ).setSessionId(app.mSessionId);
                 farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(et_name.getText().toString()).setPassword(et_pwd.getText().toString()).build();
                 regist.addObject(Any.pack(req));
                 PackProtoUtil.packSend(regist);
+            }else{
+                Toast.makeText(getApplicationContext(), "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
             }
-        }else{
-            Toast.makeText(getApplicationContext(), "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
         }
-        //test mob
-//        phoneAuth();
+        if(v.getId() == R.id.btn_bindphone){
+            //mob 短信验证初始化
+            MobSDK.init(this);
+            registerSDK();
+            phoneAuth();
+        }
+
     }
 
     @Override
