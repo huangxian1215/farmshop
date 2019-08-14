@@ -17,7 +17,7 @@ import static android.support.constraint.Constraints.TAG;
 public class UserDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "UserDBHelper";
     private static UserDBHelper mHelp = null;
-    private static final String DB_NAME = MainApplication.getInstance().savePath + "user.db";
+    private static final String DB_NAME = MainApplication.getInstance().savePath + "music.db";
     private static final int DB_VERSION = 1;
     private static UserDBHelper mHelper = null;
     private SQLiteDatabase mDB = null;

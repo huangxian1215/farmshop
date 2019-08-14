@@ -2912,6 +2912,15 @@ public final class farmshop {
      */
     com.google.protobuf.ByteString
         getPasswordBytes();
+
+    /**
+     * <pre>
+     *0 账号登录 1 手机号登录
+     * </pre>
+     *
+     * <code>optional int32 type = 3;</code>
+     */
+    int getType();
   }
   /**
    * <pre>
@@ -2931,6 +2940,7 @@ public final class farmshop {
     private LoginRequest() {
       name_ = "";
       password_ = "";
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -2968,6 +2978,11 @@ public final class farmshop {
               java.lang.String s = input.readStringRequireUtf8();
 
               password_ = s;
+              break;
+            }
+            case 24: {
+
+              type_ = input.readInt32();
               break;
             }
           }
@@ -3061,6 +3076,19 @@ public final class farmshop {
       }
     }
 
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_;
+    /**
+     * <pre>
+     *0 账号登录 1 手机号登录
+     * </pre>
+     *
+     * <code>optional int32 type = 3;</code>
+     */
+    public int getType() {
+      return type_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -3079,6 +3107,9 @@ public final class farmshop {
       if (!getPasswordBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, password_);
       }
+      if (type_ != 0) {
+        output.writeInt32(3, type_);
+      }
     }
 
     public int getSerializedSize() {
@@ -3091,6 +3122,10 @@ public final class farmshop {
       }
       if (!getPasswordBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, password_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, type_);
       }
       memoizedSize = size;
       return size;
@@ -3112,6 +3147,8 @@ public final class farmshop {
           .equals(other.getName());
       result = result && getPassword()
           .equals(other.getPassword());
+      result = result && (getType()
+          == other.getType());
       return result;
     }
 
@@ -3126,6 +3163,8 @@ public final class farmshop {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
       hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3252,6 +3291,8 @@ public final class farmshop {
 
         password_ = "";
 
+        type_ = 0;
+
         return this;
       }
 
@@ -3276,6 +3317,7 @@ public final class farmshop {
         com.example.farmshop.farmshop.LoginRequest result = new com.example.farmshop.farmshop.LoginRequest(this);
         result.name_ = name_;
         result.password_ = password_;
+        result.type_ = type_;
         onBuilt();
         return result;
       }
@@ -3324,6 +3366,9 @@ public final class farmshop {
         if (!other.getPassword().isEmpty()) {
           password_ = other.password_;
           onChanged();
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
         }
         onChanged();
         return this;
@@ -3485,6 +3530,44 @@ public final class farmshop {
   checkByteStringIsUtf8(value);
         
         password_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int type_ ;
+      /**
+       * <pre>
+       *0 账号登录 1 手机号登录
+       * </pre>
+       *
+       * <code>optional int32 type = 3;</code>
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       *0 账号登录 1 手机号登录
+       * </pre>
+       *
+       * <code>optional int32 type = 3;</code>
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *0 账号登录 1 手机号登录
+       * </pre>
+       *
+       * <code>optional int32 type = 3;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -14244,46 +14327,47 @@ public final class farmshop {
       "rmshop.MsgId\022\021\n\tsessionId\030\002 \001(\t\022$\n\006objec" +
       "t\030\003 \003(\0132\024.google.protobuf.Any\"/\n\rRegistR" +
       "equest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\" " +
-      "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\".\n\014Logi" +
+      "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\"<\n\014Logi" +
       "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t" +
-      "\"^\n\rLoginResponse\022\016\n\006result\030\001 \001(\005\022\014\n\004nam" +
-      "e\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132\035.farmshop.Edi",
-      "tUserInfoRequest\"\252\001\n\023EditUserInfoRequest" +
-      "\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001(\t\022\020\n\010realNa" +
-      "me\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age\030\005 \001(\005\022\023\n\013ph" +
-      "oneNumber\030\006 \001(\t\022\020\n\010location\030\007 \001(\t\022\021\n\tisM" +
-      "anager\030\010 \001(\010\022\017\n\007petName\030\t \001(\t\"&\n\024EditUse" +
-      "rInfoResponse\022\016\n\006result\030\001 \001(\005\"1\n\022SendMes" +
-      "sageRequest\022\r\n\005words\030\001 \001(\t\022\014\n\004name\030\002 \001(\t" +
-      "\"B\n\023SendMessageResponse\022\016\n\006result\030\001 \001(\005\022" +
-      "\r\n\005words\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"t\n\016UpOrderR" +
-      "equest\022\014\n\004type\030\001 \001(\005\022%\n\007buyList\030\002 \003(\0132\024.",
-      "farmshop.BuyOneInfo\022\014\n\004time\030\003 \001(\003\022\016\n\006amo" +
-      "unt\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\"9\n\nBuyOneInfo" +
-      "\022\014\n\004name\030\001 \001(\t\022\016\n\006weight\030\002 \001(\005\022\r\n\005price\030" +
-      "\003 \001(\005\"!\n\017UpOrderResponse\022\016\n\006result\030\001 \001(\005" +
-      "\"D\n\021ReceiveOrderEvent\022\n\n\002id\030\001 \001(\005\022#\n\005sta" +
-      "te\030\002 \001(\0162\024.farmshop.OrderState\"%\n\021QueryO" +
-      "rderRequest\022\020\n\010lastTime\030\001 \001(\003\"E\n\022QueryOr" +
-      "derResponse\022\016\n\006result\030\001 \001(\005\022\037\n\006orders\030\002 " +
-      "\003(\0132\017.farmshop.Order\"\203\001\n\005Order\022\n\n\002id\030\001 \001" +
-      "(\005\022\014\n\004type\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\022\016\n\006amount",
-      "\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\022\"\n\004list\030\006 \003(\0132\024." +
-      "farmshop.BuyOneInfo\022\r\n\005state\030\007 \001(\005\" \n\022De" +
-      "leteOrderRequest\022\n\n\002id\030\001 \001(\005\"%\n\023DeleteOr" +
-      "derResponse\022\016\n\006result\030\001 \001(\005*\313\002\n\005MsgId\022\017\n" +
-      "\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIS" +
-      "T_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r" +
-      "\n\tLOGIN_RES\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020E" +
-      "ditUserInfo_RES\020\007\022\024\n\020SEND_MESSAGE_REQ\020\010\022" +
-      "\024\n\020SEND_MESSAGE_RES\020\t\022\017\n\013UPORDER_REQ\020\n\022\017" +
-      "\n\013UPORDER_RES\020\013\022\022\n\016QUERYORDER_REQ\020\014\022\022\n\016Q",
-      "UERYORDER_RES\020\r\022\023\n\017DELETEORDER_REQ\020\016\022\023\n\017" +
-      "DELETEORDER_RES\020\017\022\026\n\022RECEIVEORDER_EVENT\020" +
-      "\020*l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000\022\020\n" +
-      "\014ORDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n\rOR" +
-      "DER_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024com.e" +
-      "xample.farmshopB\010farmshopb\006proto3"
+      "\022\014\n\004type\030\003 \001(\005\"^\n\rLoginResponse\022\016\n\006resul" +
+      "t\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132",
+      "\035.farmshop.EditUserInfoRequest\"\252\001\n\023EditU" +
+      "serInfoRequest\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002" +
+      " \001(\t\022\020\n\010realName\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003a" +
+      "ge\030\005 \001(\005\022\023\n\013phoneNumber\030\006 \001(\t\022\020\n\010locatio" +
+      "n\030\007 \001(\t\022\021\n\tisManager\030\010 \001(\010\022\017\n\007petName\030\t " +
+      "\001(\t\"&\n\024EditUserInfoResponse\022\016\n\006result\030\001 " +
+      "\001(\005\"1\n\022SendMessageRequest\022\r\n\005words\030\001 \001(\t" +
+      "\022\014\n\004name\030\002 \001(\t\"B\n\023SendMessageResponse\022\016\n" +
+      "\006result\030\001 \001(\005\022\r\n\005words\030\002 \001(\t\022\014\n\004name\030\003 \001" +
+      "(\t\"t\n\016UpOrderRequest\022\014\n\004type\030\001 \001(\005\022%\n\007bu",
+      "yList\030\002 \003(\0132\024.farmshop.BuyOneInfo\022\014\n\004tim" +
+      "e\030\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030\005 \001(\t" +
+      "\"9\n\nBuyOneInfo\022\014\n\004name\030\001 \001(\t\022\016\n\006weight\030\002" +
+      " \001(\005\022\r\n\005price\030\003 \001(\005\"!\n\017UpOrderResponse\022\016" +
+      "\n\006result\030\001 \001(\005\"D\n\021ReceiveOrderEvent\022\n\n\002i" +
+      "d\030\001 \001(\005\022#\n\005state\030\002 \001(\0162\024.farmshop.OrderS" +
+      "tate\"%\n\021QueryOrderRequest\022\020\n\010lastTime\030\001 " +
+      "\001(\003\"E\n\022QueryOrderResponse\022\016\n\006result\030\001 \001(" +
+      "\005\022\037\n\006orders\030\002 \003(\0132\017.farmshop.Order\"\203\001\n\005O" +
+      "rder\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\014\n\004time\030\003",
+      " \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\022\"\n" +
+      "\004list\030\006 \003(\0132\024.farmshop.BuyOneInfo\022\r\n\005sta" +
+      "te\030\007 \001(\005\" \n\022DeleteOrderRequest\022\n\n\002id\030\001 \001" +
+      "(\005\"%\n\023DeleteOrderResponse\022\016\n\006result\030\001 \001(" +
+      "\005*\313\002\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_" +
+      "RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n" +
+      "\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024\n\020EditUserI" +
+      "nfo_REQ\020\006\022\024\n\020EditUserInfo_RES\020\007\022\024\n\020SEND_" +
+      "MESSAGE_REQ\020\010\022\024\n\020SEND_MESSAGE_RES\020\t\022\017\n\013U" +
+      "PORDER_REQ\020\n\022\017\n\013UPORDER_RES\020\013\022\022\n\016QUERYOR",
+      "DER_REQ\020\014\022\022\n\016QUERYORDER_RES\020\r\022\023\n\017DELETEO" +
+      "RDER_REQ\020\016\022\023\n\017DELETEORDER_RES\020\017\022\026\n\022RECEI" +
+      "VEORDER_EVENT\020\020*l\n\nOrderState\022\024\n\020ORDER_N" +
+      "OTRECIEVE\020\000\022\020\n\014ORDER_CANCEL\020\001\022\021\n\rORDER_R" +
+      "ECIEVE\020\002\022\021\n\rORDER_NOSTOCK\020\003\022\020\n\014ORDER_FIN" +
+      "ISH\020\004B \n\024com.example.farmshopB\010farmshopb" +
+      "\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -14327,7 +14411,7 @@ public final class farmshop {
     internal_static_farmshop_LoginRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_farmshop_LoginRequest_descriptor,
-        new java.lang.String[] { "Name", "Password", });
+        new java.lang.String[] { "Name", "Password", "Type", });
     internal_static_farmshop_LoginResponse_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_farmshop_LoginResponse_fieldAccessorTable = new

@@ -45,4 +45,9 @@ public class VirtureUtil {
     public interface onMyLocationListener{
         public abstract void getMyAllLocation(String info);
     }
+
+    //MobPhone 短信认证事件
+    public interface onResultMobPhoneListener{
+        public abstract void getMessageResult(String phonenum, Boolean flag);
+    }
 }

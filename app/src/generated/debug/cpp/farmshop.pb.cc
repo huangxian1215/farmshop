@@ -151,9 +151,10 @@ void protobuf_AssignDesc_farmshop_2eproto() {
       sizeof(RegistResponse),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RegistResponse, _internal_metadata_));
   LoginRequest_descriptor_ = file->message_type(4);
-  static const int LoginRequest_offsets_[2] = {
+  static const int LoginRequest_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginRequest, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginRequest, password_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LoginRequest, type_),
   };
   LoginRequest_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -556,46 +557,47 @@ void protobuf_AddDesc_farmshop_2eproto_impl() {
     "rmshop.MsgId\022\021\n\tsessionId\030\002 \001(\t\022$\n\006objec"
     "t\030\003 \003(\0132\024.google.protobuf.Any\"/\n\rRegistR"
     "equest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\" "
-    "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\".\n\014Logi"
+    "\n\016RegistResponse\022\016\n\006result\030\001 \001(\005\"<\n\014Logi"
     "nRequest\022\014\n\004name\030\001 \001(\t\022\020\n\010password\030\002 \001(\t"
-    "\"^\n\rLoginResponse\022\016\n\006result\030\001 \001(\005\022\014\n\004nam"
-    "e\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132\035.farmshop.Edi"
-    "tUserInfoRequest\"\252\001\n\023EditUserInfoRequest"
-    "\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002 \001(\t\022\020\n\010realNa"
-    "me\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003age\030\005 \001(\005\022\023\n\013ph"
-    "oneNumber\030\006 \001(\t\022\020\n\010location\030\007 \001(\t\022\021\n\tisM"
-    "anager\030\010 \001(\010\022\017\n\007petName\030\t \001(\t\"&\n\024EditUse"
-    "rInfoResponse\022\016\n\006result\030\001 \001(\005\"1\n\022SendMes"
-    "sageRequest\022\r\n\005words\030\001 \001(\t\022\014\n\004name\030\002 \001(\t"
-    "\"B\n\023SendMessageResponse\022\016\n\006result\030\001 \001(\005\022"
-    "\r\n\005words\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"t\n\016UpOrderR"
-    "equest\022\014\n\004type\030\001 \001(\005\022%\n\007buyList\030\002 \003(\0132\024."
-    "farmshop.BuyOneInfo\022\014\n\004time\030\003 \001(\003\022\016\n\006amo"
-    "unt\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\"9\n\nBuyOneInfo"
-    "\022\014\n\004name\030\001 \001(\t\022\016\n\006weight\030\002 \001(\005\022\r\n\005price\030"
-    "\003 \001(\005\"!\n\017UpOrderResponse\022\016\n\006result\030\001 \001(\005"
-    "\"D\n\021ReceiveOrderEvent\022\n\n\002id\030\001 \001(\005\022#\n\005sta"
-    "te\030\002 \001(\0162\024.farmshop.OrderState\"%\n\021QueryO"
-    "rderRequest\022\020\n\010lastTime\030\001 \001(\003\"E\n\022QueryOr"
-    "derResponse\022\016\n\006result\030\001 \001(\005\022\037\n\006orders\030\002 "
-    "\003(\0132\017.farmshop.Order\"\203\001\n\005Order\022\n\n\002id\030\001 \001"
-    "(\005\022\014\n\004type\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\022\016\n\006amount"
-    "\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\022\"\n\004list\030\006 \003(\0132\024."
-    "farmshop.BuyOneInfo\022\r\n\005state\030\007 \001(\005\" \n\022De"
-    "leteOrderRequest\022\n\n\002id\030\001 \001(\005\"%\n\023DeleteOr"
-    "derResponse\022\016\n\006result\030\001 \001(\005*\313\002\n\005MsgId\022\017\n"
-    "\013CONNECT_REQ\020\000\022\017\n\013CONNECT_RES\020\001\022\016\n\nREGIS"
-    "T_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n\tLOGIN_REQ\020\004\022\r"
-    "\n\tLOGIN_RES\020\005\022\024\n\020EditUserInfo_REQ\020\006\022\024\n\020E"
-    "ditUserInfo_RES\020\007\022\024\n\020SEND_MESSAGE_REQ\020\010\022"
-    "\024\n\020SEND_MESSAGE_RES\020\t\022\017\n\013UPORDER_REQ\020\n\022\017"
-    "\n\013UPORDER_RES\020\013\022\022\n\016QUERYORDER_REQ\020\014\022\022\n\016Q"
-    "UERYORDER_RES\020\r\022\023\n\017DELETEORDER_REQ\020\016\022\023\n\017"
-    "DELETEORDER_RES\020\017\022\026\n\022RECEIVEORDER_EVENT\020"
-    "\020*l\n\nOrderState\022\024\n\020ORDER_NOTRECIEVE\020\000\022\020\n"
-    "\014ORDER_CANCEL\020\001\022\021\n\rORDER_RECIEVE\020\002\022\021\n\rOR"
-    "DER_NOSTOCK\020\003\022\020\n\014ORDER_FINISH\020\004B \n\024com.e"
-    "xample.farmshopB\010farmshopb\006proto3", 1833);
+    "\022\014\n\004type\030\003 \001(\005\"^\n\rLoginResponse\022\016\n\006resul"
+    "t\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022/\n\010userinfo\030\003 \001(\0132"
+    "\035.farmshop.EditUserInfoRequest\"\252\001\n\023EditU"
+    "serInfoRequest\022\013\n\003uid\030\001 \001(\005\022\017\n\007headimg\030\002"
+    " \001(\t\022\020\n\010realName\030\003 \001(\t\022\013\n\003sex\030\004 \001(\010\022\013\n\003a"
+    "ge\030\005 \001(\005\022\023\n\013phoneNumber\030\006 \001(\t\022\020\n\010locatio"
+    "n\030\007 \001(\t\022\021\n\tisManager\030\010 \001(\010\022\017\n\007petName\030\t "
+    "\001(\t\"&\n\024EditUserInfoResponse\022\016\n\006result\030\001 "
+    "\001(\005\"1\n\022SendMessageRequest\022\r\n\005words\030\001 \001(\t"
+    "\022\014\n\004name\030\002 \001(\t\"B\n\023SendMessageResponse\022\016\n"
+    "\006result\030\001 \001(\005\022\r\n\005words\030\002 \001(\t\022\014\n\004name\030\003 \001"
+    "(\t\"t\n\016UpOrderRequest\022\014\n\004type\030\001 \001(\005\022%\n\007bu"
+    "yList\030\002 \003(\0132\024.farmshop.BuyOneInfo\022\014\n\004tim"
+    "e\030\003 \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030\005 \001(\t"
+    "\"9\n\nBuyOneInfo\022\014\n\004name\030\001 \001(\t\022\016\n\006weight\030\002"
+    " \001(\005\022\r\n\005price\030\003 \001(\005\"!\n\017UpOrderResponse\022\016"
+    "\n\006result\030\001 \001(\005\"D\n\021ReceiveOrderEvent\022\n\n\002i"
+    "d\030\001 \001(\005\022#\n\005state\030\002 \001(\0162\024.farmshop.OrderS"
+    "tate\"%\n\021QueryOrderRequest\022\020\n\010lastTime\030\001 "
+    "\001(\003\"E\n\022QueryOrderResponse\022\016\n\006result\030\001 \001("
+    "\005\022\037\n\006orders\030\002 \003(\0132\017.farmshop.Order\"\203\001\n\005O"
+    "rder\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022\014\n\004time\030\003"
+    " \001(\003\022\016\n\006amount\030\004 \001(\005\022\017\n\007message\030\005 \001(\t\022\"\n"
+    "\004list\030\006 \003(\0132\024.farmshop.BuyOneInfo\022\r\n\005sta"
+    "te\030\007 \001(\005\" \n\022DeleteOrderRequest\022\n\n\002id\030\001 \001"
+    "(\005\"%\n\023DeleteOrderResponse\022\016\n\006result\030\001 \001("
+    "\005*\313\002\n\005MsgId\022\017\n\013CONNECT_REQ\020\000\022\017\n\013CONNECT_"
+    "RES\020\001\022\016\n\nREGIST_REQ\020\002\022\016\n\nREGIST_RES\020\003\022\r\n"
+    "\tLOGIN_REQ\020\004\022\r\n\tLOGIN_RES\020\005\022\024\n\020EditUserI"
+    "nfo_REQ\020\006\022\024\n\020EditUserInfo_RES\020\007\022\024\n\020SEND_"
+    "MESSAGE_REQ\020\010\022\024\n\020SEND_MESSAGE_RES\020\t\022\017\n\013U"
+    "PORDER_REQ\020\n\022\017\n\013UPORDER_RES\020\013\022\022\n\016QUERYOR"
+    "DER_REQ\020\014\022\022\n\016QUERYORDER_RES\020\r\022\023\n\017DELETEO"
+    "RDER_REQ\020\016\022\023\n\017DELETEORDER_RES\020\017\022\026\n\022RECEI"
+    "VEORDER_EVENT\020\020*l\n\nOrderState\022\024\n\020ORDER_N"
+    "OTRECIEVE\020\000\022\020\n\014ORDER_CANCEL\020\001\022\021\n\rORDER_R"
+    "ECIEVE\020\002\022\021\n\rORDER_NOSTOCK\020\003\022\020\n\014ORDER_FIN"
+    "ISH\020\004B \n\024com.example.farmshopB\010farmshopb"
+    "\006proto3", 1847);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "farmshop.proto", &protobuf_RegisterTypes);
   ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fany_2eproto();
@@ -1969,6 +1971,7 @@ inline const RegistResponse* RegistResponse::internal_default_instance() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int LoginRequest::kNameFieldNumber;
 const int LoginRequest::kPasswordFieldNumber;
+const int LoginRequest::kTypeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 LoginRequest::LoginRequest()
@@ -1992,6 +1995,7 @@ LoginRequest::LoginRequest(const LoginRequest& from)
 void LoginRequest::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   password_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  type_ = 0;
   _cached_size_ = 0;
 }
 
@@ -2034,6 +2038,7 @@ void LoginRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:farmshop.LoginRequest)
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   password_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  type_ = 0;
 }
 
 bool LoginRequest::MergePartialFromCodedStream(
@@ -2072,6 +2077,21 @@ bool LoginRequest::MergePartialFromCodedStream(
             this->password().data(), this->password().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "farmshop.LoginRequest.password"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_type;
+        break;
+      }
+
+      // optional int32 type = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_type:
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &type_)));
         } else {
           goto handle_unusual;
         }
@@ -2123,6 +2143,11 @@ void LoginRequest::SerializeWithCachedSizes(
       2, this->password(), output);
   }
 
+  // optional int32 type = 3;
+  if (this->type() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->type(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:farmshop.LoginRequest)
 }
 
@@ -2152,6 +2177,11 @@ void LoginRequest::SerializeWithCachedSizes(
         2, this->password(), target);
   }
 
+  // optional int32 type = 3;
+  if (this->type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->type(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:farmshop.LoginRequest)
   return target;
 }
@@ -2172,6 +2202,13 @@ size_t LoginRequest::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->password());
+  }
+
+  // optional int32 type = 3;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->type());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -2215,6 +2252,9 @@ void LoginRequest::UnsafeMergeFrom(const LoginRequest& from) {
 
     password_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.password_);
   }
+  if (from.type() != 0) {
+    set_type(from.type());
+  }
 }
 
 void LoginRequest::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2243,6 +2283,7 @@ void LoginRequest::Swap(LoginRequest* other) {
 void LoginRequest::InternalSwap(LoginRequest* other) {
   name_.Swap(&other->name_);
   password_.Swap(&other->password_);
+  std::swap(type_, other->type_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -2344,6 +2385,20 @@ void LoginRequest::set_allocated_password(::std::string* password) {
   }
   password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
   // @@protoc_insertion_point(field_set_allocated:farmshop.LoginRequest.password)
+}
+
+// optional int32 type = 3;
+void LoginRequest::clear_type() {
+  type_ = 0;
+}
+::google::protobuf::int32 LoginRequest::type() const {
+  // @@protoc_insertion_point(field_get:farmshop.LoginRequest.type)
+  return type_;
+}
+void LoginRequest::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.LoginRequest.type)
 }
 
 inline const LoginRequest* LoginRequest::internal_default_instance() {

@@ -592,12 +592,19 @@ class LoginRequest : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::std::string* release_password();
   void set_allocated_password(::std::string* password);
 
+  // optional int32 type = 3;
+  void clear_type();
+  static const int kTypeFieldNumber = 3;
+  ::google::protobuf::int32 type() const;
+  void set_type(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:farmshop.LoginRequest)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr name_;
   ::google::protobuf::internal::ArenaStringPtr password_;
+  ::google::protobuf::int32 type_;
   mutable int _cached_size_;
   friend void  protobuf_InitDefaults_farmshop_2eproto_impl();
   friend void  protobuf_AddDesc_farmshop_2eproto_impl();
@@ -2413,6 +2420,20 @@ inline void LoginRequest::set_allocated_password(::std::string* password) {
   }
   password_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), password);
   // @@protoc_insertion_point(field_set_allocated:farmshop.LoginRequest.password)
+}
+
+// optional int32 type = 3;
+inline void LoginRequest::clear_type() {
+  type_ = 0;
+}
+inline ::google::protobuf::int32 LoginRequest::type() const {
+  // @@protoc_insertion_point(field_get:farmshop.LoginRequest.type)
+  return type_;
+}
+inline void LoginRequest::set_type(::google::protobuf::int32 value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:farmshop.LoginRequest.type)
 }
 
 inline const LoginRequest* LoginRequest::internal_default_instance() {

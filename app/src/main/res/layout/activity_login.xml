@@ -59,7 +59,14 @@
             android:textSize="17sp" />
 
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/tv_phonelogin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="right|center"
+        android:layout_marginRight="20dp"
+        android:text="手机号登录"
+        android:textSize="17sp" />
     <!--<Button-->
         <!--android:id="@+id/btn_test"-->
         <!--android:layout_width="match_parent"-->

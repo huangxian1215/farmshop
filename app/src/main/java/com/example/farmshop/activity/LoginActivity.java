@@ -14,8 +14,10 @@ import com.example.farmshop.farmshop;
 import com.example.farmshop.functions.MyLocation;
 import com.example.farmshop.iflytek.IflayMainActivity;
 import com.example.farmshop.iflytek.MySpeakOut;
+import com.example.farmshop.mobphone.MyMobphone;
 import com.example.farmshop.music.MusicMainActivity;
 import com.example.farmshop.upfiles.utils.PackProtoUtil;
+import com.example.farmshop.util.VirtureUtil.onResultMobPhoneListener;
 import com.example.farmshop.util.VirtureUtil.onMyLocationListener;
 import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.example.farmshop.util.VirtureUtil.onClickSureListener;
@@ -26,6 +28,7 @@ import com.mob.MobSDK;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -46,7 +49,7 @@ import java.util.Random;
  * Created by ouyangshen on 2016/11/11.
  */
 public class LoginActivity extends AppCompatActivity implements OnClickListener, onGetNetDataListener ,onClickSureListener ,onPlayVoiceListener
-        , onMyLocationListener {
+        , onMyLocationListener ,onResultMobPhoneListener {
     private final static String TAG = "LoginActivity";
     private EditText et_ip;
     private EditText et_port;
@@ -54,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     private EditText s_et_pwd;
     public TextView tv_location;
     public TextView ev_location;
+    private TextView tv_phoneLogin;
     private MainApplication app;
     public Context mContext;
     public Boolean isConnect = false;
@@ -61,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     public int connectType = 0; //0 登录 1 注册
     public String mLocation  = "";
     private LocationManager lm = null;
+    private int clickLoginType = 0;
+    private String mPhone = "";
     //
     public MyLocation myLocation;
     private MyDialog mDialog;
@@ -84,6 +90,10 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         s_et_pwd = (EditText) findViewById(R.id.et_pwd);
 //        tv_location = (TextView) findViewById(R.id.tv_location);
         ev_location = (TextView) findViewById(R.id.ev_location);
+        tv_phoneLogin = (TextView) findViewById(R.id.tv_phonelogin);
+        tv_phoneLogin.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tv_phoneLogin.getPaint().setAntiAlias(true);
+        tv_phoneLogin.setOnClickListener(this);
         findViewById(R.id.btn_regist).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
 //        findViewById(R.id.btn_iflay).setOnClickListener(this);
@@ -161,6 +171,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         //登录
         if(v.getId() == R.id.btn_login){
             connectType = 0;
+            clickLoginType = 0;
             connetcServer();
             //保存输入
             app.setLocalStore("login_ip", et_ip.getText().toString());
@@ -168,11 +179,27 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             app.setLocalStore("login_name", s_et_name.getText().toString());
             app.setLocalStore("login_pwd", s_et_pwd.getText().toString());
         }
+
+        //手机号登录
+        if(v.getId() == R.id.tv_phonelogin){
+            MyMobphone mb = new MyMobphone(this);
+            mb.startMessage();
+            mb.setMobPhoneListener(this);
+        }
         //讯飞语音setOnNetListener
 //        if(v.getId() == R.id.btn_iflay){
 //            Intent intent = new Intent(this, IflayMainActivity.class);
 //            startActivity(intent);
 //            }
+    }
+    @Override
+    public void getMessageResult(String phonenum, Boolean flag){
+        if(flag){
+            clickLoginType = 1;
+            connectType = 0;
+            connetcServer();
+            mPhone = phonenum;
+        }
     }
 
     @Override
@@ -221,9 +248,16 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
 
     public void loginUgly(){
         farmshop.baseType.Builder login = farmshop.baseType.newBuilder().setType(farmshop.MsgId.LOGIN_REQ).setSessionId(MainApplication.getInstance().mSessionId);
-        farmshop.RegistRequest req = farmshop.RegistRequest.newBuilder().setName(s_et_name.getText().toString()).setPassword(s_et_pwd.getText().toString()).build();
+        farmshop.LoginRequest req = farmshop.LoginRequest.newBuilder().setName(s_et_name.getText().toString()).setPassword(s_et_pwd.getText().toString()).setType(0).build();
         login.addObject(Any.pack(req));
         PackProtoUtil.packSend(login);
+    }
+
+    public void loginPhone(){
+        farmshop.baseType.Builder phonelogin = farmshop.baseType.newBuilder().setType(farmshop.MsgId.LOGIN_REQ).setSessionId(MainApplication.getInstance().mSessionId);
+        farmshop.LoginRequest req = farmshop.LoginRequest.newBuilder().setName(mPhone).setPassword("").setType(1).build();
+        phonelogin.addObject(Any.pack(req));
+        PackProtoUtil.packSend(phonelogin);
     }
 
     @Override
@@ -247,8 +281,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
             hd_showlogin.postDelayed(rb_showlogin, 0);
         }else {
             isConnect = true;
-            if(connectType == 1) return;
-            loginUgly();
+            if(connectType == 1) return;    //注册
+            if(clickLoginType == 1) loginPhone();  //手机号登录
+            loginUgly();    // 账号登录
         }
     }
 
