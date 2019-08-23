@@ -17,6 +17,7 @@ import com.example.farmshop.adapter.DetailPictureAdapter;
 import com.example.farmshop.bean.BuyBuyBuyList;
 import com.example.farmshop.task.LoadFilesTask;
 import com.example.farmshop.task.LoadFilesTask.onGetFileListener;
+import com.example.farmshop.upfiles.activity.UpfileActivity;
 import com.example.farmshop.util.JsonUtil;
 import com.example.farmshop.util.MyUtil;
 
@@ -35,6 +36,7 @@ public class VegetableDetailActivity extends AppCompatActivity implements OnClic
     private TextView tv_delete;
     private TextView tv_basket;
     private ListView lv_img;
+    private TextView tv_upfile;
     private DetailPictureAdapter madapter;
     private String mName = "";
     private String mType = "";
@@ -61,10 +63,12 @@ public class VegetableDetailActivity extends AppCompatActivity implements OnClic
         tv_basket = (TextView) findViewById(R.id.tv_basket);
         tv_delete = (TextView) findViewById(R.id.tv_delete_this);
         tv_add = (TextView) findViewById(R.id.tv_add_this);
+        tv_upfile =(TextView)findViewById(R.id.tv_upfile);
         tv_desc.setOnClickListener(this);
         tv_basket.setOnClickListener(this);
         tv_delete.setOnClickListener(this);
         tv_add.setOnClickListener(this);
+        tv_upfile.setOnClickListener(this);
 
         displayCount();
         initPictureConfig();
@@ -98,6 +102,13 @@ public class VegetableDetailActivity extends AppCompatActivity implements OnClic
                 MainApplication.getInstance().mBasketList.add(buyone);
                 displayCount();
             }
+        }
+
+        if(v.getId() == R.id.tv_upfile){
+            Intent intent = new Intent(this, UpfileActivity.class);
+            intent.putExtra("target_name", mName);
+            intent.putExtra("target_dir", mType);
+            startActivity(intent);
         }
     }
 

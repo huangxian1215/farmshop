@@ -37,6 +37,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
     public TextView tv_location;
     public TextView ev_location;
     private TextView tv_phoneLogin;
+    private Button btn_login;
     private MainApplication app;
     public Context mContext;
     public Boolean isConnect = false;
@@ -95,7 +97,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         tv_phoneLogin.getPaint().setAntiAlias(true);
         tv_phoneLogin.setOnClickListener(this);
         findViewById(R.id.btn_regist).setOnClickListener(this);
-        findViewById(R.id.btn_login).setOnClickListener(this);
+        btn_login = findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(this);
 //        findViewById(R.id.btn_iflay).setOnClickListener(this);
         app = MainApplication.getInstance();
         mContext = this;
@@ -170,6 +173,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
         }
         //登录
         if(v.getId() == R.id.btn_login){
+            btn_login.setEnabled(false);
             connectType = 0;
             clickLoginType = 0;
             connetcServer();
@@ -178,6 +182,8 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener,
 //            app.setLocalStore("login_port", et_port.getText().toString());
             app.setLocalStore("login_name", s_et_name.getText().toString());
             app.setLocalStore("login_pwd", s_et_pwd.getText().toString());
+
+
         }
 
         //手机号登录

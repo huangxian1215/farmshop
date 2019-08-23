@@ -64,6 +64,7 @@
         <activity android:name=".activity.WellcomeActivity"/>
         <activity android:name=".upfiles.activity.MediaStoreActivity"/>
         <activity android:name=".upfiles.activity.UpFileMainActivity"/>
+        <activity android:name=".upfiles.activity.UpfileActivity"/>
         <activity android:name=".activity.UserDetailActivity"/>
         <activity android:name=".activity.UserDetailEditActivity"/>
         <activity android:name=".activity.NotificationActivity"/>

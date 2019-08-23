@@ -4,7 +4,8 @@
     <string name="app_id">5d02f40d</string>
     <string name="compose_source">锄禾日当午，\n汗滴禾下土。\n谁知盘中餐，\n粒粒皆辛苦。\n</string>
     <string name="compose_source_en">Who knows Chinese food, every grain of hard work.</string>
-    <string name="click_to_baike">到百度百科了解更多</string>
+    <string name="click_to_upfile">上传文件</string>
+    <string name="click_to_baike">百科</string>
     <string name="click_basket">篮子(0)</string>
     <string name="click_copy_adminid">点击复制微信号</string>
     <string name="pause_event">com.example.simplemusic.MusicService.pause</string>

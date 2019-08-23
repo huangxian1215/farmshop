@@ -1,24 +1,17 @@
 package com.example.farmshop.activity;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.farmshop.MainApplication;
 import com.example.farmshop.R;
 import com.example.farmshop.farmshop;
-import com.example.farmshop.mobphone.MyMobphone;
 import com.example.farmshop.upfiles.utils.PackProtoUtil;
-import com.example.farmshop.util.VirtureUtil.onResultMobPhoneListener;
 import com.example.farmshop.util.VirtureUtil.onGetNetDataListener;
 import com.google.protobuf.Any;
 
@@ -29,9 +22,9 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
     private EditText et_name;
     private EditText et_pwd;
     private EditText et_pwd_again;
-    private Button bt_bind;
     private MainApplication app;
     private Boolean registSuccess = false;
+    private int responseCode = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +59,8 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
         try{
             Any any = data.getObject(0);
             farmshop.RegistResponse resp = farmshop.RegistResponse.parseFrom(any.getValue());
-            if(resp.getResult() == 0){
-                registSuccess = true;
-            }else {
-                registSuccess = false;
-            }
+            responseCode = resp.getResult();
+            registSuccess = resp.getResult() == 0;
             hd_showregist.postDelayed(rb_showregist, 0);
         }catch (IOException e){
             e.printStackTrace();
@@ -86,7 +76,11 @@ public class RegistActivity extends AppCompatActivity implements OnClickListener
                 app.mTransmit.deleteOnNetListener("RegistAcityty");
                 finish();
             }else{
-                Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_SHORT).show();
+                if(responseCode == 1){
+                    Toast.makeText(getApplicationContext(), "该用户名已存在", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_SHORT).show();
+                }
             }
 
         }

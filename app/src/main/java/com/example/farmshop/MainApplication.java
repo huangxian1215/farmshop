@@ -27,7 +27,7 @@ public class MainApplication extends Application {
     public MessageTransmit mTransmit;
     public String httpUrl = "http://192.168.6.176:8080/";
     public String Url = "http://192.168.6.176:8010/";
-    public String upFileUrl = "http://192.168.6.176:8020/";
+    public static int upFilePort = 8020;
     public String savePath = "";
     public String selectFileUrl = "";
 
@@ -55,7 +55,6 @@ public class MainApplication extends Application {
         mSessionId = "";
         mTransmit = new MessageTransmit();
         savePath = Environment.getExternalStorageDirectory()+"/farmshop/";
-
         mMediaPlayer = new MediaPlayer();
     }
 
